@@ -1,5 +1,4 @@
 </php
-
 require_once('mysqlconnect.php');
 ?>
 <!DOCTYPE html>
