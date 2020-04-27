@@ -1,3 +1,7 @@
+</php
+
+require_once('mysqlconnect.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
