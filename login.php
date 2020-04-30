@@ -1,5 +1,5 @@
 <?php
-$host="localhost";
+$host="localhost:3308";
 $user="root";
 $password="";
 $db="singhe_super";
@@ -7,14 +7,14 @@ $db="singhe_super";
 $connection=mysqli_connect($host,$user,$password);
 mysqli_select_db($connection,$db);
  
-if(isset($_POST['username'])){
+if(isset($_GET['username'])){
     
-    $uname=$_POST['username'];
-    $password=$_POST['password'];
+    $uname=$_GET['username'];
+    $password=$_GET['password'];
 
     $sql="select * from users where user_name='".$uname."'AND password='".$password."' limit 1";
     
-    $result=mysqli_query($sql);
+    $result=mysqli_query($connection,$sql);
     
     if(mysqli_num_rows($result)==1){
         echo " You Have Successfully Logged in";
@@ -38,14 +38,14 @@ if(isset($_POST['username'])){
 <body>
  <div class="container">
  <img src="image/login.png"/>
- <form method="post" >
+ <form method="GET" >
  <div class="form-input">
- <input type="text" name="text" placeholder="Enter the User Name"/> 
+ <input type="text" name="username" placeholder="Enter the User Name"/> 
  </div>
  <div class="form-input">
  <input type="password" name="password" placeholder="password"/>
  </div>
- <input type="submit" type="submit" class="btn-login"/>
+ <input type="submit" type="submit" value="LOGIN" class="btn-login"/>
  </form>
  </div>
 </body>
