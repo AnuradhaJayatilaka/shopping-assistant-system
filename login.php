@@ -1,14 +1,16 @@
 <?php
-$host="localhost:3308";
-$user="root";
-$password="";
-$db="singhe_super";
- 
-$connection=mysqli_connect($host,$user,$password);
-mysqli_select_db($connection,$db);
+
  
 if(isset($_GET['username'])){
+    $host="localhost:3308";
+    $user="root";
+    $password="";
+    $db="singhe_super";
+     
+    $connection=mysqli_connect($host,$user,$password);
+    mysqli_select_db($connection,$db);
     
+
     $uname=$_GET['username'];
     $password=$_GET['password'];
 
