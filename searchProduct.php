@@ -1,7 +1,7 @@
 <?php
 
  
-if(isset($_GET['username'])){
+if(isset($_GET['product_name'])){
     $host="localhost:3308";
     $user="root";
     $password="";
@@ -12,29 +12,30 @@ if(isset($_GET['username'])){
     mysqli_select_db($connection,$db);
     
 
-    $uname=$_GET['username'];
-    $password=$_GET['password'];
+    $pname=$_GET['product_name'];
+    // $password=$_GET['password'];
 
-    $sql="select * from users where user_name='".$uname."'AND password='".$password."' limit 1";
+    $sql="select * from products where product_name='".$pname."' limit 1";
     
     $result=mysqli_query($connection,$sql);
     
     if(mysqli_num_rows($result)==1){
-        echo " You Have Successfully Logged in";
+        echo " product is available";
         exit();
     }
     else{
-        echo " You Have Entered Incorrect Password";
+        echo " product is unavailable";
         exit();
     }
         
 }
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
- <title> Login Form </title>
+ <title> Search Product </title>
  <link rel="stylesheet" a href="login.css">
  
 </head>
@@ -43,12 +44,12 @@ if(isset($_GET['username'])){
  <img src="image/login.png"/>
  <form method="GET" >
  <div class="form-input">
- <input type="text" name="username" placeholder="Enter the User Name"/> 
+ <input type="text" name="product name" placeholder="Enter the product name"/> 
  </div>
- <div class="form-input">
+ <!-- <div class="form-input">
  <input type="password" name="password" placeholder="password"/>
- </div>
- <input type="submit" type="submit" value="LOGIN" class="btn-login"/>
+ </div> -->
+ <input type="submit" type="submit" value="SEARCH" class="btn-Search"/>
  </form>
  </div>
 </body>
