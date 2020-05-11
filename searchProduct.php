@@ -13,8 +13,7 @@ if(isset($_GET['product_name'])){
     
 
     $pname=$_GET['product_name'];
-    // $password=$_GET['password'];
-
+    
     $sql="select * from products where product_name='".$pname."' limit 1";
     
     $result=mysqli_query($connection,$sql);
@@ -36,12 +35,12 @@ if(isset($_GET['product_name'])){
 <html>
 <head>
  <title> Search Product </title>
- <link rel="stylesheet" a href="login.css">
+ <link rel="stylesheet" a href="SearchProduct.css">
  
 </head>
 <body>
  <div class="container">
- <img src="image/login.png"/>
+ <img src="searchProduct.jpg"/>
  <form method="GET" >
  <div class="form-input">
  <input type="text" name="product name" placeholder="Enter the product name"/> 

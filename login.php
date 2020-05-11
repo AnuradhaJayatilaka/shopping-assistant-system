@@ -35,12 +35,12 @@ if(isset($_GET['username'])){
 <html>
 <head>
  <title> Login Form </title>
- <link rel="stylesheet" a href="login.css">
+ <link rel="stylesheet" type="text/css" href="login.css">
  
 </head>
 <body>
- <div class="container">
- <img src="image/login.png"/>
+ <div class="container" >
+ <img class="containerimg" src="singhesuper.jpg"/>
  <form method="GET" >
  <div class="form-input">
  <input type="text" name="username" placeholder="Enter the User Name"/> 
