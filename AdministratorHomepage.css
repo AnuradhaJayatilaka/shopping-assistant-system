@@ -24,6 +24,16 @@ body
     width: 250px;
     height: 100%;
 }
+
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    float : left;
+  }
+
 .sidebar ul a{
     display: block;
     height: 100%;
@@ -40,7 +50,7 @@ body
     transition: .4s;
 
 }
-/* .sidebar ul li{
+.sidebar ul li{
     width: 120px;
     margin: 15px;
     padding: 15px;
@@ -53,4 +63,5 @@ body
 .active, .sidebar ul li:hover{
     background: #2bab0d;
     border-radius: 3px;
-} */
+    color: #f1f1f1;
+}
