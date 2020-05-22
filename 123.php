@@ -1,3 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- NO CAHCING -->
+<!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" /> -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap 4 Nav Vertical Alignment</title>
+<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="../fontawesome/css/fontawesome.css">
+<script src="../jquery/jquery-3.5.1.js"></script>
+<!-- not sure -->
+<script src="../popper-core/src/popper.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+<script src="../bootstrap/dist/js/bootstrap.js"></script>
+<style type="text/css">
+    .bs-example{
+        margin: 20px;        
+    }
+</style>
+</head>
+<body>
+    <nav class="nav nav-pills">
+        <a href="#" class="nav-item nav-link active">Home</a>
+        <a href="#" class="nav-item nav-link">About Us</a>
+        <a href="#" class="nav-item nav-link">Contact Us</a>
+        <a href="searchProduct.php" class="nav-item nav-link">Search Product</a>
+        <!-- <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
+        <!-- <form class="form-inline ml-auto">
+            
+            <input type="text" class="form-control mr-sm-2" placeholder="Search">
+            <button type="submit" class="btn btn-outline-light">Search Product</button>
+            
+        </form> -->
+    </nav>
+
+    <!-- <nav class="nav">
+        <a href="#" class="nav-item nav-link active">Home</a>
+        <a href="#" class="nav-item nav-link">Profile</a>
+        <a href="#" class="nav-item nav-link">Messages</a>
+        <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+    </nav> -->
+
+    <!-- <div class="bs-example">
+
+        <nav class="nav-pills">
+            <ul>
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Pprofile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+              </ul>
+        </nav> -->
+
+    <!-- <nav class="nav nav-pills"> -->
+        
+    <!-- </nav> -->
+<!-- <div class="bs-example">
+    <ul class="nav nav-pills nav-stacked">
+        ...
+        
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <a href="#" class="nav-item nav-link">Profile</a>
+        <a href="#" class="nav-item nav-link">Messages</a>
+        <a href="#" class="nav-item nav-link" tabindex="-1">Reports</a>
+         
+    </ul> -->
+<!-- </div> -->
+</body>
+</html>                            
+
+<!-- <?php
+
+ 
+// if(isset($_GET['product_name'])){
+//     $host="localhost:3308";
+//     $user="root";
+//     $password="";
+//     $db="singhe_super";
+     
+    
+//     $connection=mysqli_connect($host,$user,$password);
+//     mysqli_select_db($connection,$db);
+    
+
+//     $pname=$_GET['product_name'];
+    
+//     $sql="select * from products where product_name='".$pname."' limit 1";
+    
+//     $result=mysqli_query($connection,$sql);
+    
+//     if(mysqli_num_rows($result)==1){
+//         echo " product is available";
+//         exit();
+//     }
+//     else{
+//         echo " product is unavailable";
+//         exit();
+//     }
+        
+// }
+?> -->
+
+
 <?php
 // Initialize the session
 session_start();
@@ -144,11 +251,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="abc.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="signupfinal.php">Sign up now</a>.</p>
         </form>
     </div>    
 </body>
 </html>
-
-
- 

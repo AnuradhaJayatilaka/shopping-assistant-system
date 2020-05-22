@@ -16,7 +16,7 @@ body
     text-decoration: none;
 
 }
-.sidebar{
+.nav flex-column{
     background: rgb(00, 0, blue);
     text-align: left;
     position: fixed;
@@ -25,7 +25,7 @@ body
     height: 100%;
 }
 
-.sidebar a {
+.nav flex-column a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
@@ -34,7 +34,7 @@ body
     float : left;
   }
 
-.sidebar ul a{
+.nav flex-column ul a{
     display: block;
     height: 100%;
     width: 100%;
@@ -50,17 +50,17 @@ body
     transition: .4s;
 
 }
-.sidebar ul li{
+.nav flex-column ul li{
     width: 120px;
     margin: 15px;
     padding: 15px;
 }
-.sidebar ul li a{
+.nav flex-column ul li a{
     text-decoration: none;
     color: #fff;
 }
 
-.active, .sidebar ul li:hover{
+.active, .nav flex-column ul li:hover{
     background: #2bab0d;
     border-radius: 3px;
     color: #f1f1f1;

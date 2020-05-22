@@ -83,7 +83,7 @@
             </div>
         </form>
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type= "text/javascript">
         $(function(){
             $('#create').click(function(e){
@@ -129,6 +129,6 @@
             
             
         });
-        </script> -->
+        </script>
 </body>
 </html>
