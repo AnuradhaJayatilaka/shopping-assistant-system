@@ -1,3 +1,5 @@
+<?php
+?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +24,7 @@
   <div class="bs-example">
       <nav class="nav nav-pills">
           
-           <a href="ManageInventory.php" class="nav-item nav-link">Manage Inventory</a>
+           <a href="view.php" class="nav-item nav-link">Manage Inventory</a>
                <a href="ManageOrders.php" class="nav-item nav-link">Manage Orders</a>
                <a href="ViewSuggestions.php" class="nav-item nav-link">View Suggestions</a> 
                <a href="viewCustomerFeedback.php" class="nav-item nav-link">view Customer Feedback</a>

@@ -26,11 +26,11 @@ if(isset($_POST['new']) && $_POST['new']==1){
     if($result){
 
         // $trn_date=trn_date;
-        $product_name=product_name;
-        $product_ID=product_ID;
-        $description=description;
-        $unit_price=unit_price;
-        $brand=brand;
+        // $product_name=product_name;
+        // $product_ID=product_ID;
+        // $description=description;
+        // $unit_price=unit_price;
+        // $brand=brand;
 
         $status = "New Record Inserted Successfully.
         </br></br><a href='view.php'>View Inserted Record</a>";

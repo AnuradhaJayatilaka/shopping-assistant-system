@@ -10,24 +10,26 @@ CREATE TABLE products ( `product_name` VARCHAR(30) NOT NULL , `product_ID` VARCH
 INSERT INTO `products` (`product_name`, `product_ID`, `description`, `unit_price`, `brand`) VALUES ('Cream Crackers', 'BIS2222', '500g', '200', 'Munchee');
 INSERT INTO `products` (`product_name`, `product_ID`, `description`, `unit_price`, `brand`) VALUES ('Tooth Brush', 'SAN2222', 'Medium', '60', 'Signal');
 
-CREATE TABLE orders ( `order_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT , `username` VARCHAR(30) NOT NULL , `description` VARCHAR(30) NOT NULL , `total_price` VARCHAR(10) NOT NULL, `order_date` DATE NOT NULL);
+-- CREATE TABLE orders ( `order_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT , `username` VARCHAR(30) NOT NULL , `description` VARCHAR(30) NOT NULL , `total_price` VARCHAR(10) NOT NULL, `order_date` DATE NOT NULL);
 
-CREATE TABLE textarea
- (
-`product_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`product_name` VARCHAR( 50 ) NOT NULL ,
-`quantity` TEXT NOT NULL ,
-UNIQUE (
-`product_id`
-)
-) ENGINE = MYISAM ;
+-- CREATE TABLE textarea
+--  (
+-- `product_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+-- `product_name` VARCHAR( 50 ) NOT NULL ,
+-- `quantity` TEXT NOT NULL ,
+-- UNIQUE (
+-- `product_id`
+-- )
+-- ) ENGINE = MYISAM ;
 
 DROP TABLE IF EXISTS orders;
 CREATE TABLE IF NOT EXISTS ordersss(
   `username` varchar(30) NOT NULL,
   `orderid` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`orderid`)
-) ;
+  'Y-m-d H:i:s' DATE not NULL;
+
+  ) ;
 -- ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1
 
 

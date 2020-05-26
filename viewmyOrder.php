@@ -1,12 +1,26 @@
 <?php
+session_start();
     require_once "mysqlconnect.php";
-    $username=$order_items=$array=$orderid=" ";
+    // $product_ID=$_REQUEST['product_ID'];
+    // $trn_date = date("Y-m-d H:i:s");
+    $email= $_SESSION['email_address'];
+    $sql1= "SELECT user_name FROM users WHERE email_address='$email'";
+    $result=mysqli_query($db, $sql1);
+    $oneresult= $result->fetch_object();
+    $username= $oneresult->user_name;
+    $_SESSION["user_name"] = $username; 
+
+    // $user_category = "SELECT user_type FROM users WHERE email_address='$email'";
+    //                         // echo "$user_type";
+    //                         $result=mysqli_query($db, $user_category);
+    //                         $oneresult= $result->fetch_object();
+    //                         $user_type= $oneresult->user_type;
+    //                         $_SESSION["user_type"] = $user_type;
+
+    // $username= $_SESSION['username'];
+    $order_items=$orderid=" ";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(empty(trim($_POST["username"]))){
-            //$username_err = "Please enter username.";
-        } else{
-            $username = trim($_POST["username"]);
-        }
+        
         if(empty(trim($_POST["order_items"]))){
             //$order_items = "Please enter order items.";
         } else{
@@ -23,7 +37,7 @@
             }
 
             $product="";
-            
+            //$sql_od="insert into order_details (orderid,item) values ('$orderid','$product')";
             if ( !empty($lines) ) {
               foreach ( $lines as $line ) {
                 
@@ -39,22 +53,3 @@
 
     }
 ?>
-
-<html>
-  <head>
-    <title>Order Form Example</title>
-    <link href="order.css" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Order Form</h1>
-    <form method="post" action="orders.php">
-      <label for="username">Username:</label>
-      <input type="text" name="username" required /> 
-      <br><br>
-      <label for="order_items">Type your items ..</label>
-      <textarea name="order_items" required></textarea>
-      <br><br>
-      <input type="submit" value="Place Order"/>
-    </form>
-  </body>
-</html>
