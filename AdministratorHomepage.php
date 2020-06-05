@@ -25,13 +25,14 @@
       <nav class="nav nav-pills">
           
            <a href="view.php" class="nav-item nav-link">Manage Inventory</a>
-               <a href="ManageOrders.php" class="nav-item nav-link">Manage Orders</a>
+               <a href="order.php" class="nav-item nav-link">Manage Orders</a>
                <a href="ViewSuggestions.php" class="nav-item nav-link">View Suggestions</a> 
-               <a href="viewCustomerFeedback.php" class="nav-item nav-link">view Customer Feedback</a>
+               <a href="viewfeedback1.php" class="nav-item nav-link">view Customer Feedback</a>
                <a href="ManageOffers.php" class="nav-item nav-link">Manage Offers</a>
                <a href="GenerateReports.php" class="nav-item nav-link">Generate Reports</a>
                <a href="Advertise.php" class="nav-item nav-link">Advertise</a>
                <a href="ViewPayments.php" class="nav-item nav-link">View Payments</a>
+               <a href="signupcashiers.php" class="nav-item nav-link">Register new cashiers</a>
                <!-- Go Back -->
       </nav>
   </div>

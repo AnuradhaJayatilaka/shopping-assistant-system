@@ -28,12 +28,14 @@ echo "welcome customer";
   <div class="bs-example">
       <nav class="nav nav-pills">
           
-           <a href="MyCart.php" class="nav-item nav-link">My Cart</a>
+           
            
                <a href="listOrders.php?$email=email_address"class="nav-item nav-link">Place Orders as a list</a>
                
                <a href="ViewOffersAnd Discounts.php" class="nav-item nav-link">View Offers& Discounts</a> 
                <a href="addFeedback.php" class="nav-item nav-link">Add Feedback</a>
+               <a href="display.php" class="nav-item nav-link">View Products</a>
+               <a href="cart.php" class="nav-item nav-link">My Cart</a>
                <!-- <a href="ManageOffers.php" class="nav-item nav-link">Manage Offers</a>
                <a href="GenerateReports.php" class="nav-item nav-link">Generate Reports</a>
                <a href="Advertise.php" class="nav-item nav-link">Advertise</a> -->

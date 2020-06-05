@@ -12,10 +12,10 @@ require('mysqlconnect.php');
 <body>
     <!-- $product_ID="product_ID"; -->
 <div class="form">
-<p><a href="AdiministratorHomepage.php">Admin Home</a> 
-| <a href="insert.php">Insert New Record</a> 
+<p><a href="customer.php">Customer Home</a> 
+| <a href="cart.php">My Cart</a> 
 | <a href="logout.php">Logout</a></p>
-<h2>View Records</h2>
+<h2>View Products</h2>
 <table width="100%" border="1" style="border-collapse:collapse;">
 <thead>
 <tr>
@@ -25,9 +25,9 @@ require('mysqlconnect.php');
 <th><strong>unit price(Rs)</strong></th>
 <th><strong>Description</strong></th>
 <th><strong>Brand</strong></th>
-<th><strong>Quantity</strong></th>
-<th><strong>Edit</strong></th>
-<th><strong>Delete</strong></th>
+
+<th><strong>Add to cart</strong></th>
+
 </tr>
 </thead>
 <tbody>
@@ -42,12 +42,11 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["unit_price"]; ?></td>
 <td align="center"><?php echo $row["description"]; ?></td>
 <td align="center"><?php echo $row["brand"]; ?></td>
-<td align="center"><?php echo $row["quantity"]; ?></td>
+
 <td align="center">
-<a href="edit.php?product_ID=<?php echo $row["product_ID"]; ?>">Edit</a>
+<a href="quantity.php?product_ID=<?php echo $row["product_ID"]; ?>">Add to cart</a>
 </td>
-<td align="center">
-<a href="delete.php?product_ID=<?php echo $row["product_ID"]; ?>">Delete</a>
+
 </td>
 </tr>
 <?php $count++; } ?>

@@ -42,6 +42,7 @@ if(isset($_GET['product_name'])){
  <div class="container">
  <img src="searchProduct.jpg"/>
  <form method="GET" >
+     
  <div class="form-input">
  <input type="text" name="product name" placeholder="Enter the product name"/> 
  </div>

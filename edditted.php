@@ -10,9 +10,10 @@ $product_ID=$_REQUEST['product_ID'];
 
 $product_name =$_REQUEST['product_name'];
 $unit_price =$_REQUEST['unit_price'];
+$quantity =$_REQUEST['quantity'];
 
 $update="UPDATE products SET 
-product_name='$product_name', unit_price='$unit_price'
+product_name='$product_name', unit_price='$unit_price', quantity='$quantity'
  where product_ID='$product_ID'";
 $result=mysqli_query($db, $update);
 if($result){

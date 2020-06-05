@@ -11,9 +11,9 @@ require('mysqlconnect.php');
 </head>
 <body>
 <div class="form">
-<!-- <p><a href="AdimistratorHomepage.php">Admin Home</a> 
+<p><a href="AdimistratorHomepage.php">Admin Home</a> 
 | <a href="order.php">Back to Order list</a> 
-| <a href="logout.php">Logout</a></p> -->
+| <a href="logout.php">Logout</a></p>
 <h1>Order details</h1>
 <table width="100%" border="1" style="border-collapse:collapse;">
 <thead>
@@ -26,9 +26,7 @@ require('mysqlconnect.php');
 </thead>
 <tbody>
 <?php 
-require('mysqlconnect.php');
-session_start();
-$order_ID=$_SESSION['order_ID'];
+$order_ID=$_REQUEST['order_ID'];
 $count=1;
 $sql_query="Select * from order_details where orderid='$order_ID';";
 $result = mysqli_query($db,$sql_query);

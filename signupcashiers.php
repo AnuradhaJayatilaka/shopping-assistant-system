@@ -4,7 +4,7 @@ require_once "mysqlconnect.php";
  
 // Define variables and initialize with empty values
  $email_address = $username = $mobile_number  =  $title = $NIC = $password = $confirm_password = "";
- $user_type="Customer";
+ $user_type="Cashier";
  $email_address_err = $username_err  = $mobile_number_err = $user_type_err =  $title_err = $NIC_err = $password_err = $confirm_password_err="";
  
 // Processing form data when form is submitted
@@ -120,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
 
-            header("location: login.php");
+            // header("location: login.php");
         }
 
             // // Attempt to execute the prepared statement
@@ -155,7 +155,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>Sign Up</h2>
+    <a href="AdministratorHomepage.php">Admin Home</a> <br>
+        <h2>Register cashiers</h2>
+        
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -203,7 +205,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p>Already have an account? <a href="loginfinal.php">Login here</a>.</p>
+            <!-- <p>Already have an account? <a href="login.php">Login here</a>.</p> -->
         </form>
     </div>    
 </body>
