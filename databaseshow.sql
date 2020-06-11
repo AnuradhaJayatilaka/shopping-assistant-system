@@ -7,4 +7,5 @@ SELECT * FROM orders;
 SELECT * FROM order_details;
 SELECT * FROM feedback;
 SELECT * FROM cart1;
+SELECT * FROM offers;
 

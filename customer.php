@@ -40,10 +40,11 @@ echo "<font color='black'>welcome ".$username."</font>";
   </a>
   <a href="listOrders.php?$email=email_address"class="nav-item nav-link">Place Orders as a list</a>
                
-               <a href="ViewOffersAnd Discounts.php" class="nav-item nav-link">View Offers& Discounts</a> 
+               <a href="viewoffers.php" class="nav-item nav-link">View Offers</a> 
                <a href="addFeedback.php" class="nav-item nav-link">Add Feedback</a>
                <a href="display.php" class="nav-item nav-link">View Products</a>
                <a href="cart.php" class="nav-item nav-link">My Cart</a>
+               <a href="searchProduct.php" class="nav-item nav-link">Search Product</a>
                <a href="logout.php" class="nav-item nav-link">Log Out</a>
 </nav>
       

@@ -81,3 +81,15 @@ INSERT INTO order_details (orderid,item, order_status, product_status,item_numbe
 INSERT INTO order_details (orderid,item, order_status, product_status,item_number) VALUES('3', 'noodles maggie 5', 'incomplete', 'not added', '8');
 INSERT INTO order_details (orderid,item, order_status, product_status,item_number) VALUES('3', 'sausages 200g', 'incomplete', 'not added', '9');
 INSERT INTO order_details (orderid,item, order_status, product_status,item_number) VALUES('3', 'coconut oil 1l', 'incomplete', 'not added', '10');
+
+create table offers(
+  `offerid` int(7) NOT NULL AUTO_INCREMENT,
+  `offer` varchar(50) NOT NULL,
+  `conditions` varchar(50) DEFAULT NULL,
+  
+  PRIMARY KEY (`offerid`)
+);
+
+insert into offers(offerid, offer, conditions) Values('1','buy 1 astra 250g tub and get 1 free','for purchases above Rs.5000');
+insert into offers(offerid, offer, conditions) Values('2','Buy 5 lifebuoy 100g soap bars and get 1 free','for purchases above Rs.3000');
+insert into offers(offerid, offer, conditions) Values('3','buy 10 kottu mee packets and get 50% off next 2','for purchases above Rs.1000');
