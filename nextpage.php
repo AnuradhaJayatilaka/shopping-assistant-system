@@ -21,19 +21,27 @@ $oneresulttwo = $resulttwo->fetch_object();
 $hashPassword = $oneresulttwo->password;
 $_SESSION["password"] = $hashPassword;
 
+$uname = "SELECT user_name FROM users WHERE email_address='$email'";
+$result3 = mysqli_query($db, $uname);
+$oneresult3 = $result3->fetch_object();
+$username = $oneresult3->user_name;
+$_SESSION["user_name"] = $username;
+
 if ($password == $hashPassword) {
     // print_r($oneresult);
     // print_r($result);
     if ($result) {
         if ($user_type == "Administartor") {
-            // header("location: AdministratorHomepage.php");
-            echo "<a href=\"AdministratorHomepage.php\">This is a link</a>";
+            header("location: AdministratorHomepage.php");
+            // echo "<a href=\"AdministratorHomepage.php\">This is a link</a>";
         } 
          if ($user_type == "Customer") {
-            echo "<a href=\"customer.php\">This is a link</a>";
+            header("location: customer.php");
+            // echo "<a href=\"customer.php\">This is a link</a>";
         }
         if ($user_type == "Cashier") {
-            echo "<a href=\"cashier.php\">This is a link</a>";
+            header("location: cashier.php");
+            // echo "<a href=\"cashier.php\">This is a link</a>";
         }
         // Redirect user to welcome page
         // header("location: searchProduct.php");

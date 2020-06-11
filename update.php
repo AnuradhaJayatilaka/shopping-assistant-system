@@ -8,6 +8,7 @@ require('mysqlconnect.php');
 <meta charset="utf-8">
 <title>Dashboard - Secured Page</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="background.css">
 </head>
 <body>
 <div class="form">

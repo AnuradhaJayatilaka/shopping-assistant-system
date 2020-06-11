@@ -8,6 +8,12 @@ require('mysqlconnect.php');
 <meta charset="utf-8">
 <title>View Records</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="background.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <!-- $product_ID="product_ID"; -->
@@ -16,8 +22,7 @@ require('mysqlconnect.php');
 | <a href="cart.php">My Cart</a> 
 | <a href="logout.php">Logout</a></p>
 <h2>View Products</h2>
-<table width="100%" border="1" style="border-collapse:collapse;">
-<thead>
+<table class="table table-dark table-hover"><thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->
 <th><strong>Product ID</strong></th>
@@ -33,6 +38,7 @@ require('mysqlconnect.php');
 <tbody>
 <?php
 $count=1;
+session_start();
 $sel_query="Select * from products ORDER BY product_ID desc;";
 $result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
@@ -44,7 +50,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["brand"]; ?></td>
 
 <td align="center">
-<a href="quantity.php?product_ID=<?php echo $row["product_ID"]; ?>">Add to cart</a>
+<a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
 </td>
 
 </td>

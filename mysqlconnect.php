@@ -8,5 +8,5 @@ $db = mysqli_connect($dbhost, $db_user, $db_pass,$db_name);
 if(!$db) {
     echo 'ERROR: ' . mysqli_connect_errno() . ': ' . mysqli_connect_error();
 }
-echo'o';
+// echo'o';
 ?>

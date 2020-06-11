@@ -35,7 +35,7 @@ if(isset($_GET['product_name'])){
 <html>
 <head>
  <title> Search Product </title>
- <link rel="stylesheet" a href="SearchProduct.css">
+ <link rel="stylesheet" href="background.css">
  
 </head>
 <body>

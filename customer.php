@@ -1,7 +1,8 @@
 <?php
 session_start();
 $email= $_SESSION['email_address'];
-echo "welcome customer";
+$username= $_SESSION['user_name'];
+echo "<font color='black'>welcome ".$username."</font>";
 
 ?>
 <head>
@@ -10,12 +11,17 @@ echo "welcome customer";
   <title>Bootstrap 4 Nav Vertical Alignment</title>
   <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" a href="SearchProduct.css">
   <script src="../jquery/jquery-3.5.1.js"></script>
   <!-- not sure -->
   <script src="../popper-core/src/popper.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="../bootstrap/dist/js/bootstrap.js"></script>
   <style type="text/css">
+  
+
+
+
   
       .bs-example{
           margin: 20px;        
@@ -26,22 +32,21 @@ echo "welcome customer";
   </head>
   <body>
   <div class="bs-example">
-      <nav class="nav nav-pills">
-          
-           
-           
-               <a href="listOrders.php?$email=email_address"class="nav-item nav-link">Place Orders as a list</a>
+     
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+   <a class="navbar-brand" href="#">
+    <img src="download.png" alt="Logo" style="width:40px;">
+  </a>
+  <a href="listOrders.php?$email=email_address"class="nav-item nav-link">Place Orders as a list</a>
                
                <a href="ViewOffersAnd Discounts.php" class="nav-item nav-link">View Offers& Discounts</a> 
                <a href="addFeedback.php" class="nav-item nav-link">Add Feedback</a>
                <a href="display.php" class="nav-item nav-link">View Products</a>
                <a href="cart.php" class="nav-item nav-link">My Cart</a>
-               <!-- <a href="ManageOffers.php" class="nav-item nav-link">Manage Offers</a>
-               <a href="GenerateReports.php" class="nav-item nav-link">Generate Reports</a>
-               <a href="Advertise.php" class="nav-item nav-link">Advertise</a> -->
                <a href="logout.php" class="nav-item nav-link">Log Out</a>
-               <!-- Go Back -->
-      </nav>
+</nav>
+      
   </div>
   </body>
   </html>

@@ -9,7 +9,7 @@ session_start();
     $oneresult= $result->fetch_object();
     $username= $oneresult->user_name;
     $_SESSION["user_name"] = $username; 
-    
+
 
     // $order_status="insert into orders (order_status) values ('NULL')";
 
@@ -22,7 +22,7 @@ session_start();
           $order_items=trim($_POST["order_items"]);
           $lines = explode("\n", $order_items);
 
-          $sql="insert into orders (username,order_status) values ('$username','0')";
+          $sql="insert into orders (username,order_status) values ('$username','incomplete')";
           if(mysqli_query($db, $sql)){
             echo "Records added successfully."; 
             // header("location: viewmyorder.php");
@@ -38,7 +38,8 @@ session_start();
               foreach ( $lines as $line ) {
                 
                 $product= $line;
-                $sql_od="insert into order_details (orderid,item) values ('$orderid','$product')";
+                $product_status="not added";
+                $sql_od="insert into order_details (orderid,item,product_status) values ('$orderid','$product','$product_status')";
                 mysqli_query($db, $sql_od);
               }
             }  

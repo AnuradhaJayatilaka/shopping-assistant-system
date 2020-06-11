@@ -20,11 +20,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         if(empty(trim($_POST["mobile_number"]))){
-            $mobile_number_err = "Please enter a mobile.";
+            $username_err = "Please enter a mobile number.";
         }
             else{
-                $mobile_number = trim($_POST["mobile_number"]);
+                if (strlen($_POST['mobile_number']) == 10 && preg_match('/^\d+$/',$_POST['mobile_number'])){
+                    $mobile_number = trim($_POST["mobile_number"]);
+                }
+        
+                    else{
+                        $mobile_number_err = "mobile number must contain only 10 digits";
+                    }
             }
+
+        
 
             /*if(empty(trim($_POST["user_type"]))){
                 $user_type_err = "Please enter a .";
@@ -34,18 +42,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }*/
 
                 if(empty(trim($_POST["title"]))){
-                    $title_err = "Please enter a username.";
+                    $title_err = "Please enter the title.";
                 }
                     else{
                         $title = trim($_POST["title"]);
                     }
 
                     if(empty(trim($_POST["NIC"]))){
-                        $NIC_err = "Please enter a username.";
+                        $title_err = "Please enter the NIC.";
                     }
                         else{
-                            $NIC = trim($_POST["NIC"]);
+
+
+                            
+                            if (strlen($_POST['NIC']) == 10 && preg_match('/^[0-9]{9}[vV]$/',$_POST['NIC'])){
+                                $NIC = trim($_POST["NIC"]);
+                            }
+                            // if(empty(trim($_POST["NIC"]))==10){
+                            //     $NIC_err = "Please enter your NIC.";
+                            // }
+                                else{
+                                    if (strlen($_POST['NIC']) == 12 && preg_match('/^[0-9]{11}[vV]$/',$_POST['NIC'])){
+                                        $NIC = trim($_POST["NIC"]);
+                                    }
+                                    else{
+                                    $NIC_err = "Please enter a correct NIC.";}
+                                }
                         }
+                    
                     
     
     // Validate email
@@ -120,7 +144,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
 
-            header("location: login.php");
+            header("location: loginfinal.php");
         }
 
             // // Attempt to execute the prepared statement
@@ -133,7 +157,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             // Close statement
-            mysqli_stmt_close($stmtinsert);
+            mysqli_stmt_close($sql);
         }
     
     
@@ -148,9 +172,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="background.css">
+
+    
+
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
+        
     </style>
 </head>
 <body>
@@ -170,7 +199,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group <?php echo (!empty($NIC_err)) ? 'has-error' : ''; ?>">
                 <label>NIC</label>
-                <input type="text" name="NIC" class="form-control" value="<?php echo $NIC; ?>">
+                <input type="text" name="NIC" class="form-control" minlength="10" maxlength="12" value="<?php echo $NIC; ?>">
                 <span class="help-block"><?php echo $NIC_err; ?></span>
             </div>   
             <!-- <div class="form-group <?php //echo (!empty($user_type_err)) ? 'has-error' : ''; ?>">
@@ -180,7 +209,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div> -->
             <div class="form-group <?php echo (!empty($mobile_number_err)) ? 'has-error' : ''; ?>">
                 <label>Mobile Number</label>
-                <input type="text" name="mobile_number" class="form-control" value="<?php echo $mobile_number; ?>">
+                <input type="numeric" name="mobile_number" class="form-control" minlength="10" maxlength="10" value="<?php echo $mobile_number; ?>">
                 <span class="help-block"><?php echo $mobile_number_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
@@ -203,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p>Already have an account? <a href="loginfinal.php">Login here</a>.</p>
+            <p style="color:red">Already have an account? <a href="loginfinal.php" style="color:red">Login here</a>.</p>
         </form>
     </div>    
 </body>

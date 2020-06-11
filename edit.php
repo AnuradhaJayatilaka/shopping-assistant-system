@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Update Record</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="background.css">
 </head>
 
 <body>
@@ -20,11 +21,13 @@
                 <!-- <input name="product_ID" type="hidden" value="BIS2222" /> -->
                 <?php 
 $product_ID=$_REQUEST['product_ID'];
+// $sql="select* from products where product_ID='$product_ID'";
+
 echo "<input name=\"product_ID\" type=\"hidden\" value=\"$product_ID\" />";
 ?>
-                <p><input type="text" name="product_name" placeholder="Enter product" required /></p>
-                <p><input type="text" name="unit_price" placeholder="Enter price" required /></p>
-                <p><input type="text" name="quantity" placeholder="Enter quantity" required /></p>
+                <p><input type="text" name="product_name" placeholder="product_name" required /></p>
+                <p><input type="text" name="unit_price" placeholder="unit_price" required /></p>
+                <p><input type="text" name="quantity" placeholder="quantity" required /></p>
                 <p><input name="submit" type="submit" value="Update" /></p>
             </form>
 

@@ -1,3 +1,4 @@
+
 <?php
 require('mysqlconnect.php');
 // include("auth.php");
@@ -8,15 +9,22 @@ require('mysqlconnect.php');
 <meta charset="utf-8">
 <title>View Records</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="background.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <!-- $product_ID="product_ID"; -->
 <div class="form">
-<p><a href="AdiministratorHomepage.php">Admin Home</a> 
+    
+<p><a href="AdministratorHomepage.php">Admin Home</a> 
 | <a href="insert.php">Insert New Record</a> 
 | <a href="logout.php">Logout</a></p>
 <h2>View Records</h2>
-<table width="100%" border="1" style="border-collapse:collapse;">
+<table class="table table-dark table-hover">
 <thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->

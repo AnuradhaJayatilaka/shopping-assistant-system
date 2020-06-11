@@ -6,6 +6,7 @@
   <title>Bootstrap 4 Nav Vertical Alignment</title>
   <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" a href="SearchProduct.css">
   <script src="../jquery/jquery-3.5.1.js"></script>
   <!-- not sure -->
   <script src="../popper-core/src/popper.js"></script>
@@ -17,14 +18,16 @@
           margin: 20px;        
       }
   </style>
-  <!-- <script src="https://kit.fontawesome.com/42deadbeef.js"></script>
-  <link rel="stylesheet" href="AdministratorHomepage.css"> -->
+  
   </head>
   <body>
   <div class="bs-example">
-      <nav class="nav nav-pills">
-          
-           <a href="view.php" class="nav-item nav-link">Manage Inventory</a>
+      
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+   <a class="navbar-brand" href="#">
+    <img src="download.png" alt="Logo" style="width:40px;">
+  </a>
+  <a href="view.php" class="nav-item nav-link">Manage Inventory</a>
                <a href="order.php" class="nav-item nav-link">Manage Orders</a>
                <a href="ViewSuggestions.php" class="nav-item nav-link">View Suggestions</a> 
                <a href="viewfeedback1.php" class="nav-item nav-link">view Customer Feedback</a>
@@ -33,8 +36,12 @@
                <a href="Advertise.php" class="nav-item nav-link">Advertise</a>
                <a href="ViewPayments.php" class="nav-item nav-link">View Payments</a>
                <a href="signupcashiers.php" class="nav-item nav-link">Register new cashiers</a>
-               <!-- Go Back -->
-      </nav>
+               <a href="logout.php" class="nav-item nav-link">Log Out</a>
+  
+</nav>
+
+
+     
   </div>
   </body>
   </html>                            

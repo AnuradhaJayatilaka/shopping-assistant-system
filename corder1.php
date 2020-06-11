@@ -17,7 +17,7 @@ require('mysqlconnect.php');
 </head>
 <body>
 <div class="form">
-<p><a href="AdministratorHomepage.php">Admin Home</a> 
+<p><a href="cashier.php">Cashier Home</a> 
 | <a href="order.php">Back to Order list</a> 
 | <a href="logout.php">Logout</a></p>
 <h1>Order details</h1>
@@ -53,10 +53,10 @@ while($row = mysqli_fetch_assoc($result)) {
     echo $line;
     $line="<td align=\"center\">".$row["product_status"]."</td>";
     echo $line;
-    $line="<td align=\"center\">"."<form action= \"order2.php\" method=\"GET\">
+    $line="<td align=\"center\">"."<form action= \"corder2.php\" method=\"GET\">
     <input type=\"hidden\" name=\"product_status\" >
     <input type=\"hidden\" name=\"item_number\" value=$row[item_number]>
-    <input type=\"submit\" type=\"submit\" value=\"added\" class=\"btn-Search\"/></form>"."<form action= \"order5.php\" method=\"GET\">
+    <input type=\"submit\" type=\"submit\" value=\"added\" class=\"btn-Search\"/></form>"."<form action= \"corder5.php\" method=\"GET\">
     <input type=\"hidden\" name=\"product_status\" >
     <input type=\"hidden\" name=\"item_number\" value=$row[item_number]>
     <input type=\"submit\" type=\"submit\" value=\"not added\" class=\"btn-Search\"/></form>"."</td>";

@@ -18,7 +18,7 @@ require('mysqlconnect.php');
 <body>
     <!-- $product_ID="product_ID"; -->
 <div class="form">
-<p><a href="AdministratorHomepage.php">Admin Home</a> 
+<p><a href="cashier.php">Cashier Home</a> 
 | <a href="logout.php">Logout</a></p>
 <h2>View Orders</h2>
 <table class="table table-dark table-hover">
@@ -48,7 +48,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["amount"]; ?></td>
 <td align="center"><?php echo $row["order_status"]; ?></td>
 <td align="center">
-<a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
+<a href="corder1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
 </td>
 
 

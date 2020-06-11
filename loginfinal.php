@@ -6,6 +6,8 @@
     <title>Login</title>
     <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="background.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -38,7 +40,8 @@
                 
                 
             </div>
-            <p>Don't have an account? <a href="singupfinal.php">Sign up now</a>.</p>
+            
+            <p style="color:red">Don't have an account? <a href="signupfinal.php" style="color:red">Sign up now</a>.</p>
         </form>
     </div>    
 </body>
