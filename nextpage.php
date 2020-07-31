@@ -32,11 +32,11 @@ if ($password == $hashPassword) {
     // print_r($result);
     if ($result) {
         if ($user_type == "Administartor") {
-            header("location: AdministratorHomepage.php");
+            header("location: Administratorhomepagenew.php");
             // echo "<a href=\"AdministratorHomepage.php\">This is a link</a>";
         } 
          if ($user_type == "Customer") {
-            header("location: customer.php");
+            header("location: customer1.php");
             // echo "<a href=\"customer.php\">This is a link</a>";
         }
         if ($user_type == "Cashier") {

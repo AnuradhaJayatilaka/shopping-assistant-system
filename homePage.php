@@ -49,6 +49,7 @@ require_once "mysqlconnect.php";
                     <li class="nav-item">
                         <a class="nav-link" href="searchProduct.php">Search Product</a>
                     </li>
+                    
                 </ul>
             </div>
         </nav>

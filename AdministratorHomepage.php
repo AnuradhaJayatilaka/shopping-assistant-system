@@ -29,13 +29,15 @@
   </a>
   <a href="view.php" class="nav-item nav-link">Manage Inventory</a>
                <a href="order.php" class="nav-item nav-link">Manage Orders</a>
+               <a href="cat.php" class="nav-item nav-link">Add product category</a>
                <a href="ViewSuggestions.php" class="nav-item nav-link">View Suggestions</a> 
                <a href="viewfeedback1.php" class="nav-item nav-link">view Customer Feedback</a>
-               <a href="ManageOffers.php" class="nav-item nav-link">Manage Offers</a>
+               <a href="displayoffers.php" class="nav-item nav-link">Manage Offers</a>
                <a href="GenerateReports.php" class="nav-item nav-link">Generate Reports</a>
                <a href="Advertise.php" class="nav-item nav-link">Advertise</a>
                <a href="ViewPayments.php" class="nav-item nav-link">View Payments</a>
                <a href="signupcashiers.php" class="nav-item nav-link">Register new cashiers</a>
+               <a href="viewcashierlist.php" class="nav-item nav-link">view cashiers</a>
                <a href="logout.php" class="nav-item nav-link">Log Out</a>
   
 </nav>

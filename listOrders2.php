@@ -1,6 +1,6 @@
 <?php
-session_start();
-    require_once "mysqlconnect.php";
+    session_start();
+    require_once "mysqlconnect.php  ";
     // $product_ID=$_REQUEST['product_ID'];
     // $trn_date = date("Y-m-d H:i:s");
     $email= $_SESSION['email_address'];

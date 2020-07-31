@@ -18,8 +18,46 @@
             <h1>Insert New Record</h1>
             <form name="form" method="post" action="">
                 <input type="hidden" name="new" value="1" />
+                <label>Product Name</label>
                 <p><input type="text" name="product_name" placeholder="Enter product" required /></p>
-                <p><input type="text" name="product_ID" placeholder="Enter ID" required /></p>
+                <label>Product ID</label>
+                <p><input type="text" name="product_ID" placeholder="Enter product ID" required /></p>
+                  <div class="form-group">
+                  <label for="product_category">Category Type</label>
+                  <select name="product_category" class="form-control"><!-- form-control Begin -->
+                    
+                    <option disabled selected> Select a Product Category </option>
+                    
+                    <?php 
+                    require_once "mysqlconnect.php";
+                    $get_item = "select product_category from category";
+                    $run_item = mysqli_query($db,$get_item);
+                    
+                    while ($data= mysqli_fetch_array($run_item)){
+                      
+                     
+                      
+                      echo "<option value='". $data['product_category'] ."'>" .$data['product_category'] ."</option>";
+                      
+                    }
+                    
+                    ?>
+                    
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="product_image">Product Image</label>
+                  <input type="file" class="form-control" id="product_image" name="product_image">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="price">Price (LKR)</label>
+                  <input type="text" class="form-control" id="price" name="price">
+                </div>
+                <div class="form-group">
+                  <label for="delivery">Delivery (Days)</label>
+                  <input type="text" class="form-control" id="delivery" name="delivery">
+                </div> -->
+                <div class="form-group">
                 <p><input type="text" name="description" placeholder="Enter description" required /></p>
                 <p><input type="text" name="unit_price" placeholder="unit price" required /></p>
                 <p><input type="text" name="brand" placeholder="Enter brand" required /></p>
@@ -44,6 +82,7 @@ $description = "";
 $unit_price = "";
 $brand = "";
 $quantity="";
+$product_category="";
 if (isset($_POST['new']) && $_POST['new'] == 1) {
     // $trn_date = date("Y-m-d H:i:s");
 
@@ -53,11 +92,12 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $unit_price = $_REQUEST['unit_price'];
     $brand = $_REQUEST['brand'];
     $quantity = $_REQUEST['quantity'];
+    $product_category = $_REQUEST['product_category'];
     // $submittedby = $_SESSION["username"];
 
     $sql = "insert into products
-    (product_name,product_ID,description,unit_price,brand,quantity)values
-    ('$product_name','$product_ID','$description','$unit_price','$brand','$quantity')";
+    (product_category,product_name,product_ID,description,unit_price,brand,quantity)values
+    ('$product_category','$product_name','$product_ID','$description','$unit_price','$brand','$quantity')";
     $result = mysqli_query($db, $sql);
 
     if ($result) {

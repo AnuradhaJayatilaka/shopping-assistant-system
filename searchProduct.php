@@ -14,7 +14,7 @@ if(isset($_GET['product_name'])){
 
     $pname=$_GET['product_name'];
     $_SESSION["product_name"] = $pname;
-    $sql = "SELECT * FROM products WHERE product_name LIKE '%$pname%' LIMIT 0, 30 ";
+    $sql = "SELECT * FROM products WHERE '%$pname%' LIKE product_name  ";
 // $result = $conn->query($sql);
 //     $sql="select * from products where product_name='".$pname."' limit 1";
     

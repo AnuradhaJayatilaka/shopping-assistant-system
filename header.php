@@ -3,9 +3,9 @@
     if(!isset($PAGE_NAME))
         $PAGE_NAME = "New page";
     
-    if(!isset($USER_NAME)){
-        $USER_NAME="Guest"
-    }
+    if(!isset($USER_NAME))
+        $USER_NAME="Guest";
+    
 
     $line = "<html>";echo $line;
     $line ="<title>$WEBSITE_NAME : $PAGE_NAME</title>";echo $line;
@@ -25,6 +25,9 @@
 
 <?php
     $line = "</body>";echo $line;
-    $line = "<p>Hi! $USER_NAME, welcome to $WEBSITE_NAME : $PAGE_NAME"; echo $linel;
-    $line = "<hr>"; echo $line; 
+    
+    if(!isset($DONT_SHOW_HEADER) or $DONT_SHOW_HEADER==false){   
+        $line = "<p>Hi! $USER_NAME, welcome to $WEBSITE_NAME : $PAGE_NAME"; echo $line;
+        $line = "<hr>"; echo $line; 
+    }
 ?>

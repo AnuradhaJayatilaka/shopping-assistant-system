@@ -40,7 +40,7 @@
         $count=1;
         session_start();
         $pname=$_SESSION['product_name'];
-        $sel_query="Select * from products where product_name='$pname';";
+        $sel_query="Select * from products where product_name LIKE '%$pname%'";
         $result = mysqli_query($db,$sel_query);
         while($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
