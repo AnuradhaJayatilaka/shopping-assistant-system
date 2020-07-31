@@ -14,26 +14,7 @@ $username= $_SESSION['user_name'];
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
- <script>
-      $(document).ready(function(){
-        $('#product_cat').on("click", function(e){
-          $(this).next('ul').toggle();
-          e.stopPropagation();
-          e.preventDefault();
-        });
-      });
-
-      function loadPage(){
-        var cat = document.getElementById("product_cat").value;
-        "spices.php?product_cat="+cat;
-        // localStorage.setItem(product_category,'product_cat');
-        // switch(cat){
-        //   case 'Spices':window.location.href = "spices.php";break;
-        //   default:break;
-        // }
-      }
-
-</script>
+ 
 
 
  <style>
@@ -109,40 +90,44 @@ $username= $_SESSION['user_name'];
             <li><a href="addFeedback.php">Add Feedback</a></li>
             <li class=" nav-item dropdown">
             <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">  view products</a>
-            <ul class="dropdown-menu">
-             <div class="form-group">
-                  <label for="product_category">Category Type</label>
+      
+             
                   
-                    <select name="product_category" class="form-control" id="product_cat" onchange="loadPage()"><!--form-control Begin -->
-                    
-                    <option disabled selected> Select a Product Category </option>
-                    
-                    <?php 
-                    require_once "mysqlconnect.php";
-                    session_start();
-                    $get_item = "select product_category from category";
-                    $run_item = mysqli_query($db,$get_item);
+<ul class="dropdown-menu"> 
+              <?php
+                require('mysqlconnect.php');
+                  $getCategory="select product_category from category";
+                  $run_item = mysqli_query($db,$getCategory);
                     
                     while ($data= mysqli_fetch_array($run_item)){
-
                       
-                      echo "<option value='". $data['product_category'] ."'>" .$data['product_category'] ."</option>";
+                     
+                      
+                      $cat1='<li><a href="viewproducts.php?product_category=';
+                      $cata=$data['product_category'];
+                      $catd='" class="dropdown-item">';
+                      $catb=$data['product_category'];
+                      $catc='</a></li>';
+                      $cat1=$cat1.$cata.$catd.$catb.$catc;
+                      echo "$cat1";
                       
                     }
-                    
-                    ?>
-                    
-                  </select>
-                </div>
-            </ul>
-            <!-- <ul class="dropdown-menu">          
-                <li><a href="dairyproducts.php" class="dropdown-item">Dairy Products</a></li>
-                <li><a href="sanitaryitems.php" class="dropdown-item">Sanitary Products</a></li>
-                <li><a href="Beverages.php" class="dropdown-item">Beverages</a></li> 
-                <li><a href="snaacks&sweets.php" class="dropdown-item">Snacks and Sweets</a></li> 
-                <li><a href="spices.php" class="dropdown-item">Spices</a></li> 
-                <li><a href="stationery.php" class="dropdown-item">Stationery</a></li>                      
-              </ul> -->
+
+                    // For($I=0;$I<$run_item[num_rows];$I++){ 
+
+                    //   $result=$run_item->fetch_object(); 
+                      
+                    //   $cat1='<li><a href="viewproducts.php?product_category=';
+                    //   $cata=$result;
+                    //   $catd='" class="dropdown-item">';
+                    //   $catb=$result;
+                    //   $catc='</a></li>';
+                    //   $cat1=$cat1.$cata.$catd.$catb.$catc;
+                    //   echo "$cat1";
+                      
+                    //   } ?>
+              
+              </ul>
             </li>
             <li><a href="cart.php">My Cart</a></li>
             <li><a href="searchProduct.php">Search Product</a></li>
