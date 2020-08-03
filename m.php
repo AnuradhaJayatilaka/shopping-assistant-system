@@ -176,24 +176,134 @@
             </div>      
             </div>
 
-            <div class="item">
-            <img src="01.jpg" alt="Image">
-            <div class="carousel-caption">
-                <!-- <h3>More Sell $</h3>
-                <p>Lorem ipsum...</p> -->
-            </div>      
-            </div>
-        </div>
+            <div class="container-fluid">
+            <?php
+  require('mysqlconnect.php');
+        // include("auth.php");
+        ?>
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+       
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="background.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          
+        </head>
+        <body>
+            <!-- $product_ID="product_ID"; -->
+        <div class="form">
+        
+        
+        <table class="table table-stripped"><thead>
+        <tr>
+        <!-- <th><strong>Number</strong></th> -->
+        <th><strong>Product ID</strong></th>
+        <th><strong>Product Name</strong></th>
+        <th><strong>unit price(Rs)</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Brand</strong></th>
+        
+       
+        
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        $count=1;
+        session_start();
+        $pname=$_SESSION['product_name'];
+        $sel_query1="Select * from products where product_name LIKE '%$pname%'";
+        $result1 = mysqli_query($db,$sel_query1);
+        $sel_query2="Select * from products where product_name LIKE '$pname%'";
+        $result2 = mysqli_query($db,$sel_query2);
+        $sel_query3="Select * from products where product_name LIKE '%$pname'";
+        $result3 = mysqli_query($db,$sel_query3);
+        $sel_query4="SELECT * FROM products WHERE REGEXP_LIKE(product_name, '^$pname$')";
+        $result4 = mysqli_query($db,$sel_query4);
+        $sel_query5="SELECT * FROM products WHERE REGEXP_LIKE(product_name, '$pname')";
+        $result5 = mysqli_query($db,$sel_query5);
+        if($result1==true){while($row = mysqli_fetch_assoc($result1)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+          else if($result2==true){while($row = mysqli_fetch_assoc($result2)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          <td align="center">
+          <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+          </td>
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
+
+          else if($result3==true){while($row = mysqli_fetch_assoc($result3)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
+          else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { ?>
+            <tr>
+            <td align="center"><?php echo $row["product_ID"]; ?></td>
+            <td align="center"><?php echo $row["product_name"]; ?></td>
+            <td align="center"><?php echo $row["unit_price"]; ?></td>
+            <td align="center"><?php echo $row["description"]; ?></td>
+            <td align="center"><?php echo $row["brand"]; ?></td>
+            
+           
+            
+            </td>
+            </tr>
+            
+            <?php $count++; }} 
+            else if($result5==true){while($row = mysqli_fetch_assoc($result5)) { ?>
+              <tr>
+              <td align="center"><?php echo $row["product_ID"]; ?></td>
+              <td align="center"><?php echo $row["product_name"]; ?></td>
+              <td align="center"><?php echo $row["unit_price"]; ?></td>
+              <td align="center"><?php echo $row["description"]; ?></td>
+              <td align="center"><?php echo $row["brand"]; ?></td>
+              
+              
+              
+              </td>
+              </tr>
+              
+              <?php $count++; }} ?>
+        
+        </tbody>
+        </table>
+        </div>
+        </body>
+        </html>
         </div>
 
         <br>

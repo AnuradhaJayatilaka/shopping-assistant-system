@@ -74,8 +74,8 @@ $username= $_SESSION['user_name'];
   height: auto;
 }
 
-table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 
+table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 </style>
   <!-- <script src="https://kit.fontawesome.com/42deadbeef.js"></script>
     <link rel="stylesheet" href="AdministratorHomepage.css"> -->
@@ -106,11 +106,11 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
           <li><a  href="customer1.php">Home</a></li>
             <li><a  href="viewoffers.php">View Offers</a></li>
             <li><a   href="addFeedback.php">Add Feedback</a></li>
-            <li class=" nav-item dropdown active" >
+            <li class=" nav-item dropdown active">
               <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> List Orders</a>
               <ul class="dropdown-menu">          
-                <li><a href="listorders.php" class="dropdown-item">place orders as a list</a></li>
-                <li><a href="vieworder.php" class="dropdown-item">View list orders</a></li>
+                <li><a href="listorders" class="dropdown-item">place orders as a list</a></li>
+                <li><a href="vieworder" class="dropdown-item">View list orders</a></li>
                 <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
               </ul>
             </li>
@@ -155,7 +155,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             <li class=" nav-item dropdown">
               <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> <span class="glyphicon glyphicon-user"></span>  Hi <?php echo $_SESSION['user_name'] ?><b class="caret"></b></a>
               <ul class="dropdown-menu">          
-                <li><a href="logout.php" class="dropdown-item">Log Out</a></li>
+                <li><a href="" class="dropdown-item">Log Out</a></li>
                 <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
               </ul>
             </li>
@@ -168,28 +168,67 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
 
     
 
+    <?php
+require('mysqlconnect.php');
+// include("auth.php");
+?>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Order Form Example</title>
-    <!-- <link href="order.css" rel="stylesheet">
-    <link rel="stylesheet" href="background.css"> -->
-    
-  </head>
-  <body>
+<head>
+<meta charset="utf-8">
+<title>View Records</title>
 
- 
-    <h1>Type your list</h1>
-    <form method="post" action="listOrders2.php">
-     
-       
-      <label for="order_items">Type your items with the needed quantities. Example: Prima Flour 2kg. please Press enter after each item</label><br><br>
-      <textarea name="order_items" required></textarea>
-      <br><br>
-      <input type="submit" value="Place Order"/>
-    </form>
-  </body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+<body>
+    <!-- $product_ID="product_ID"; -->
+<div class="form">
+
+<h2>View Orders</h2>
+<table class="table table-stripped">
+<thead>
+<tr>
+<!-- <th><strong>Number</strong></th> -->
+
+<th><strong>Date and Time</strong></th>
+<th><strong>Total amount</strong></th>
+<th><strong>Order Status</strong></th>
+<th><strong>View Order Details</strong></th>
+
+
+</tr>
+</thead>
+<tbody>
+<?php
+$count=1;
+
+$email=$_SESSION['email_address'];
+$user="select user_name from users where email_address='$email'";
+$result = mysqli_query($db,$user);
+$oneresult = $result->fetch_object();
+$user_na = $oneresult->user_name;
+$_SESSION["user_name"] = $user_na;
+$sel_query="Select * from orders where username='$user_na';";
+$result = mysqli_query($db,$sel_query);
+while($row = mysqli_fetch_assoc($result)) { ?>
+<tr>
+
+<td align="center"><?php echo $row["date_time"]; ?></td>
+<td align="center"><?php echo $row["amount"]; ?></td>
+<td align="center"><?php echo $row["order_status"]; ?></td>
+<td align="center">
+<a href="vieworder1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
+</td>
+
+
+</tr>
+<?php $count++; } ?>
+</tbody>
+</table>
+</div>
+</body>
 </html>
-
 </div>
 
 

@@ -107,44 +107,49 @@ $username= $_SESSION['user_name'];
             <li><a  href="viewoffers.php">View Offers</a></li>
             <li><a   href="addFeedback.php">Add Feedback</a></li>
             <li class=" nav-item dropdown">
+              <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> List Orders</a>
+              <ul class="dropdown-menu">          
+                <li><a href="listorders" class="dropdown-item">place orders as a list</a></li>
+                <li><a href="vieworder" class="dropdown-item">View list orders</a></li>
+                <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
+              </ul>
+            </li>
+            <li class=" nav-item dropdown">
             <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">  view products</a>
-            <ul class="dropdown-menu">
-             <div class="form-group">
-                  <label for="product_category">Category Type</label>
+      
+             
                   
-                    <select name="product_category" class="form-control" id="product_cat" onchange="loadPage()"><!--form-control Begin -->
-                    
-                    <option disabled selected> Select a Product Category </option>
-                    
-                    <?php 
-                    require_once "mysqlconnect.php";
-                    session_start();
-                    $get_item = "select product_category from category";
-                    $run_item = mysqli_query($db,$get_item);
+              <ul class="dropdown-menu"> 
+              <?php
+                require('mysqlconnect.php');
+                  $getCategory="select product_category from category";
+                  $run_item = mysqli_query($db,$getCategory);
                     
                     while ($data= mysqli_fetch_array($run_item)){
-
                       
-                      echo "<option value='". $data['product_category'] ."'>" .$data['product_category'] ."</option>";
+                     
+                      
+                      $cat1='<li><a href="viewproducts.php?product_category=';
+                      $cata=$data['product_category'];
+                      $catd='" class="dropdown-item">';
+                      $catb=$data['product_category'];
+                      $catc='</a></li>';
+                      $cat1=$cat1.$cata.$catd.$catb.$catc;
+                      echo "$cat1";
                       
                     }
-                    
-                    ?>
-                    
-                  </select>
-                </div>
-            </ul>
-            <!-- <ul class="dropdown-menu">          
-                <li><a href="dairyproducts.php" class="dropdown-item">Dairy Products</a></li>
-                <li><a href="sanitaryitems.php" class="dropdown-item">Sanitary Products</a></li>
-                <li><a href="Beverages.php" class="dropdown-item">Beverages</a></li> 
-                <li><a href="snaacks&sweets.php" class="dropdown-item">Snacks and Sweets</a></li> 
-                <li><a href="spices.php" class="dropdown-item">Spices</a></li> 
-                <li><a href="stationery.php" class="dropdown-item">Stationery</a></li>                      
-              </ul> -->
+
+                     ?>
+              
+              </ul>
             </li>
-            <li class="active"><a class="navbar-brand" href="cart.php">My Cart</a></li>
-            <li><a href="searchProduct.php">Search Product</a></li>
+            <li ><a  href="cart.php">My Cart</a></li>
+            <li><form class="navbar-form navbar-left" action="searchproduct.php" method="GET">
+      <div class="form-group">
+        <input type="text" name="product_name" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class=" nav-item dropdown">
@@ -161,125 +166,148 @@ $username= $_SESSION['user_name'];
 
     <div class="container-fluid">
 
+    
+
     <?php
-require('mysqlconnect.php');
-// include("auth.php");
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>My Cart</title>
-<link rel="stylesheet" href="css/style.css" />
+  require('mysqlconnect.php');
+        // include("auth.php");
+        ?>
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+       
+        <!-- <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="background.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+        </head>
+        <body>
+            <!-- $product_ID="product_ID"; -->
+        <div class="form">
+        <p><a href="customer.php">Customer Home</a> 
+        
+        | <a href="logout.php">Logout</a></p>
+        
+        <table class="table table-stripped"><thead>
+        <tr>
+        <!-- <th><strong>Number</strong></th> -->
+        <th><strong>Product ID</strong></th>
+        <th><strong>Product Name</strong></th>
+        <th><strong>unit price(Rs)</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Brand</strong></th>
+        
+        <th><strong>Add to cart</strong></th>
+        
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        $count=1;
+       
+        $pname=$_SESSION['product_name'];
+        $sel_query1="Select * from products where product_name LIKE '%$pname%'";
+        $result1 = mysqli_query($db,$sel_query1);
+        $sel_query2="Select * from products where product_name LIKE '$pname%'";
+        $result2 = mysqli_query($db,$sel_query2);
+        $sel_query3="Select * from products where product_name LIKE '%$pname'";
+        $result3 = mysqli_query($db,$sel_query3);
+        $sel_query4="SELECT * FROM products WHERE REGEXP_LIKE(product_name, '^$pname$')";
+        $result4 = mysqli_query($db,$sel_query4);
+        $sel_query5="SELECT * FROM products WHERE REGEXP_LIKE(product_name, '$pname')";
+        $result5 = mysqli_query($db,$sel_query5);
+        if($result1==true){while($row = mysqli_fetch_assoc($result1)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          <td align="center">
+          <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+          </td>
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
 
+          else if($result2==true){while($row = mysqli_fetch_assoc($result2)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          <td align="center">
+          <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+          </td>
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <!-- $product_ID="product_ID"; -->
-<div class="form">
-<!-- <p><a href="customer.php">Customer Home</a> ||
-<a href="display.php">view products</a> ||
- | <a href="cart.php">My Cart</a>  -->
-<!-- <a href="logout.php">Logout</a></p> --> 
-<h2>My Cart</h2>
-<table class="table table-striped">
-<thead>
-<tr>
-<!-- <th><strong>Number</strong></th> -->
-<!-- <th><strong>ID</strong></th> -->
-<th><strong>Product Name</strong></th>
-<th><strong>Quantity Needed</strong></th>
-<th><strong>unit price</strong></th>
-<th><strong>total</strong></th>
-<th><strong>Edit</strong></th>
-<!-- <th><strong>Description</strong></th>
-<th><strong>Brand</strong></th> -->
-
-<th><strong>Delete</strong></th>
-
-</tr>
-</thead>
-<tbody>
-<?php
-$count=1;
-// session_start();
-$email = $_SESSION['email_address'];
-
-$unit_price=$_SESSION['unit_price'];
- $product_ID=$_SESSION["product_ID"] ;
- $_SESSION["product_ID"]=$product_ID;
-
-$sel_query="Select * from cart1 WHERE email_address='$email' ORDER BY id desc ;";
-$summ=0;
-$result = mysqli_query($db,$sel_query);
-
-
-
-// $pn = "SELECT product_name FROM cart1 WHERE email_address='$email'";
-// $result1 = mysqli_query($db, $pn);
-// $oneresult1 = $result1->fetch_object();
-// $product_name = $oneresult1->product_name;
-// $_SESSION["product_name"] = $product_name;
-
-// $pi = "SELECT product_ID FROM products WHERE product_name='$product_name'";
-// $result2 = mysqli_query($db, $pi);
-// $oneresult2 = $result2->fetch_object();
-// $product_ID = $oneresult2->product_ID;
-// $_SESSION["product_ID"] = $product_ID;
-
-// $up = "SELECT unit_price FROM cart1 WHERE product_Id='$product_ID'";
-// $result3 = mysqli_query($db, $up);
-// $oneresult3 = $result3->fetch_object();
-// $unit_price = $oneresult3->unit_price;
-// $_SESSION["unit_price"] = $unit_price;
-
-while($row = mysqli_fetch_assoc($result)) { ?>
-<tr>
-<!-- <td align="center"><?php echo $row["id"]; ?></td> -->
-<td align="center"><?php echo $row["product_name"]; ?></td>
-<td align="center"><?php echo $row["quantity_needed"]; ?></td>
-<td align="center"><?php echo $row["unit_price"]; ?></td>
-<td align="center"><?php echo $row["unit_price"]*$row["quantity_needed"]; ?></td>
-<?php 
-$summ = $summ + $row["unit_price"]*$row["quantity_needed"];
-
-?>
-<td align="center">
-<a href="editproduct1.php?id=<?php echo $row["id"]; ?>">Edit Quantity</a>
-</td>
-<td align="center">
-<a href="deleteproduct.php?id=<?php echo $row["id"]; ?>">Delete</a>
-</td>
-
-</td>
-</tr>
-<?php $count++; } 
-// echo "$summ";
-?>
-
-
-</tbody>
-</table>
-</div>
-
-<div class="container">
-<p class="bg-dark text-white">Your total bill is:<?php echo $summ ?></p>
-<br><br>
-</div>
-
-
-<input type="button" value="Buy items" onclick="location='buy1.php'" />
-
-
-
-</body>
-</html>
-
+          else if($result3==true){while($row = mysqli_fetch_assoc($result3)) { ?>
+          <tr>
+          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          <td align="center"><?php echo $row["product_name"]; ?></td>
+          <td align="center"><?php echo $row["unit_price"]; ?></td>
+          <td align="center"><?php echo $row["description"]; ?></td>
+          <td align="center"><?php echo $row["brand"]; ?></td>
+          
+          <td align="center">
+          <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+          </td>
+          
+          </td>
+          </tr>
+          
+          <?php $count++; }} 
+          else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { ?>
+            <tr>
+            <td align="center"><?php echo $row["product_ID"]; ?></td>
+            <td align="center"><?php echo $row["product_name"]; ?></td>
+            <td align="center"><?php echo $row["unit_price"]; ?></td>
+            <td align="center"><?php echo $row["description"]; ?></td>
+            <td align="center"><?php echo $row["brand"]; ?></td>
+            
+            <td align="center">
+            <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+            </td>
+            
+            </td>
+            </tr>
+            
+            <?php $count++; }} 
+            else if($result5==true){while($row = mysqli_fetch_assoc($result5)) { ?>
+              <tr>
+              <td align="center"><?php echo $row["product_ID"]; ?></td>
+              <td align="center"><?php echo $row["product_name"]; ?></td>
+              <td align="center"><?php echo $row["unit_price"]; ?></td>
+              <td align="center"><?php echo $row["description"]; ?></td>
+              <td align="center"><?php echo $row["brand"]; ?></td>
+              
+              <td align="center">
+              <a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
+              </td>
+              
+              </td>
+              </tr>
+              
+              <?php $count++; }} ?>
+        
+        </tbody>
+        </table>
+        </div>
+        </body>
+        </html>
 </div>
 
 

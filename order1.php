@@ -65,7 +65,8 @@ while($row = mysqli_fetch_assoc($result)) {
     $count++; 
     }
   ?>
-  
+</tbody>
+</table> 
 
 </div>
 </body>

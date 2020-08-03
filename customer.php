@@ -43,6 +43,9 @@ echo "<font color='black'>welcome ".$username."</font>";
                <a href="viewoffers.php" class="nav-item nav-link">View Offers</a> 
                <a href="addFeedback.php" class="nav-item nav-link">Add Feedback</a>
                <a href="display.php" class="nav-item nav-link">View Products</a>
+
+
+
                <a href="cart.php" class="nav-item nav-link">My Cart</a>
                <a href="searchProduct.php" class="nav-item nav-link">Search Product</a>
                <a href="logout.php" class="nav-item nav-link">Log Out</a>

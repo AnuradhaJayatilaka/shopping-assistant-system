@@ -29,7 +29,7 @@ require('mysqlconnect.php');
 <?php 
 require('mysqlconnect.php');
 session_start();
-$order_ID=$_SESSION['order_ID'];
+$order_ID=$_SESSION['orderid'];
 $count=1;
 $sql_query="Select * from order_details where orderid='$order_ID';";
 $result = mysqli_query($db,$sql_query);

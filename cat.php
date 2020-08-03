@@ -1,19 +1,8 @@
 <?php
 session_start();
-// $email= $_SESSION['email_address'];
-// $username= $_SESSION['user_name'];
-
-
 ?>
 <head>
-
-
- <!-- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
- <style>
+<style>
   /* Remove the navbar's default margin-bottom and rounded borders */ 
   .navbar {
     margin-bottom: 0;
@@ -190,6 +179,8 @@ float:right;
 .subnav:hover .subnav-content {
   display: block;
 }
+
+table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 </style>
  
   </head>
@@ -200,6 +191,7 @@ float:right;
 <div class="jumbotron jumbotron-fluid" style="background-image:url(home.jpg); padding-bottom:150px;"><br><br>
   
 </div>
+
 <div class="container">
     <div class="row">
         <div class="column">
@@ -226,65 +218,62 @@ float:right;
             <!-- </div>   -->
         </div>
         <div class="column">
+          <?php
+            require('mysqlconnect.php');
+           ?>
         <?php
-require('mysqlconnect.php');
-// include("auth.php");
-?>
+        //---------add items------------------------------------------------------------------------------------------------------------------------------------
+        if(isset($_POST['add'])){
 
-
-<?php
-//---------add items------------------------------------------------------------------------------------------------------------------------------------
-if(isset($_POST['add'])){
-
-    //---------passing form values to varibales---------
-    $product_category            = $_POST['product_category'];
-    $cat_code            = $_POST['cat_code'];
-    $cat_image             = $_FILES['cat_image']['name'];
-    $categoryImg_temp        = $_FILES['cat_image']['tmp_name'];
-    $cat_description         = $_POST['cat_description'];
+            //---------passing form values to varibales---------
+            $product_category            = $_POST['product_category'];
+            $cat_code            = $_POST['cat_code'];
+            $cat_image             = $_FILES['cat_image']['name'];
+            $categoryImg_temp        = $_FILES['cat_image']['tmp_name'];
+            $cat_description         = $_POST['cat_description'];
 
 
 
 
-    //------function for the img-------------------------
+            //------function for the img-------------------------
 
-    move_uploaded_file($categoryImg_temp, "img2/$cat_image" );
-   
+            move_uploaded_file($categoryImg_temp, "img2/$cat_image" );
+          
 
-    //-------------------sql injection---------------------
-    $product_category    = mysqli_real_escape_string($db, $product_category);
-    $cat_code    = mysqli_real_escape_string($db, $cat_code);
-    $cat_image   = mysqli_real_escape_string($db, $cat_image);
-    $cat_description       = mysqli_real_escape_string($db, $cat_description);
+            //-------------------sql injection---------------------
+            $product_category    = mysqli_real_escape_string($db, $product_category);
+            $cat_code    = mysqli_real_escape_string($db, $cat_code);
+            $cat_image   = mysqli_real_escape_string($db, $cat_image);
+            $cat_description       = mysqli_real_escape_string($db, $cat_description);
 
-    $category_query = "SELECT product_category FROM category WHERE product_category = '{$product_category}'";
-    $select_category_query = mysqli_query($db, $category_query); 
+            $category_query = "SELECT product_category FROM category WHERE product_category = '{$product_category}'";
+            $select_category_query = mysqli_query($db, $category_query); 
 
-    //--------------------------check fields empty or not-------
-   if(empty($product_category) || empty($cat_image) || empty($cat_description)||empty($cat_code)){
+            //--------------------------check fields empty or not-------
+          if(empty($product_category) || empty($cat_image) || empty($cat_description)||empty($cat_code)){
 
-            echo "Fields cannot be empty!";
-    }
-
-    else{
-            //---------------------insert query-------------------
-            $query  = "INSERT INTO category (product_category, cat_code, cat_image, cat_description) ";
-            $query .= "VALUES ('{$product_category}','{$cat_code}','{$cat_image}','{$cat_description}')";
-            $add_category_query = mysqli_query ($db, $query);
-
-            //-------------------check query validation-----------
-            if (!$add_category_query) {
-                
-                die("Query Failed" . mysqli_error($db));
+                    echo "Fields cannot be empty!";
             }
+
             else{
-                  
-                    echo "Add Succesfully";
-            }
-    }
-}
+                    //---------------------insert query-------------------
+                    $query  = "INSERT INTO category (product_category, cat_code, cat_image, cat_description) ";
+                    $query .= "VALUES ('{$product_category}','{$cat_code}','{$cat_image}','{$cat_description}')";
+                    $add_category_query = mysqli_query ($db, $query);
 
-?>
+                    //-------------------check query validation-----------
+                    if (!$add_category_query) {
+                        
+                        die("Query Failed" . mysqli_error($db));
+                    }
+                    else{
+                          
+                            echo "Add Succesfully";
+                    }
+            }
+        }
+
+        ?>
         </div>
         
     </div>
@@ -496,7 +485,9 @@ $(document).ready(function () {
     }
 </script>
 </body>
-</html></div>
+</html>
+
+</div>
 
 
 
@@ -510,7 +501,7 @@ $(document).ready(function () {
 
 
 
-<br><br>
+<br><br><br>
 
 <footer class="container-fluid text-center">
 <div class="jumbotron" style="background-image:url(05.jpg); padding-bottom:150px;" class="responsive"><br><br><br><br><br><br><br>

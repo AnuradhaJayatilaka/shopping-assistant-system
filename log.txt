@@ -1,0 +1,34 @@
+email_address	user_name	NIC	user_type	mobile_number	title	password
+saman@gmail.com	Saman Ratnayake	905555555v	Cashier	782222222	Mr.	cashier123
+nayana@gmail.com	Nayana Ediriweera	861111111v	Customer	761111111	Miss	customer123
+kamal@gmail.com	Kamal Jayasinghe	971111111v	Customer	761555111	Mr.	kamal123
+gayan@gmail.com	Gayan Ekanayake	851111111v	Administartor	751111111	Mr.	administraor123
+product_category	product_name	product_ID	description	unit_price	brand	quantity	product_image
+Sanitary items	Tooth Brush	SAN2222	Medium	60	Signal	10	NULL
+Daily essentials	samba rice	RIC2222	5kg bags	500	Nipuna	20	NULL
+Snacks & sweets	chocolate biscuit	BIS3333	250g	150	Maliban	15	NULL
+Snacks & sweets	Marie biscuit	BIS4444	300g	150	Maliban	15	NULL
+Spices	salt	SPI3333	400g	60	Ruhunu	30	NULL
+username	orderid	order_status	date_time	amount
+Nayana Ediriweera	1	incomplete	2020-05-26 13:26:31	0
+Asanka	2	incomplete	2020-05-26 13:27:47	0
+Kamal Jayasinghe	3	incomplete	2020-05-26 13:27:47	0
+orderid	item	order_status	product_status	item_number
+1	raththi 400g	incomplete	not added	1
+1	sugar 3kg	incomplete	not added	2
+1	Tea powder 200g	incomplete	not added	3
+1	milo 400g	incomplete	not added	4
+2	rice 10kg	incomplete	not added	5
+2	flour 3kg	incomplete	not added	6
+2	coconut 5	incomplete	not added	7
+3	noodles maggie 5	incomplete	not added	8
+3	sausages 200g	incomplete	not added	9
+3	coconut oil 1l	incomplete	not added	10
+username	date_time	productfeedback	stafffeedback
+nayana	2020-05-26 13:27:47	adddark chocolate	friendly service
+nayana	2020-05-26 13:27:47	add papprika powder	friendly service
+nayana	2020-05-26 13:27:47	add diana biscuits	friendly service
+offerid	offer	conditions
+1	buy 1 astra 250g tub and get 1 free	for purchases above Rs.5000
+2	Buy 5 lifebuoy 100g soap bars and get 1 free	for purchases above Rs.3000
+3	buy 10 kottu mee packets and get 50% off next 2	for purchases above Rs.1000

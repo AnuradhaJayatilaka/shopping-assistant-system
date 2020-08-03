@@ -4,7 +4,7 @@ require_once "mysqlconnect.php";
 // $sql = "SELECT email_address, password,user_type FROM users WHERE email_address = ?";
 session_start();
 $email = $_SESSION['email_address'];
-$quantity = $_GET['quantity_needed'];
+$quantity = $_SESSION['quantity'];
 $product_ID = $_SESSION['product_ID'];
 $product_name1 = "SELECT product_name FROM products WHERE product_ID='$product_ID'";
 $resulttwo = mysqli_query($db, $product_name1);

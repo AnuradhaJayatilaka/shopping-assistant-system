@@ -200,9 +200,9 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                     <a href="Administratorhomepagenew" >Administrator Home</a>
                     <a href="order.php">Manage orders</a>
                     
-                    <a href="view.php" class="active">Manage Inventory</a>
+                    <a href="view.php" >Manage Inventory</a>
                     <a href="cat.php" >Manage Product Categories</a>
-                    <a href="displayoffers.php">Manage Offers</a>
+                    <a href="displayoffers.php" class="active">Manage Offers</a>
                     <a href="viewcashierlist.php">Manage Cashiers</a>
 
                     <a href="ViewSuggestions.php">View Suggestions</a>
@@ -218,63 +218,62 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             <!-- </div>   -->
         </div>
         <div class="column">
-        <?php
-require('mysqlconnect.php');
-// include("auth.php");
-?>
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
+        
+                <?php
+                require('mysqlconnect.php');
+                // include("auth.php");
+                ?>
+                <!DOCTYPE html>
+                <html>
+                <head>
+                <meta charset="utf-8">
+                <title>View Records</title>
+                
+                </head>
+                <body>
+                    <!-- $product_ID="product_ID"; -->
+                <div class="form">
+                    
+               
+                | <a href="insertoffers.php">Insert New offer</a> 
+                
+                <h2>View Offers</h2>
+                <table class="table table-stripped">
+                <thead>
+                <tr>
+                <!-- <th><strong>Number</strong></th> -->
+                <th><strong>Offer ID</strong></th>
+                <th><strong>Offer</strong></th>
+                <th><strong>Conditions</strong></th>
 
-        <div class="form">
-        <a href="insert.php">Insert New Record</a> 
-    
-    <h2>View Records</h2>
-    <table class="table table-dark table-hover">
-    <thead>
-    <tr>
-    <!-- <th><strong>Number</strong></th> -->
-    <th><strong>Product ID</strong></th>
-    <th><strong>Product Name</strong></th>
-    <th><strong>unit price(Rs)</strong></th>
-    <th><strong>Description</strong></th>
-    <th><strong>Brand</strong></th>
-    <th><strong>Quantity</strong></th>
-    <th><strong>Edit</strong></th>
-    <th><strong>Delete</strong></th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    $count=1;
-    $sel_query="Select * from products ORDER BY product_ID desc;";
-    $result = mysqli_query($db,$sel_query);
-    while($row = mysqli_fetch_assoc($result)) { ?>
-    <tr>
-    <td align="center"><?php echo $row["product_ID"]; ?></td>
-    <td align="center"><?php echo $row["product_name"]; ?></td>
-    <td align="center"><?php echo $row["unit_price"]; ?></td>
-    <td align="center"><?php echo $row["description"]; ?></td>
-    <td align="center"><?php echo $row["brand"]; ?></td>
-    <td align="center"><?php echo $row["quantity"]; ?></td>
-    <td align="center">
-    <a href="edit.php?product_ID=<?php echo $row["product_ID"]; ?>">Edit</a>
-    </td>
-    <td align="center">
-    <a href="delete.php?product_ID=<?php echo $row["product_ID"]; ?>">Delete</a>
-    </td>
-    </tr>
-    <?php $count++; } ?>
-    </tbody>
-    </table>
-    </div>
-        </div>
-    </div></div></body>
+                <th><strong>Edit</strong></th>
+                <th><strong>Delete</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $count=1;
+                $sel_query="Select * from offers ORDER BY offerid desc;";
+                $result = mysqli_query($db,$sel_query);
+                while($row = mysqli_fetch_assoc($result)) { ?>
+                <tr>
+                <td align="center"><?php echo $row["offerid"]; ?></td>
+                <td align="center"><?php echo $row["offer"]; ?></td>
+                <td align="center"><?php echo $row["conditions"]; ?></td>
 
-
-
-
+                <td align="center">
+                <a href="editoffer.php?offerid=<?php echo $row["offerid"]; ?>">Edit</a>
+                </td>
+                <td align="center">
+                <a href="deleteoffer.php?offerid=<?php echo $row["offerid"]; ?>">Delete</a>
+                </td>
+                </tr>
+                <?php $count++; } ?>
+                </tbody>
+                </table>
+                </div>
+                </body>
+                </html>
     </div>
 
 

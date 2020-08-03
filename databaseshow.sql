@@ -9,3 +9,7 @@ SELECT * FROM feedback;
 SELECT * FROM cart1;
 SELECT * FROM offers;
 
+-- SELECT * FROM products WHERE product_name LIKE '%sa%';
+-- SELECT * FROM products WHERE product_name LIKE '%saltssssssssssssssssss%';
+-- SELECT * FROM products WHERE product_name LIKE 'c%';
+SELECT * FROM products WHERE product_name LIKE '%t';
