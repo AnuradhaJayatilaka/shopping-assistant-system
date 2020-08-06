@@ -14,24 +14,7 @@ $username= $_SESSION['user_name'];
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
- <script>
-      $(document).ready(function(){
-        $('#product_cat').on("click", function(e){
-          $(this).next('ul').toggle();
-          e.stopPropagation();
-          e.preventDefault();
-        });
-      });
-
-      function loadPage(){
-        var cat = document.getElementById("product_cat").value;
-        switch(cat){
-          case 'Spices':window.location.href = "spices.php";break;
-          default:break;
-        }
-      }
-
-</script>
+ 
 
 
  <style>
@@ -192,6 +175,7 @@ require('mysqlconnect.php');
 <th><strong>unit price(Rs)</strong></th>
 <th><strong>Description</strong></th>
 <th><strong>Brand</strong></th>
+<th><strong>Available Quantity</strong></th>
 
 <th><strong>Add to cart</strong></th>
 
@@ -211,10 +195,40 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["unit_price"]; ?></td>
 <td align="center"><?php echo $row["description"]; ?></td>
 <td align="center"><?php echo $row["brand"]; ?></td>
+<td align="center"><?php echo $row["quantity"]; ?></td>
 
 <td align="center">
-<a href="quantity.php?product_ID=<?php echo $row["product_ID"]?>&product_name=<?php echo $row["product_name"]?>&unit_price=<?php echo $row["unit_price"]?>&description=<?php echo $row["description"]?>&brand=<?php echo $row["brand"]?>;">Add to cart</a>
-</td>
+              <button class="open-button" onclick="openForm()">Add</button>
+
+<div class="form-popup" id="myForm">
+  <form action="quantity.php" class="form-container">
+    
+
+    <label for="quantity"><b>Please enter the Needed Quantity from your selected product</b></label>
+    <input type="text" placeholder="Enter qunatity" name="quantity" required>
+
+
+    <button type="submit" class="btn">OK</button>
+    <input type="hidden" name="product_ID" id="product_ID" value='<?php echo $row["product_ID"]?>'>
+    <input type="hidden" name="product_name" id="product_name" value='<?php echo $row["product_name"]?>'> 
+    <input type="hidden" name="unit_price" id="unit_price" value='<?php echo $row["unit_price"]?>'>
+    <input type="hidden" name="description" id="description" value='<?php echo $row["description"]?>'> 
+    <input type="hidden" name="brand" id="brand" value='<?php echo $row["brand"]?>'>   
+     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+             
+              </td>
 
 </td>
 </tr>

@@ -241,6 +241,7 @@ require('mysqlconnect.php');
     <th><strong>Description</strong></th>
     <th><strong>Brand</strong></th>
     <th><strong>Quantity</strong></th>
+    <th><strong>Image</strong></th>
     <th><strong>Edit</strong></th>
     <th><strong>Delete</strong></th>
     </tr>
@@ -250,7 +251,7 @@ require('mysqlconnect.php');
     $count=1;
     $sel_query="Select * from products ORDER BY product_ID desc;";
     $result = mysqli_query($db,$sel_query);
-    while($row = mysqli_fetch_assoc($result)) { ?>
+    while($row = mysqli_fetch_assoc($result)) {?>
     <tr>
     <td align="center"><?php echo $row["product_ID"]; ?></td>
     <td align="center"><?php echo $row["product_name"]; ?></td>
@@ -258,6 +259,7 @@ require('mysqlconnect.php');
     <td align="center"><?php echo $row["description"]; ?></td>
     <td align="center"><?php echo $row["brand"]; ?></td>
     <td align="center"><?php echo $row["quantity"]; ?></td>
+    <td><img src='products/<?php echo $row["product_image"]?>' style='width: 65px;' ></td>
     <td align="center">
     <a href="edit.php?product_ID=<?php echo $row["product_ID"]; ?>">Edit</a>
     </td>

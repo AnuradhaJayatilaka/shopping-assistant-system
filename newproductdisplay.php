@@ -160,7 +160,65 @@
         <html>
         <head>
         <meta charset="utf-8">
-       
+        <style>
+
+.card {
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  max-width: 300px;
+
+  margin: auto;
+
+  text-align: center;
+
+  font-family: arial;
+
+}
+
+​
+
+.price {
+
+  color: grey;
+
+  font-size: 22px;
+
+}
+
+​
+
+.card button {
+
+  border: none;
+
+  outline: 0;
+
+  padding: 12px;
+
+  color: white;
+
+  background-color: #000;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  width: 100%;
+
+  font-size: 18px;
+
+}
+
+​
+
+.card button:hover {
+
+  opacity: 0.7;
+
+}
+
+</style>
         
         </head>
         <body>
@@ -168,7 +226,7 @@
         <div class="form">
         
         
-        <table class="table table-stripped"><thead>
+        <!-- <table class="table table-stripped"><thead>
         <tr>
         
         <th><strong>Product ID</strong></th>
@@ -179,7 +237,7 @@
         <th><strong>Available Quantity</strong></th>        
         
         
-        </tr>
+        </tr> -->
         </thead>
         <tbody>
         <?php
@@ -196,85 +254,146 @@
         $result4 = mysqli_query($db,$sel_query4);
         $sel_query5="SELECT * FROM products WHERE REGEXP_LIKE(product_name, '$pname')";
         $result5 = mysqli_query($db,$sel_query5);
-        if($result1==true){while($row = mysqli_fetch_assoc($result1)) { ?>
-          <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
-          <td align="center"><?php echo $row["product_name"]; ?></td>
-          <td align="center"><?php echo $row["unit_price"]; ?></td>
-          <td align="center"><?php echo $row["description"]; ?></td>
-          <td align="center"><?php echo $row["brand"]; ?></td>
-          <td align="center"><?php echo $row["quantity"]; ?></td>
+
+        
+        if($result1==true){while($row = mysqli_fetch_assoc($result1)) { 
+            
+            
+           
+    
+            
+            
+            $oneresult = $result1->fetch_object();
+            $Product_name = $oneresult->product_name;
+            $unit_price=$oneresult->unit_price;
+            $description=$oneresult->description;
+            $brand=$oneresult->brand;
+            $quantity=$oneresult->quantity;?>
           
-          
-              
-              </td>
-          
-          </td>
-          </tr>
+
+          <div class="card">
+
+  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+  <h1><?php echo "$brand"?></h1>
+  <h1><?php echo "$Product_name"?></h1>
+
+  <p class="price">Rs.<?php echo "$unit_price"?></p>
+
+  <p>Description:<?php echo "$description"?></p>
+  <p>Available Quantity:<?php echo "$quantity"?></p>
+
+  <p><button>Add to Cart</button></p>
+
+</div>
           
           <?php $count++; }} 
 
-          else if($result2==true){while($row = mysqli_fetch_assoc($result2)) { ?>
-          <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
-          <td align="center"><?php echo $row["product_name"]; ?></td>
-          <td align="center"><?php echo $row["unit_price"]; ?></td>
-          <td align="center"><?php echo $row["description"]; ?></td>
-          <td align="center"><?php echo $row["brand"]; ?></td>
-          <td align="center"><?php echo $row["quantity"]; ?></td>
-          
-          
+          else if($result2==true){while($row = mysqli_fetch_assoc($result2)) {
               
-              </td>
-          
-          </td>
-          </tr>
+            $pname=$_SESSION['product_name'];
+            $sql1="select * from products where product_name='$pname'";
+            $result1= mysqli_query($db,$sql1);
+            $oneresult = $result1->fetch_object();
+            $Product_name = $oneresult->product_name;
+            $unit_price=$oneresult->unit_price;
+            $description=$oneresult->description;
+            $brand=$oneresult->brand;
+            $quantity=$oneresult->quantity;?>?>
+          <div class="card">
+
+<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+<h1><?php echo "$brand"?></h1>
+<h1><?php echo "$Product_name"?></h1>
+
+<p class="price">Rs.<?php echo "$unit_price"?></p>
+
+<p>Description:<?php echo "$description"?></p>
+<p>Available Quantity:<?php echo "$quantity"?></p>
+
+<p><button>Add to Cart</button></p>
+
+</div>
           
           <?php $count++; }} 
 
-          else if($result3==true){while($row = mysqli_fetch_assoc($result3)) { ?>
-          <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
-          <td align="center"><?php echo $row["product_name"]; ?></td>
-          <td align="center"><?php echo $row["unit_price"]; ?></td>
-          <td align="center"><?php echo $row["description"]; ?></td>
-          <td align="center"><?php echo $row["brand"]; ?></td>
-          <td align="center"><?php echo $row["quantity"]; ?></td>
-          
-          
-         
-          </td>
-          </tr>
+          else if($result3==true){while($row = mysqli_fetch_assoc($result3)) {
+              
+            $pname=$_SESSION['product_name'];
+            $sql1="select * from products where product_name='$pname'";
+            $result1= mysqli_query($db,$sql1);
+            $oneresult = $result1->fetch_object();
+            $Product_name = $oneresult->product_name;
+            $unit_price=$oneresult->unit_price;
+            $description=$oneresult->description;
+            $brand=$oneresult->brand;
+            $quantity=$oneresult->quantity;?>?>
+          <div class="card">
+
+<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+<h1><?php echo "$brand"?></h1>
+<h1><?php echo "$Product_name"?></h1>
+
+<p class="price">Rs.<?php echo "$unit_price"?></p>
+
+<p>Description:<?php echo "$description"?></p>
+<p>Available Quantity:<?php echo "$quantity"?></p>
+
+<p><button>Add to Cart</button></p>
+
+</div>
           
           <?php $count++; }} 
-          else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { ?>
-            <tr>
-            <td align="center"><?php echo $row["product_ID"]; ?></td>
-            <td align="center"><?php echo $row["product_name"]; ?></td>
-            <td align="center"><?php echo $row["unit_price"]; ?></td>
-            <td align="center"><?php echo $row["description"]; ?></td>
-            <td align="center"><?php echo $row["brand"]; ?></td>
-            <td align="center"><?php echo $row["quantity"]; ?></td>
-            
-            
+          else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { 
               
-              </td>
-            
-            </td>
-            </tr>
-            
+            $pname=$_SESSION['product_name'];
+            $sql1="select * from products where product_name='$pname'";
+            $result1= mysqli_query($db,$sql1);
+            $oneresult = $result1->fetch_object();
+            $Product_name = $oneresult->product_name;
+            $unit_price=$oneresult->unit_price;
+            $description=$oneresult->description;
+            $brand=$oneresult->brand;
+            $quantity=$oneresult->quantity;?>?>
+            <div class="card">
+
+<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+<h1><?php echo "$brand"?></h1>
+<h1><?php echo "$Product_name"?></h1>
+
+<p class="price">Rs.<?php echo "$unit_price"?></p>
+
+<p>Description:<?php echo "$description"?></p>
+<p>Available Quantity:<?php echo "$quantity"?></p>
+
+<p><button>Add to Cart</button></p>
+
+</div>
             <?php $count++; }} 
-            else if($result5==true){while($row = mysqli_fetch_assoc($result5)) { ?>
-              <tr>
-              <td align="center"><?php echo $row["product_ID"]; ?></td>
-              <td align="center"><?php echo $row["product_name"]; ?></td>
-              <td align="center"><?php echo $row["unit_price"]; ?></td>
-              <td align="center"><?php echo $row["description"]; ?></td>
-              <td align="center"><?php echo $row["brand"]; ?></td>
-              <td align="center"><?php echo $row["quantity"]; ?></td>
-              
-              </td>
-              </tr>
+            else if($result5==true){while($row = mysqli_fetch_assoc($result5)) {
+                
+                $pname=$_SESSION['product_name'];
+    $sql1="select * from products where product_name='$pname'";
+    $result1= mysqli_query($db,$sql1);
+    $oneresult = $result1->fetch_object();
+    $Product_name = $oneresult->product_name;
+    $unit_price=$oneresult->unit_price;
+    $description=$oneresult->description;
+    $brand=$oneresult->brand;
+    $quantity=$oneresult->quantity;?>?>
+              <div class="card">
+
+<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+<h1><?php echo "$brand"?></h1>
+<h1><?php echo "$Product_name"?></h1>
+
+<p class="price">Rs.<?php echo "$unit_price"?></p>
+
+<p>Description:<?php echo "$description"?></p>
+<p>Available Quantity:<?php echo "$quantity"?></p>
+
+<p><button>Add to Cart</button></p>
+
+</div>
               
               <?php $count++; }} ?>
         

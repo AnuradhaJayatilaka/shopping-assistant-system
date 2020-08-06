@@ -34,7 +34,7 @@ if(isset($_GET['product_name'])){
         
 
         // echo " product is available";
-        header("location:sdisplay1.php");
+        header("location:newproductdisplay.php");
         
        
     }
@@ -42,7 +42,7 @@ if(isset($_GET['product_name'])){
         
 
         // echo " product is available";
-        header("location:sdisplay1.php");
+        header("location:newproductdisplay.php");
         
        
     }
@@ -50,7 +50,7 @@ if(isset($_GET['product_name'])){
         
 
         // echo " product is available";
-        header("location:sdisplay1.php");
+        header("location:newproductdisplay.php");
         
        
     }
@@ -58,7 +58,7 @@ if(isset($_GET['product_name'])){
         
 
         // echo " product is available";
-        header("location:sdisplay1.php");
+        header("location:newproductdisplay.php");
         
        
     }
@@ -66,7 +66,7 @@ if(isset($_GET['product_name'])){
         
 
         // echo " product is available";
-        header("location:sdisplay1.php");
+        header("location:newproductdisplay.php");
         
        
     }

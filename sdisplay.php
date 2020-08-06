@@ -253,7 +253,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <th><strong>unit price(Rs)</strong></th>
         <th><strong>Description</strong></th>
         <th><strong>Brand</strong></th>
-        
+        <th><strong>Available Quantity</strong></th>        
         <th><strong>Add to cart</strong></th>
         
         </tr>
@@ -280,6 +280,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
           <td align="center"><?php echo $row["brand"]; ?></td>
+          <td align="center"><?php echo $row["quantity"]; ?></td>
           
           <td align="center">
               <button class="open-button" onclick="openForm()">Add</button>
@@ -328,6 +329,7 @@ function closeForm() {
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
           <td align="center"><?php echo $row["brand"]; ?></td>
+          <td align="center"><?php echo $row["quantity"]; ?></td>
           
           <td align="center">
               <button class="open-button" onclick="openForm()">Add</button>
@@ -376,6 +378,7 @@ function closeForm() {
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
           <td align="center"><?php echo $row["brand"]; ?></td>
+          <td align="center"><?php echo $row["quantity"]; ?></td>
           
           
           <td align="center">
@@ -422,6 +425,7 @@ function closeForm() {
             <td align="center"><?php echo $row["unit_price"]; ?></td>
             <td align="center"><?php echo $row["description"]; ?></td>
             <td align="center"><?php echo $row["brand"]; ?></td>
+            <td align="center"><?php echo $row["quantity"]; ?></td>
             
             <td align="center">
               <button class="open-button" onclick="openForm()">Add</button>
@@ -469,6 +473,7 @@ function closeForm() {
               <td align="center"><?php echo $row["unit_price"]; ?></td>
               <td align="center"><?php echo $row["description"]; ?></td>
               <td align="center"><?php echo $row["brand"]; ?></td>
+              <td align="center"><?php echo $row["quantity"]; ?></td>
               
               <td align="center">
               <button class="open-button" onclick="openForm()">Add</button>

@@ -123,7 +123,7 @@
                       
                      
                       
-                      $cat1='<li><a href="viewproducts.php?product_category=';
+                      $cat1='<li><a href="homepageviewproducts.php?product_category=';
                       $cata=$data['product_category'];
                       $catd='" class="dropdown-item">';
                       $catb=$data['product_category'];

@@ -213,7 +213,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             <li class=" nav-item dropdown">
               <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> <span class="glyphicon glyphicon-user"></span>  Hi <?php echo $_SESSION['user_name'] ?><b class="caret"></b></a>
               <ul class="dropdown-menu">          
-                <li><a href="" class="dropdown-item">Log Out</a></li>
+                <li><a href="logout.php" class="dropdown-item">Log Out</a></li>
                 <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
               </ul>
             </li>
@@ -355,7 +355,7 @@ function closeForm() {
 </div>
 
 
-<input type="button" value="Buy items" onclick="location='buy1.php'" />
+<input type="button" value="Buy items" onclick="location='buy.php'" />
 
 
 
