@@ -59,6 +59,76 @@ $username= $_SESSION['user_name'];
 
 table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  
+ 
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
 </style>
   <!-- <script src="https://kit.fontawesome.com/42deadbeef.js"></script>
     <link rel="stylesheet" href="AdministratorHomepage.css"> -->
@@ -138,7 +208,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             <li class=" nav-item dropdown">
               <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> <span class="glyphicon glyphicon-user"></span>  Hi <?php echo $_SESSION['user_name'] ?><b class="caret"></b></a>
               <ul class="dropdown-menu">          
-                <li><a href="" class="dropdown-item">Log Out</a></li>
+                <li><a href="logout.php" class="dropdown-item">Log Out</a></li>
                 <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
               </ul>
             </li>
@@ -170,7 +240,7 @@ require('mysqlconnect.php');
 <table class="table table-stripped"><thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->
-<th><strong>Product ID</strong></th>
+<!-- <th><strong>Product ID</strong></th> -->
 <th><strong>Product Name</strong></th>
 <th><strong>unit price(Rs)</strong></th>
 <th><strong>Description</strong></th>
@@ -190,7 +260,7 @@ $sel_query="Select * from products where product_category='$product_category' OR
 $result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
-<td align="center"><?php echo $row["product_ID"]; ?></td>
+<!-- <td align="center"><?php echo $row["product_ID"]; ?></td> -->
 <td align="center"><?php echo $row["product_name"]; ?></td>
 <td align="center"><?php echo $row["unit_price"]; ?></td>
 <td align="center"><?php echo $row["description"]; ?></td>

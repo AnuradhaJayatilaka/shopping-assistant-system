@@ -319,12 +319,14 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             <!-- /.card-header -->
             <div class="card-body">
               <!--- tassels table -->
-              <table id="example4" class="table table-bordered ">
+              <table id="example4" class="table table-stripped ">
                 <thead>
                 <tr>
                   
                   <th style="width: 150px;"> Offer</th>
                   <th style="width: 120px;">Conditions</th>
+                 
+                  <th style="width: 120px;">Delete</th>
                   
                 </tr>
                 </thead>
@@ -343,6 +345,10 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                      echo "<tr>";
                      echo "<td>$offer </td>";
                      echo "<td>$conditions </td>";
+                    //  echo "<td><a href='editoffers.php?edit={$offer}' class='btn btn-danger btn-sm '><i class='fas fa-trash-alt'></i> edit</a></td>";
+                     echo "<td><a href='displayoffers.php?delete={$offer}' class='btn btn-danger btn-sm '><i class='fas fa-trash-alt'></i> Delete</a></td>";
+
+                     
                      echo "</tr>";
                     }                   
                       //Delete items
@@ -354,6 +360,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                       $delete_query = mysqli_query($db, $query2);
   
                     }
+                    
                 ?>
                 </tbody>
                 <tfoot>
@@ -472,7 +479,7 @@ $(document).ready(function () {
 
 
 
-<br><br><br>
+<br><br><br><br><br><br><br>
 
 <footer class="container-fluid text-center">
 <div class="jumbotron" style="background-image:url(05.jpg); padding-bottom:150px;" class="responsive"><br><br><br><br><br><br><br>

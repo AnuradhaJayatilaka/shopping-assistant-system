@@ -14,24 +14,7 @@ $username= $_SESSION['user_name'];
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
- <script>
-      $(document).ready(function(){
-        $('#product_cat').on("click", function(e){
-          $(this).next('ul').toggle();
-          e.stopPropagation();
-          e.preventDefault();
-        });
-      });
-
-      function loadPage(){
-        var cat = document.getElementById("product_cat").value;
-        switch(cat){
-          case 'Spices':window.location.href = "spices.php";break;
-          default:break;
-        }
-      }
-
-</script>
+ 
 
 
  <style>
@@ -194,9 +177,9 @@ require('mysqlconnect.php');
 <thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->
-<th><strong>Order ID</strong></th>
+<!-- <th><strong>Order ID</strong></th> -->
 <th><strong>items</strong></th>
-<th><strong>Item id</strong></th>
+<!-- <th><strong>Item id</strong></th> -->
 <th><strong>product_status</strong></th>
 <!-- <th><strong>update product status</strong></th> -->
 
@@ -214,12 +197,12 @@ $result = mysqli_query($db,$sql_query);
 while($row = mysqli_fetch_assoc($result)) { 
     
     echo "<tr>";
-    $line="<td align=\"center\">".$row["orderid"]."</td>";
-    echo $line;
+    // $line="<td align=\"center\">".$row["orderid"]."</td>";
+    // echo $line;
     $line="<td align=\"center\">".$row["item"]."</td>";
     echo $line;
-    $line="<td align=\"center\">".$row["item_number"]."</td>";
-    echo $line;
+    // $line="<td align=\"center\">".$row["item_number"]."</td>";
+    // echo $line;
     $line="<td align=\"center\">".$row["product_status"]."</td>";
     echo $line;
     // $line="<td align=\"center\">"."<form action= \"order2.php\" method=\"GET\">

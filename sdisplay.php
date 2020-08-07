@@ -127,6 +127,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 </style>
 
 </style>
@@ -248,7 +249,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <table class="table table-stripped"><thead>
         <tr>
         <!-- <th><strong>Number</strong></th> -->
-        <th><strong>Product ID</strong></th>
+        
         <th><strong>Product Name</strong></th>
         <th><strong>unit price(Rs)</strong></th>
         <th><strong>Description</strong></th>
@@ -275,7 +276,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         $result5 = mysqli_query($db,$sel_query5);
         if($result1==true){while($row = mysqli_fetch_assoc($result1)) { ?>
           <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          
           <td align="center"><?php echo $row["product_name"]; ?></td>
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
@@ -324,7 +325,7 @@ function closeForm() {
 
           else if($result2==true){while($row = mysqli_fetch_assoc($result2)) { ?>
           <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          
           <td align="center"><?php echo $row["product_name"]; ?></td>
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
@@ -373,7 +374,7 @@ function closeForm() {
 
           else if($result3==true){while($row = mysqli_fetch_assoc($result3)) { ?>
           <tr>
-          <td align="center"><?php echo $row["product_ID"]; ?></td>
+          
           <td align="center"><?php echo $row["product_name"]; ?></td>
           <td align="center"><?php echo $row["unit_price"]; ?></td>
           <td align="center"><?php echo $row["description"]; ?></td>
@@ -420,7 +421,7 @@ function closeForm() {
           <?php $count++; }} 
           else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { ?>
             <tr>
-            <td align="center"><?php echo $row["product_ID"]; ?></td>
+            
             <td align="center"><?php echo $row["product_name"]; ?></td>
             <td align="center"><?php echo $row["unit_price"]; ?></td>
             <td align="center"><?php echo $row["description"]; ?></td>
@@ -468,7 +469,7 @@ function closeForm() {
             <?php $count++; }} 
             else if($result5==true){while($row = mysqli_fetch_assoc($result5)) { ?>
               <tr>
-              <td align="center"><?php echo $row["product_ID"]; ?></td>
+              
               <td align="center"><?php echo $row["product_name"]; ?></td>
               <td align="center"><?php echo $row["unit_price"]; ?></td>
               <td align="center"><?php echo $row["description"]; ?></td>

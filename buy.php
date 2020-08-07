@@ -7,9 +7,9 @@ $sql5="select * from cart1 where email_address='$email'";
 $result5= mysqli_query($db,$sql5);
 $num_rows = mysqli_num_rows($result5);
 
-$rowcount="SELECT ROW_NUMBER() OVER(ORDER BY id DESC) AS 'ROWID' * FROM cart1";
-$rowcount1=mysqli_query($db,$rowcount);
-$rowcount2=$rowcount1->fetch_object();
+// $rowcount="SELECT ROW_NUMBER() OVER(ORDER BY id DESC) AS 'ROWID' * FROM cart1";
+// $rowcount1=mysqli_query($db,$rowcount);
+// $rowcount2=$rowcount1->fetch_object();
 for($row['id']=1;$row['id']<=$num_rows;$row['id']++){
  $rowno= $row['id'];   
 $sql2="select * from cart1 where id='$rowno'";
@@ -36,9 +36,16 @@ $result1=mysqli_query($db,$sql1);
 $oneresult3 = $result1->fetch_object();
 $quantity = $oneresult3->quantity;
 $_SESSION["quantity"] = $quantity;
+if ($quantity_needed<$quantity){
 $update="UPDATE products set quantity=quantity-$quantity_needed where product_ID='$product_ID';";
 $result=mysqli_query($db,$update);
 }
+else{
+    echo $product_name. "is out of stock";
+}
+}
 
 
+$delete="truncate table cart1";
+$deleteR=mysqli_query($db,$delete);
 ?>
