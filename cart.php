@@ -304,7 +304,7 @@ $summ = $summ + $row["unit_price"]*$row["quantity_needed"];
               <button class="open-button" onclick="openForm()">Edit Quantity</button>
 
 <div class="form-popup" id="myForm">
-  <form action="editproduct2.php" class="form-container">
+  <form action="editproduct1.php" class="form-container">
     
 
     <label for="quantity_needed"><b>Please enter the Needed Quantity from your selected product</b></label>

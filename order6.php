@@ -1,3 +1,6 @@
+
+
+
 <?php
 session_start();
 // $email= $_SESSION['email_address'];
@@ -227,35 +230,26 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
             </div>
         </div>
         <div class="column">
-            <?php
-            require('mysqlconnect.php');
-            if(!empty($_GET)){
-              $total_amount=$_GET['amount'];
-              $orderid=$_SESSION['orderid'];
+        <?php
+require('mysqlconnect.php');
+// include("auth.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
 
-              $sql="update orders set amount='$total_amount' WHERE orderid='$orderid' ";
-              $result=mysqli_query($db,$sql); 
-              
-            }
-            // include("auth.php");
-            ?>
-                <!DOCTYPE html>
-                <html>
-                    <head>
-                    <!-- <meta charset="utf-8"> -->
-                    <title>View Records</title>
+</head>
+<body>
+    <!-- $product_ID="product_ID"; -->
+<div class="form">
 
-                    </head>
-                    <body>
-                        <!-- $product_ID="product_ID"; -->
-                        <div class="form">
-                        
-                            <h2>View Orders</h2>
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                        <!-- <th><strong>Number</strong></th> -->
-                                        <th><strong>Order ID</strong></th>
+<h2>View Orders</h2>
+<table class="table table-stripped" id="table">
+<thead>
+<tr>
+<!-- <th><strong>Number</strong></th> -->
+<th><strong>Order ID</strong></th>
                                         <th><strong>Username</strong></th>
                                         <th><strong>Date and Time</strong></th>
                                         <th><strong>Total amount</strong></th>
@@ -263,22 +257,31 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                                         <th><strong>Change Order Status</strong></th>
                                         <th><strong>View Order Details</strong></th>
                                         <th>Delete Order</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $count=1;
-                                        $sel_query="Select * from orders ";
-                                        $result = mysqli_query($db,$sel_query);
-                                        while($row = mysqli_fetch_assoc($result)) { 
-                                    ?>
-                                        <tr>
-                                            <td align="center"><?php echo $row["orderid"]; ?></td>
-                                            <td align="center"><?php echo $row["username"]; ?></td>
-                                            <td align="center"><?php echo $row["date_time"]; ?></td>
-                                            <td align="center"><?php echo $row["amount"]; ?></td>
-                                            <td align="center"><?php echo $row["order_status"]; ?></td>
-                                            <td align="center">
+
+
+
+</tr>
+</thead>
+<tbody>
+<?php
+
+$orderid=$_GET['orderid'];
+$order_status="Incomplete";
+$count=1;
+$query="update orders set order_status='$order_status' where orderid='$orderid'";
+$result2 = mysqli_query($db,$query);
+
+$sel_query="Select * from orders ";
+$result = mysqli_query($db,$sel_query);
+while($row = mysqli_fetch_assoc($result)) { ?>
+<tr>
+<td align="center"><?php echo $row["orderid"]; ?></td>
+<td align="center"><?php echo $row["username"]; ?></td>
+<td align="center"><?php echo $row["date_time"]; ?></td>
+<td align="center"><?php echo $row["amount"]; ?></td>
+<td align="center"><?php echo $row["order_status"]; ?></td>
+
+<td align="center">
                                               <form action= "order4.php" method="GET">
                                               <input type="hidden" name="order_status" >
                                               <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?> >
@@ -290,19 +293,21 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                                               <input type="submit" type="submit" value="incomplete" class="btn-Search"/>
                                             </form>
                                           </td>
-                                            <td align="center">
-                                            <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
-                                            </td>
-                                            <td align="center">
+<td align="center">
+<a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
+</td>
+<td align="center">
                                             <a href="deleteorder1.php?orderid=<?php echo $row["orderid"]; ?>">Delete</a>
                                             </td>
-                                        </tr>
-                                        <?php 
-                                            $count++; } 
-                                        ?>
-                                </tbody>
-                            </table>
-                        </div>
+
+</tr>
+<?php $count++; } ?>
+</tbody>
+</table>
+</div>
+
+</body>
+</html>
                    
         </div>
     </div>

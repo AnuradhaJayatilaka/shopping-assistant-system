@@ -1,13 +1,18 @@
+<?php 
 
-       
-       >
-                <!-- <input name="product_ID" type="hidden" value="BIS2222" /> -->
-                <?php 
-$id=$_REQUEST['id'];
-header('location:editproduct2.php');
+
+require_once "mysqlconnect.php";
+session_start();
+$id=$_GET['id'];
+$quantity =$_GET['quantity_needed'];
+$update="UPDATE cart1 SET quantity_needed='$quantity' where id='$id'";
+$result=mysqli_query($db, $update);
+if($result){
+    
+       header("Location: cart.php");
+    
+} 
+
+else { die ( "error");}
 
 ?>
-                <!-- <p><input type="text" name="product_name" placeholder="Enter product" required /></p>
-                <p><input type="text" name="unit_price" placeholder="Enter price" required /></p> -->
-                
-        

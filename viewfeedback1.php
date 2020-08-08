@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 session_start();
 // $email= $_SESSION['email_address'];
@@ -204,18 +200,18 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
 <div class="row">
   <div class="column">
 <div class="vertical-menu">
-  <a href="#" class="active">Administrator Home</a>
+  <a href="administratorhomepagenew" >Administrator Home</a>
   <a href="order.php">Manage orders</a>
   
   <a href="view.php">Manage Inventory</a>
   <a href="cat.php">Manage Product Categories</a>
-  <a href="displayoffers.php">Manage Offers</a>
+  <a href="displayoffers.php" >Manage Offers</a>
   <a href="viewcashierlist.php">Manage Cashiers</a>
 
   <a href="ViewSuggestions.php">View Suggestions</a>
   
   
-  <a href="viewfeedback1.php">View feedback</a>
+  <a href="viewfeedback1.php" class="active">View feedback</a>
   <!-- <a href="ViewPayments.php">View Payments</a> -->
   <a href="Advertise.php">Advertise</a>
   <a href="GenerateReports.php">Generate Reports</a>

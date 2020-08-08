@@ -132,22 +132,24 @@ float:right;
 .subnav {
   float: in-line;
   overflow: hidden;
+  text-align: left;
 }
 
 /* Subnav button */
 .subnav .subnavbtn {
   font-size: 16px;
+  text-align: start;
   border: none;
   outline: none;
   color: black;
   padding: 14px 90px;
-  background-color: #ccc;
+  background-color: #eee;
   font-family: inherit;
   margin: 0;
   
 }
 
-/* Add a red background color to navigation links on hover */
+/* Add a green background color to navigation links on hover */
 .navbar a:hover, .subnav:hover .subnavbtn {
   background-color: green;
 }
@@ -156,9 +158,9 @@ float:right;
 .subnav-content {
   display: none;
   position: absolute;
-  left: 0;
+  left:8;
   background-color: green;
-  width: 30%;
+  width: 16%;
   z-index: 1;
 }
 
@@ -166,10 +168,10 @@ float:right;
 .subnav-content a {
   float: inline-start;
   color: black;
-  text-decoration: none;
+  text-decoration: le;
 }
 
-/* Add a grey background color on hover */
+/* Add a green background color on hover */
 .subnav-content a:hover {
   background-color: green;
   color: black;
@@ -179,6 +181,7 @@ float:right;
 .subnav:hover .subnav-content {
   display: block;
 }
+
 
 table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
 </style>
@@ -199,19 +202,17 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                 <div class="vertical-menu">
                     <a href="Administratorhomepagenew" >Administrator Home</a>
                     <a href="order.php">Manage orders</a>
-                    <!-- <a>
-                    <div class="subnav">
-    <button class="subnavbtn">Services </button>
-    <div class="subnav-content">
-      <a href="view.php">view Products/a>
-      <a href="insert.php">Add Products</a>
-     
-    </div>
-  </div></a>
-   -->
-                    <a href="view.php" class="active">Manage Inventory
+                    <div class="subnav" >
+                      <button class="subnavbtn">Manage Inventory <i class="fa fa-caret-down"></i></button>
+                      <div class="subnav-content">
+                      <a href="view.php" >View Products</a>
+                        <a href="insert.php">Add Product</a>
+                        
+                      </div>
+                    </div>
+                    <!-- <a href="view.php" class="active">Manage Inventory
                       
-                    </a>
+                    </a> -->
                     <a href="cat.php" >Manage Product Categories</a>
                     <a href="displayoffers.php">Manage Offers</a>
                     <a href="viewcashierlist.php">Manage Cashiers</a>
