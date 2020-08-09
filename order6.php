@@ -266,7 +266,7 @@ require('mysqlconnect.php');
 <?php
 
 $orderid=$_GET['orderid'];
-$order_status="Incomplete";
+$order_status="processing";
 $count=1;
 $query="update orders set order_status='$order_status' where orderid='$orderid'";
 $result2 = mysqli_query($db,$query);
@@ -290,7 +290,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
                                             <form action= "order6.php" method="GET">
                                               <input type="hidden" name="order_status" >
                                               <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
-                                              <input type="submit" type="submit" value="incomplete" class="btn-Search"/>
+                                              <input type="submit" type="submit" value="processing" class="btn-Search"/>
                                             </form>
                                           </td>
 <td align="center">

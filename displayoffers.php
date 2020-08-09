@@ -181,6 +181,8 @@ float:right;
 }
 
 table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
+label { display: inline-block; width: 150px; }
+</style>
 </style>
  
   </head>
@@ -393,7 +395,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                   <div class="form-group">
                     <label for="offer">Offer</label>
                     <input type="text" class="form-control" id="offer" name="offer">
-                  </div>
+                  </div><br>
                   <div class="form-group">
                     <label for="conditions">Conditions</label>
                     <input type="text" class="form-control" id="conditions" name="conditions">

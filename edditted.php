@@ -1,28 +1,31 @@
 <?php
-require('mysqlconnect.php');
+                if(!empty($_POST)){
+                    if (isset($_POST['submit']) && $_POST['submit'] == 'Update')
+                        {
+                            if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) 
+                            {
+                                require('mysqlconnect.php');
+                                $product_ID=$_POST['product_ID'];
 
-?>
+                                // $product_name =$_REQUEST['product_name'];
+                                $unit_price =$_POST['unit_price'];
+                                $quantity =$_POST['quantity'];
+                                $brand =$_POST['brand'];
+                                $description=$_POST['description'];
 
-<?php
-$status = "";
+                                $product_image= $_FILES['product_image']['name'];
+                                $productImg_temp= $_FILES['product_image']['tmp_name'];
+                                move_uploaded_file($productImg_temp, "products/$product_image" );
+                                $product_image   = mysqli_real_escape_string($db, $product_image);
 
-$product_ID=$_REQUEST['product_ID'];
+                                $update="UPDATE products SET brand='$brand', unit_price='$unit_price', quantity=$quantity, description='$description', product_image='$product_image' WHERE product_ID='$product_ID'";
+                                $result=mysqli_query($db, $update);
+                                if($result){
+                                    header("Location:view.php");
+                                } 
 
-$product_name =$_REQUEST['product_name'];
-$unit_price =$_REQUEST['unit_price'];
-$quantity =$_REQUEST['quantity'];
-
-$update="UPDATE products SET 
-product_name='$product_name', unit_price='$unit_price', quantity='$quantity'
- where product_ID='$product_ID'";
-$result=mysqli_query($db, $update);
-if($result){
-    $status = "Record Updated Successfully. </br></br>
-    <a href='view.php'>View Updated Record</a>";
-    echo '<p style="color:#FF0000;">'.$status.'</p>';
-} 
-
-else { die ( "error");}
-
-// }
-?>
+                                else { die ( "error");}
+                            }
+                        }
+                }
+            ?>

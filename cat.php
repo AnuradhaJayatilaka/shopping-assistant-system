@@ -181,6 +181,7 @@ float:right;
 }
 
 table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
+label { display: inline-block; width: 150px; }
 </style>
  
   </head>
@@ -345,7 +346,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                 </thead>
                 <tbody>
                 <?php
-
+                    
                     $query = "SELECT * FROM category";
                     $select_category = mysqli_query($db, $query);
 
@@ -369,8 +370,14 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                     }                   
                       //Delete items
                       if(isset($_GET['delete'])){
-
-                      $the_cat_code = $_GET['delete'];
+                        $the_cat_code = $_GET['delete'];
+                      $selectcategory="select product_category from category where cat_code='$the_cat_code'";
+                      $resultselectcategory=mysqli_query($db,$selectcategory);
+                      $resultselectcategory1= $resultselectcategory->fetch_object();
+                      $procat=$resultselectcategory1->product_category;
+                      $deleteproducts_ofthecategory="DELETE FROM products where product_category='$procat'";
+                      $resultdeleteproducts_ofthecategory=mysqli_query($db,$deleteproducts_ofthecategory);
+                      
 
                       $query = "DELETE FROM category WHERE cat_code ='$the_cat_code' ";
                       $delete_query = mysqli_query($db, $query);
@@ -408,19 +415,19 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                   <div class="form-group">
                     <label for="product_category">Category Name</label>
                     <input type="text" class="form-control" id="product_category" name="product_category">
-                  </div>
+                  </div><br>
                   <div class="form-group">
                     <label for="cat_code">Category code</label>
                     <input type="text" class="form-control" id="cat_code" name="cat_code">
-                  </div>
+                  </div><br>
                   <div class="form-group">
                     <label for="cat_image">Category Image</label>
                     <input type="file" class="form-control" id="cat_image" name="cat_image">
-                  </div>
+                  </div><br>
                   <div class="form-group">
                     <label for="cat_description">Descripton</label>
                     <textarea  class="form-control" id="cat_description" name="cat_description"></textarea>
-                  </div>
+                  </div><br>
                 </div>
                 <div class="card-footer">
                   <input type="submit" class="btn btn-dark" name="add" value="Add" id="btn" />

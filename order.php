@@ -287,7 +287,7 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                                             <form action= "order6.php" method="GET">
                                               <input type="hidden" name="order_status" >
                                               <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
-                                              <input type="submit" type="submit" value="incomplete" class="btn-Search"/>
+                                              <input type="submit" type="submit" value="processing" class="btn-Search"/>
                                             </form>
                                           </td>
                                             <td align="center">

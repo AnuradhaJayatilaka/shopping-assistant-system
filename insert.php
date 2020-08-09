@@ -182,6 +182,7 @@ float:right;
 }
 
 table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 5px; } th { text-align: center; }
+label { display: inline-block; width: 150px; }
 </style>
  
   </head>
@@ -234,11 +235,11 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
         <div>
             
             <form name="form" method="post" action="" enctype="multipart/form-data">
-                <input type="hidden" name="new" value="1" />
+                <input type="hidden" name="new" value="1" /><br>
                 <label>Product Name</label>
-                <p><input type="text" name="product_name" placeholder="Enter product" required /></p>
+                <input type="text" name="product_name" placeholder="Enter product" required /><br><br>
                 <label>Product ID</label>
-                <p><input type="text" name="product_ID" placeholder="Enter product ID" required /></p>
+                <input type="text" name="product_ID" placeholder="Enter product ID" required /><br><br>
                   <div class="form-group">
                   <label for="product_category">Category Type</label>
                   <select name="product_category" class="form-control">
@@ -262,18 +263,22 @@ table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { p
                     ?>
                     
                   </select>
-                </div>
+                </div><br>
                 <div class="form-group">
                   <label for="product_image">Product Image</label>
                   <input type="file" class="form-control" id="product_image" name="product_image">
-                </div>
+                </div><br>
                 
                 
                 <div class="form-group">
-                <p><input type="text" name="description" placeholder="Enter description" required /></p>
-                <p><input type="text" name="unit_price" placeholder="unit price" required /></p>
-                <p><input type="text" name="brand" placeholder="Enter brand" required /></p>
-                <p><input type="text" name="quantity" placeholder="Enter Quantity" required /></p>
+                <label>Product Description</label>
+                <input type="text" name="description" placeholder="Enter description" required /><br><br>
+                <label>Unit Price </label>
+                <input type="text" name="unit_price" placeholder="unit price" required /><br><br>
+                <label>Brand of the Product</label>
+                <input type="text" name="brand" placeholder="Enter brand" required /><br><br>
+                <label>No of Products</label>
+                <input type="text" name="quantity" placeholder="Enter Quantity" required /><br><br>
                 <p><input name="submit" type="submit" value="Submit" /></p>
             </form>
            

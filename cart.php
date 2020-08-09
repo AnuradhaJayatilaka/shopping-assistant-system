@@ -296,7 +296,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["unit_price"]*$row["quantity_needed"]; ?></td>
 <?php 
 $summ = $summ + $row["unit_price"]*$row["quantity_needed"];
-
+$_SESSION["amount"]=$summ;
 ?>
 
 

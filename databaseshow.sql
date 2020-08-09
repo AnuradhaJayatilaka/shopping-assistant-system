@@ -13,4 +13,7 @@ SELECT * FROM offers;
 -- SELECT * FROM products WHERE product_name LIKE '%saltssssssssssssssssss%';
 -- SELECT * FROM products WHERE product_name LIKE 'c%';
 
-INSERT INTO orders (amount) VALUES ('1000') where orderid='1';
+
+SELECT* FROM cartorder;
+SELECT *FROM cartorder_details;
+

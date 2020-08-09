@@ -233,7 +233,7 @@ require('mysqlconnect.php');
     <h1>CUSTOMER FEEDBACK</h1>
 <div class="form">
 
-<table class="table table-strippedr">
+<table class="table table-stripped">
 <thead>
 <tr>
 
@@ -246,9 +246,35 @@ require('mysqlconnect.php');
 </thead>
 <tbody>
 <?php
+if(isset($_GET['submit'])){
+  if(!empty($_GET))
+  {
+    require('mysqlconnect.php');
+    $start=$_GET['start'];
+    $end=$_GET['end'];
+    $sql="select * from feedback where date_time between $start and $end;";
+    $result=mysqli_query($db,$sql);
+    while($row = mysqli_fetch_assoc($result)) { ?>
+      <tr>
+      <td align="center"><?php echo $row["username"]; ?></td>
+      <td align="center"><?php echo $row["date_time"]; ?></td>
+      <td align="center"><?php echo $row["productfeedback"]; ?></td>
+      <td align="center"><?php echo $row["stafffeedback"]; ?></td>
+      
+      
+      </tr>
+      <?php $count++; }
+       }
+      }
+
+else{
 $count=1;
-$sel_query="Select * from feedback ORDER BY date_time desc;";
-$result = mysqli_query($db,$sel_query);
+
+$sql2="SELECT * FROM feedback ORDER BY date_time DESC LIMIT 50";
+$result= mysqli_query($db,$sql2);
+// $sel_query="Select * from feedback ORDER BY date_time desc;";
+// $result3 = mysqli_query($db,$sel_query);
+// if(($result==1)&&($result2==1)){
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
 <td align="center"><?php echo $row["username"]; ?></td>
@@ -258,7 +284,18 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 
 
 </tr>
-<?php $count++; } ?>
+<?php $count++; } }?>
+
+<div  >
+  <form action="viewfeedback1.php"  method="GET" >
+    <label>Starting date</label>
+    <input type="Date" name="start" id="start"/>
+    <label>Ending Date</label>
+    <input type="date" name="end" id="end"/>
+    <input name="submit" type="submit" value="Submit" />
+  </form>
+</div>
+
 </tbody>
 </table>
 </div>
