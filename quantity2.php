@@ -15,29 +15,39 @@ $_SESSION["product_name"] = $product_name;
 
 
 
- $unit_price = $_SESSION['unit_price'];
- 
- $_SESSION["unit_price"] = $unit_price;
+$unit_price = $_SESSION['unit_price'];
 
-// $hashed_password = "SELECT password FROM users WHERE email_address='$email'";
-// $resulttwo = mysqli_query($db, $hashed_password);
-// $oneresulttwo = $resulttwo->fetch_object();
-// $hashPassword = $oneresulttwo->password;
-// $_SESSION["password"] = $hashPassword;
+$_SESSION["unit_price"] = $unit_price;
+
+
 
 
 $_SESSION["email_address"] = $email;
 $_SESSION["quantity_needed"] = $quantity;
 $_SESSION["product_name"] = $product_name;
-// $product_status= "not added";
+
+$check = "select * FROM cart1 WHERE email_address='$email'";
+$result_check = mysqli_query($db, $check);
+$count = 1;
+$available = 'false';
+while ($row = mysqli_fetch_assoc($result_check)) {
+    if ($row['product_ID'] == $_SESSION['product_ID'] && $available='false') {
+        $update = "UPDATE cart1 SET quantity_needed= quantity_needed+$quantity WHERE product_name='$product_name'";
+        $result_update = mysqli_query($db, $update);
+        $available = "true";
+    break;
+        // header("location: cart.php");
+    }
+    $count++;
+}
+if($available=="true"){header("location: cart.php");}
+if ($available == "false") {
+
+    $sql = "insert into cart1 (email_address,quantity_needed, product_name,unit_price,product_ID) values ('$email','$quantity','$product_name','$unit_price','$product_ID')";
+    $result = mysqli_query($db, $sql);
+    header("location: cart.php");
 
 
-$sql="insert into cart1 (email_address,quantity_needed, product_name,unit_price) values ('$email','$quantity','$product_name','$unit_price')";
-// $sql2="insert into order_details(product_status) values ('$product_status')";
-// $result2 = mysqli_query($db, $sql2);
-$result = mysqli_query($db, $sql);
-header("location: cart.php");
 
-
-
-echo "end of program"; ?>
+    echo "end of program";
+}

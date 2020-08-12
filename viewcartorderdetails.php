@@ -7,7 +7,11 @@ require("adminheader.php");
 
 
 ?>
-<head> 
+<head>
+
+
+</style>
+ 
   </head>
   <body>
 
@@ -66,17 +70,32 @@ require('mysqlconnect.php');
 </head>
 <body>
 <div class="form">
-<a href="order.php">Back to order list</a>
+<?php 
+
+
+$cartorder_ID=$_GET['cartorderid'];
+$_SESSION["cartorderid"] = $cartorder_ID;
+$sql="SELECT cart_order_status FROM cartorder WHERE cartorderid='$cartorder_ID'";
+$sqlresult= mysqli_query($db,$sql);
+$result1= $sqlresult->fetch_object();
+$cart_order_status=$result1->cart_order_status;
+if($cart_order_status=='Complete'){?>
+    <a href="view_completecartorder.php">Back to order list</a>
 <h1>Order details</h1>
+<?php }
+else{?>
+<a href="viewcartorder.php">Back to order list</a>
+<h1>Order details</h1>
+<?php } ?>
 <table class="table table-stripped">
 <thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->
 <!-- <th><strong>Order ID</strong></th> -->
-<th><strong>Items</strong></th>
+<th><strong>Product ID</strong></th>
 <!-- <th><strong>Item id</strong></th> -->
-<th><strong>Product_status</strong></th>
-<th><strong>Update product status</strong></th>
+<th><strong>Product Name</strong></th>
+<th><strong>Quantity</strong></th>
 
 </tr>
 </thead>
@@ -84,30 +103,25 @@ require('mysqlconnect.php');
 <?php 
 
 
-$order_ID=$_GET['orderid'];
-$_SESSION["orderid"] = $order_ID;
+$cartorder_ID=$_GET['cartorderid'];
+$_SESSION["cartorderid"] = $cartorder_ID;
+
 $count=1;
-$sql_query="Select * from order_details where orderid='$order_ID';";
+$sql_query="Select * from cartorder_details where cartorderid='$cartorder_ID';";
 $result = mysqli_query($db,$sql_query);
 while($row = mysqli_fetch_assoc($result)) { 
     
     // echo "<tr>";
     // $line="<td align=\"center\">".$row["orderid"]."</td>";
     // echo $line;
-    $line="<td align=\"center\">".$row["item"]."</td>";
+    $line="<td align=\"center\">".$row["product_ID"]."</td>";
     echo $line;
-    // $line="<td align=\"center\">".$row["item_number"]."</td>";
-    // echo $line;
-    $line="<td align=\"center\">".$row["product_status"]."</td>";
+    
+    $line="<td align=\"center\">".$row["product_name"]."</td>";
     echo $line;
-    $line="<td align=\"center\">"."<form action= \"order2.php\" method=\"GET\">
-    <input type=\"hidden\" name=\"product_status\" >
-    <input type=\"hidden\" name=\"item_number\" value=$row[item_number]>
-    <input type=\"submit\" type=\"submit\" value=\"added\" class=\"btn-Search\"/></form>"."<form action= \"order5.php\" method=\"GET\">
-    <input type=\"hidden\" name=\"product_status\" >
-    <input type=\"hidden\" name=\"item_number\" value=$row[item_number]>
-    <input type=\"submit\" type=\"submit\" value=\"not added\" class=\"btn-Search\"/></form>"."</td>";
+    $line="<td align=\"center\">".$row["quantity"]."</td>";
     echo $line;
+    
     echo "</tr>";  
     $count++; 
     }

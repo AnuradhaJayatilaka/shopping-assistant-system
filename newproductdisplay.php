@@ -100,7 +100,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a class="navbar-brand" href="mainhomepage.php">Home</a></li>
+                    <li><a class="navbar-brand" href="./">Home</a></li>
                     <li><a href="#About_us">About us</a></li>
                     <li><a href="#Contact_us">Contact Us</a></li>
                     <li><a href="#Sign_up">Sign Up</a></li>
@@ -224,20 +224,6 @@
         <body>
             
         <div class="form">
-        
-        
-        <!-- <table class="table table-stripped"><thead>
-        <tr>
-        
-        <th><strong>Product ID</strong></th>
-        <th><strong>Product Name</strong></th>
-        <th><strong>unit price(Rs)</strong></th>
-        <th><strong>Description</strong></th>
-        <th><strong>Brand</strong></th>
-        <th><strong>Available Quantity</strong></th>        
-        
-        
-        </tr> -->
         </thead>
         <tbody>
         <?php
@@ -256,149 +242,111 @@
         $result5 = mysqli_query($db,$sel_query5);
 
         
-        if($result1==true){while($row = mysqli_fetch_assoc($result1)) { 
-            
-            
-           
-    
-            
-            
-            $oneresult = $result1->fetch_object();
-            $Product_name = $oneresult->product_name;
-            $unit_price=$oneresult->unit_price;
-            $description=$oneresult->description;
-            $brand=$oneresult->brand;
-            $quantity=$oneresult->quantity;?>
-          
-
-          <div class="card">
-
-  <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-  <h1><?php echo "$brand"?></h1>
-  <h1><?php echo "$Product_name"?></h1>
-
-  <p class="price">Rs.<?php echo "$unit_price"?></p>
-
-  <p>Description:<?php echo "$description"?></p>
-  <p>Available Quantity:<?php echo "$quantity"?></p>
-
-  <p><button>Add to Cart</button></p>
-
-</div>
-          
-          <?php $count++; }} 
-
-          else if($result2==true){while($row = mysqli_fetch_assoc($result2)) {
-              
-            $pname=$_SESSION['product_name'];
-            $sql1="select * from products where product_name='$pname'";
-            $result1= mysqli_query($db,$sql1);
-            $oneresult = $result1->fetch_object();
-            $Product_name = $oneresult->product_name;
-            $unit_price=$oneresult->unit_price;
-            $description=$oneresult->description;
-            $brand=$oneresult->brand;
-            $quantity=$oneresult->quantity;?>?>
-          <div class="card">
-
-<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-<h1><?php echo "$brand"?></h1>
-<h1><?php echo "$Product_name"?></h1>
-
-<p class="price">Rs.<?php echo "$unit_price"?></p>
-
-<p>Description:<?php echo "$description"?></p>
-<p>Available Quantity:<?php echo "$quantity"?></p>
-
-<p><button>Add to Cart</button></p>
-
-</div>
-          
-          <?php $count++; }} 
-
-          else if($result3==true){while($row = mysqli_fetch_assoc($result3)) {
-              
-            $pname=$_SESSION['product_name'];
-            $sql1="select * from products where product_name='$pname'";
-            $result1= mysqli_query($db,$sql1);
-            $oneresult = $result1->fetch_object();
-            $Product_name = $oneresult->product_name;
-            $unit_price=$oneresult->unit_price;
-            $description=$oneresult->description;
-            $brand=$oneresult->brand;
-            $quantity=$oneresult->quantity;?>?>
-          <div class="card">
-
-<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-<h1><?php echo "$brand"?></h1>
-<h1><?php echo "$Product_name"?></h1>
-
-<p class="price">Rs.<?php echo "$unit_price"?></p>
-
-<p>Description:<?php echo "$description"?></p>
-<p>Available Quantity:<?php echo "$quantity"?></p>
-
-<p><button>Add to Cart</button></p>
-
-</div>
-          
-          <?php $count++; }} 
-          else if($result4==true){while($row = mysqli_fetch_assoc($result4)) { 
-              
-            $pname=$_SESSION['product_name'];
-            $sql1="select * from products where product_name='$pname'";
-            $result1= mysqli_query($db,$sql1);
-            $oneresult = $result1->fetch_object();
-            $Product_name = $oneresult->product_name;
-            $unit_price=$oneresult->unit_price;
-            $description=$oneresult->description;
-            $brand=$oneresult->brand;
-            $quantity=$oneresult->quantity;?>?>
-            <div class="card">
-
-<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-<h1><?php echo "$brand"?></h1>
-<h1><?php echo "$Product_name"?></h1>
-
-<p class="price">Rs.<?php echo "$unit_price"?></p>
-
-<p>Description:<?php echo "$description"?></p>
-<p>Available Quantity:<?php echo "$quantity"?></p>
-
-<p><button>Add to Cart</button></p>
-
-</div>
-            <?php $count++; }} 
-            else if($result5==true){while($row = mysqli_fetch_assoc($result5)) {
+        if($result1==true){
+            while($row = mysqli_fetch_assoc($result1)) 
+            {       
                 
-                $pname=$_SESSION['product_name'];
-    $sql1="select * from products where product_name='$pname'";
-    $result1= mysqli_query($db,$sql1);
-    $oneresult = $result1->fetch_object();
-    $Product_name = $oneresult->product_name;
-    $unit_price=$oneresult->unit_price;
-    $description=$oneresult->description;
-    $brand=$oneresult->brand;
-    $quantity=$oneresult->quantity;?>?>
-              <div class="card">
+                $Product_name = $row['product_name'];
+                $unit_price=$row['unit_price'];
+                $description=$row['description'];
+                $brand=$row['brand'];
+                $quantity=$row['quantity'];?>         
 
-<img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
-<h1><?php echo "$brand"?></h1>
-<h1><?php echo "$Product_name"?></h1>
+            <td><tr><div class="card">
+                <img src="products/<?php echo $row["product_image"]?>"  style="width:50%">
+                <h1><?php echo "$brand"?></h1>
+                <h1><?php echo "$Product_name"?></h1>
+                <p class="price">Rs.<?php echo "$unit_price"?></p>
+                <p>Description:<?php echo "$description"?></p>
+                <p>Available Quantity:<?php echo "$quantity"?></p>
+                <!-- <p><button>Add to Cart</button></p> -->
+            </div></tr></td>
+          <?php $count++; }}
+           
 
-<p class="price">Rs.<?php echo "$unit_price"?></p>
+            else if($result2==true){
+            while($row = mysqli_fetch_assoc($result2)) 
+            {       
+                
+                $Product_name = $row['product_name'];
+                $unit_price=$row['unit_price'];
+                $description=$row['description'];
+                $brand=$row['brand'];
+                $quantity=$row['quantity'];?>         
 
-<p>Description:<?php echo "$description"?></p>
-<p>Available Quantity:<?php echo "$quantity"?></p>
+            <td><tr><div class="card">
+                <img src="products/<?php echo $row["product_image"]?>"  style="width:50%">
+                <h1><?php echo "$brand"?></h1>
+                <h1><?php echo "$Product_name"?></h1>
+                <p class="price">Rs.<?php echo "$unit_price"?></p>
+                <p>Description:<?php echo "$description"?></p>
+                <p>Available Quantity:<?php echo "$quantity"?></p>
+                <!-- <p><button>Add to Cart</button></p> -->
+            </div></tr></td>
+          <?php $count++; }}
+           else if($result3==true){
+            while($row = mysqli_fetch_assoc($result3)) 
+            {       
+                
+                $Product_name = $row['product_name'];
+                $unit_price=$row['unit_price'];
+                $description=$row['description'];
+                $brand=$row['brand'];
+                $quantity=$row['quantity'];?>         
 
-<p><button>Add to Cart</button></p>
+            <td><tr><div class="card">
+                <img src="products/<?php echo $row["product_image"]?>"  style="width:50%">
+                <h1><?php echo "$brand"?></h1>
+                <h1><?php echo "$Product_name"?></h1>
+                <p class="price">Rs.<?php echo "$unit_price"?></p>
+                <p>Description:<?php echo "$description"?></p>
+                <p>Available Quantity:<?php echo "$quantity"?></p>
+                <!-- <p><button>Add to Cart</button></p> -->
+            </div></tr></td>
+          <?php $count++; }}
+           else if($result4==true){
+            while($row = mysqli_fetch_assoc($result4)) 
+            {       
+                
+                $Product_name = $row['product_name'];
+                $unit_price=$row['unit_price'];
+                $description=$row['description'];
+                $brand=$row['brand'];
+                $quantity=$row['quantity'];?>         
 
-</div>
-              
-              <?php $count++; }} ?>
-        
-        </tbody>
-        </table>
+            <td><tr><div class="card">
+                <img src="products/<?php echo $row["product_image"]?>"  style="width:50%">
+                <h1><?php echo "$brand"?></h1>
+                <h1><?php echo "$Product_name"?></h1>
+                <p class="price">Rs.<?php echo "$unit_price"?></p>
+                <p>Description:<?php echo "$description"?></p>
+                <p>Available Quantity:<?php echo "$quantity"?></p>
+                <!-- <p><button>Add to Cart</button></p> -->
+            </div></tr></td>
+          <?php $count++; }}
+           else if($result5==true){
+            while($row = mysqli_fetch_assoc($result5)) 
+            {       
+                
+                $Product_name = $row['product_name'];
+                $unit_price=$row['unit_price'];
+                $description=$row['description'];
+                $brand=$row['brand'];
+                $quantity=$row['quantity'];?>         
+
+            <td><tr><div class="card">
+                <img src="products/<?php echo $row["product_image"]?>"  style="width:50%">
+                <h1><?php echo "$brand"?></h1>
+                <h1><?php echo "$Product_name"?></h1>
+                <p class="price">Rs.<?php echo "$unit_price"?></p>
+                <p>Description:<?php echo "$description"?></p>
+                <p>Available Quantity:<?php echo "$quantity"?></p>
+                <!-- <p><button>Add to Cart</button></p> -->
+            </div></tr></td>
+          <?php $count++; }}
+           ?>
+
+          
         </div>
         </body>
         </html>

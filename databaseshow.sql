@@ -17,3 +17,12 @@ SELECT * FROM offers;
 SELECT* FROM cartorder;
 SELECT *FROM cartorder_details;
 
+-- INSERT INTO cartorder_details (cartorderid,product_ID,quantity,product_name) VALUES ('4','DAI2222','1','Milk powder');
+
+-- ALTER TABLE cartorder_details ADD product_name VARCHAR(100) NOT NULL;
+-- ALTER TABLE cart1 ADD product_ID VARCHAR(7) NOT NULL;
+
+
+ 
+
+

@@ -33,7 +33,7 @@
     }
 
     .about{
-        width: 1540px !important; 
+        width: 1200px !important; 
         height: 300px !important; 
     }
     
@@ -58,7 +58,7 @@
     .carousel-inner img {
         width: 100%; /* Set width to 100% */
         margin: auto;
-        min-height:200px;
+        min-height:150px;
     }
 
     /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -83,7 +83,7 @@
     </head>
     <body>
 
-        <div class="jumbotron" style="background-image:url(home.jpg); padding-bottom:57px;"><br><br>
+        <div class="jumbotron" style="background-image:url(home.jpg); padding-bottom:60px;" class="responsive"><br><br>
         
         <div class="container text-center"><br><br>
         
@@ -104,45 +104,54 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li class=" nav-item dropdown">
-                <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">  view products</a>
-                <ul class="dropdown-menu">
-                <div class="form-group">
-                    <label for="product_category">Category Type</label>
-                    <select name="product_category" class="form-control"><!-- form-control Begin -->
-                        
-                        <option disabled selected> Select a Product Category </option>
-                        
-                        <?php 
-                        require_once "mysqlconnect.php";
-                        $get_item = "select product_category from category";
-                        $run_item = mysqli_query($db,$get_item);
-                        
-                        while ($data= mysqli_fetch_array($run_item)){
+                <li><a href="#About_us">About us</a></li>
+                <li><a href="#Contact_us">Contact Us</a></li>
+                <li><a href="#Sign_up">Sign Up</a></li>
+                <!--  -->
+                <li><li class=" nav-item dropdown">
+            <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">  view products</a>
+      
+             
+                  
+              <ul class="dropdown-menu"> 
+              <?php
+                require('mysqlconnect.php');
+                  $getCategory="select product_category from category";
+                  $run_item = mysqli_query($db,$getCategory);
+                    
+                    while ($data= mysqli_fetch_array($run_item)){
+                      
+                     
+                      
+                      $cat1='<li><a href="homepageviewproducts.php?product_category=';
+                      $cata=$data['product_category'];
+                      $catd='" class="dropdown-item">';
+                      $catb=$data['product_category'];
+                      $catc='</a></li>';
+                      $cat1=$cat1.$cata.$catd.$catb.$catc;
+                      echo "$cat1";
+                      
+                    }
 
-                        
-                        echo "<option value='". $data['product_category'] ."'>" .$data['product_category'] ."</option>";
-                        
-                        }
-                        
-                        ?>
-                        
-                    </select>
-                    </div>
-                </ul>
-                
-                </li>
-                
-                <li><a href="searchProduct.php">Search Product</a></li>
+                     ?>
+              
+              </ul>
+            </li></li>
+            <li><form class="navbar-form navbar-left" action="searchproduct1.php" method="GET">
+      <div class="form-group">
+        <input type="text" name="product_name" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class=" nav-item dropdown">
-                <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> <span class="glyphicon glyphicon-user"></span>  Hi <?php echo $_SESSION['user_name'] ?><b class="caret"></b></a>
-                <ul class="dropdown-menu">          
-                    <li><a href="" class="dropdown-item">Log Out</a></li>
-                    <!-- <li><a href="" class="dropdown-item">Manage Account</a></li>                          -->
+            <div class="login-container">
+    <form action="nextpage.php" method="GET">
+      <input type="text" placeholder="E-mail address" name="email_address">
+      <input type="password" placeholder="Password" name="password">
+      <button type="submit">Login</button>
+    </form>
+  </div>
                 </ul>
                 </li>
             </ul>
@@ -192,65 +201,78 @@
 
         <hr>
 
-      
+       
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="container-fluid" id="sign">
+                    <h1><a name="Sign_up">Sign Up</h1>
 
                         <form action="signupfinal.php" method="post" >
-                            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php ?>">
                                 <label>Username</label>
-                                <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
-                                <span class="help-block"><?php echo $username_err; ?></span>
+                                <input type="text" name="username" class="form-control" value="">
+                                <span class="help-block"><?php ?></span>
                             </div>  
-                            <div class="form-group <?php echo (!empty($email_address_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php?>">
                                 <label>E-Mail Address</label>
-                                <input type="email" name="email_address" class="form-control" value="<?php echo $email_address; ?>">
-                                <span class="help-block"><?php echo $email_address_err; ?></span>
+                                <input type="email" name="email_address" class="form-control" value="">
+                                <span class="help-block"><?php ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($NIC_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php ?>">
                                 <label>NIC</label>
-                                <input type="text" name="NIC" class="form-control" minlength="10" maxlength="12" value="<?php echo $NIC; ?>">
-                                <span class="help-block"><?php echo $NIC_err; ?></span>
+                                <input type="text" name="NIC" class="form-control" minlength="10" maxlength="12" value="">
+                                <span class="help-block"><?php ?></span>
                             </div>   
-                            <div class="form-group <?php echo (!empty($mobile_number_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php  ?>">
                                 <label>Mobile Number</label>
-                                <input type="numeric" name="mobile_number" class="form-control" minlength="10" maxlength="10" value="<?php echo $mobile_number; ?>">
-                                <span class="help-block"><?php echo $mobile_number_err; ?></span>
+                                <input type="numeric" name="mobile_number" class="form-control" minlength="10" maxlength="10" value="">
+                                <span class="help-block"><?php?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php ?>">
                                 <label>Title</label>
-                                <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
-                                <span class="help-block"><?php echo $title_err; ?></span>
+                                <input type="text" name="title" class="form-control" value="">
+                                <span class="help-block"><?php?></span>
                             </div>
                             
-                            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php  ?>">
                                 <label>Password</label>
-                                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                                <span class="help-block"><?php echo $password_err; ?></span>
+                                <input type="password" name="password" class="form-control" value="">
+                                <span class="help-block"><?php ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group <?php?>">
                                 <label>Confirm Password</label>
-                                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                                <input type="password" name="confirm_password" class="form-control" value="">
+                                <span class="help-block"><?php ?></span>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Submit">
                                 <input type="reset" class="btn btn-default" value="Reset">
                             </div>
-                            <p style="color:red">Already have an account? <a href="loginfinal.php" style="color:red">Login here</a>.</p>
+                            <!-- <p style="color:red">Already have an account? <a href="loginfinal.php" style="color:red">Login here</a>.</p> -->
                         </form>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
                         <div class="container-fluid">
-                            <p>Put your content 1 here</p>
+                            <h1><a name="About_us">About US</h1>
+                            <p>Singhe is a reputed and well established supermarket with outlets in Digana, Manikhinna, Theldeniya, Pallekele & Katugastota.Shopping for groceries is much easier with Singhe Super Center; Sri Lanka’s premier supermarket is the one stop shop for all your grocery & household needs.A good retail super market.So far the best super market in Digana, smaller parking, but security officer always helps.</p>
+                            <p> Opening Hours :<br>
+Monday: 8:00 AM – 10:00 PM<br>
+Tuesday: 8:00 AM – 10:00 PM<br>
+Wednesday: 8:00 AM – 10:00 PM<br>
+Thursday: 8:00 AM – 10:00 PM<br>
+Friday: 8:00 AM – 10:00 PM<br>
+Saturday: 8:00 AM – 10:00 PM<br>
+Sunday: 8:00 AM – 10:00 PM </p>
                         </div>
                         <div class="container-fluid">
-                            <p>Put your content 2 here</p>
+                            <h1><a name="Contact_us">Contact Us</h1>
+                            <p>Contacts phone: +94 812 375 091<br>
+Website: singhesuper.business.site<br>
+Latitude: 7.3109515, Longitude: 80.7637147</p>
                         </div>
                     </div>
                     <div class="row">
@@ -266,7 +288,7 @@
         <div class="container-fluid">
             <br>
             <div class="row">
-                <img class="about" src="05.jpg">
+                <img class="about" src="05.jpg"class="responsive">
             </div>
         </div>
 
@@ -274,12 +296,13 @@
             <br>
             <div class="row">
                 <footer class="container-fluid text-center">
-                    <div class="jumbotron" style="background-image:url(03.jpg); padding-bottom:0px;" class="responsive"></div><br><br><br>
+                    <div class="jumbotron" style="background-image:url(03.jpg); padding-bottom:50px;" class="responsive"></div><br><br><br>
                 </footer>
             </div>
         </div>
     </body>
 </html>
+
 
 
 

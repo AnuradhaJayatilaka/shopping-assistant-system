@@ -105,7 +105,7 @@ insert into offers(offerid, offer, conditions) Values('3','buy 10 kottu mee pack
 CREATE TABLE category(`product_category` VARCHAR(30)NOT NULL,`cat_code` varchar(3) NOT NULL,`cat_description` VARCHAR(300) NOT NULL,`cat_image` BLOB NOT NULL);
 SHOW WARNINGS;
 
--- drop TABLE IF EXISTS cartorder;
+drop TABLE IF EXISTS cartorder;
 CREATE TABLE  cartorder (
   `cartorderid` int(11) NOT NULL AUTO_INCREMENT,
   `email_address` varchar(100) NOT NULL,
@@ -114,14 +114,28 @@ CREATE TABLE  cartorder (
   `porder_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cartorderid`)
 );
--- Drop TABLE IF EXISTS cartorder_details;
+Drop TABLE IF EXISTS cartorder_details;
 CREATE TABLE  cartorder_details (
     `cartorderid` int(11) NOT NULL,
   `productorderid` int(11) NOT NULL AUTO_INCREMENT,
   `product_ID` varchar(100) NOT NULL,
   `quantity` DOUBLE NOT NULL,
+  `product_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`productorderid`),
  FOREIGN KEY (`cartorderid`) REFERENCES cartorder(`cartorderid`),
  FOREIGN KEY (`product_ID`) REFERENCES products(`product_ID`)
  
+);
+
+DROP TABLE if EXISTS cart1;
+CREATE TABLE cart1 (
+`email_address`  VARCHAR(30) NOT NULL,
+`product_name` VARCHAR(30) NOT NULL,
+`quantity_needed` DOUBLE NOT NULL,
+`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`total` DOUBLE NOT NULL,
+`unit_price` DOUBLE NOT NULL,
+`product_ID` VARCHAR(7) NOT NULL,
+FOREIGN KEY (`product_ID`) REFERENCES products(`product_ID`)
+
 );

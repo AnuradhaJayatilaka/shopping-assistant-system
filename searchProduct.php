@@ -25,56 +25,24 @@ if(isset($_GET['product_name'])){
 // $result = $conn->query($sql);
 //     $sql="select * from products where product_name='".$pname."' limit 1";
     
-    $result1=mysqli_query($connection,$sql1);
-    $result2=mysqli_query($connection,$sql2);
-    $result3=mysqli_query($connection,$sql3);
-    $result4=mysqli_query($connection,$sql4);
-    $result5=mysqli_query($connection,$sql5);
-    if(mysqli_num_rows($result1)==1){
-        
+$result1=mysqli_query($connection,$sql1);
+$result2=mysqli_query($connection,$sql2);
+$result3=mysqli_query($connection,$sql3);
+$result4=mysqli_query($connection,$sql4);
+$result5=mysqli_query($connection,$sql5);
+if($result1==true||$result2==true||$result3==true||$result4==true||$result5==true){
+    
 
-        // echo " product is available";
-        header("location:sdisplay.php");
-        
-       
-    }
-    else if(mysqli_num_rows($result2)==1){
-        
+    // echo " product is available";
+    header("location:sdisplay.php");
+    
+   
+}
 
-        // echo " product is available";
-        header("location:sdisplay.php");
-        
-       
-    }
-    else if(mysqli_num_rows($result3)==1){
-        
-
-        // echo " product is available";
-        header("location:sdisplay.php");
-        
-       
-    }
-    else if(mysqli_num_rows($result4)==1){
-        
-
-        // echo " product is available";
-        header("location:sdisplay.php");
-        
-       
-    }
-    else if(mysqli_num_rows($result5)==1){
-        
-
-        // echo " product is available";
-        header("location:sdisplay.php");
-        
-       
-    }
-    else{
-        echo " product is unavailable";
-        exit();
-    }
-        
+else{
+    echo " product is unavailable";
+    exit();
+}
 }
 ?>
 

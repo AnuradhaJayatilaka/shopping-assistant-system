@@ -47,7 +47,7 @@ else{
 
 
 }
-$insertorder="INSERT INTO cartorder (email_address,amount,cart_order_status) VALUES ('$email','$total_bill','complete')";
+$insertorder="INSERT INTO cartorder (email_address,amount,cart_order_status) VALUES ('$email','$total_bill','Placed')";
 $resultinsertorder=mysqli_query($db,$insertorder);
 
 $sql="select count(cartorderid) from cartorder";
@@ -81,10 +81,12 @@ for($row['id']=1;$row['id']<=$num_rows;$row['id']++){
    $oneresult3 = $result1->fetch_object();
    $quantity = $oneresult3->quantity;
    $_SESSION["quantity"] = $quantity;
-   $insert_cart_details="INSERT INTO cartorder_details (cartorderid,product_ID,quantity) VALUES ('$cartorderid','$product_ID','$quantity_needed')";
+   $insert_cart_details="INSERT INTO cartorder_details (cartorderid,product_ID,quantity,product_name) VALUES ('$cartorderid','$product_ID','$quantity_needed','$product_name')";
 $result_insert_cart_details=mysqli_query($db,$insert_cart_details);
 }
 
 $delete="truncate table cart1";
 $deleteR=mysqli_query($db,$delete);
+
+header("location:cart.php")
 ?>

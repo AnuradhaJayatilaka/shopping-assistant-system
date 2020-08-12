@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -386,4 +384,3 @@ function closeForm() {
 
 </body>
 </html>
-

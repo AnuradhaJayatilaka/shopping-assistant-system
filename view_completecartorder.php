@@ -2,10 +2,12 @@
 session_start();
 require("adminheader.php");
 
-
 ?>
 
 <head>
+
+
+
 
 </head>
 
@@ -55,21 +57,14 @@ require("adminheader.php");
       <div class="column">
         <?php
         require('mysqlconnect.php');
-        if (!empty($_GET)) {
-          $total_amount = $_GET['amount'];
-          $orderid = $_SESSION['orderid'];
 
-          $sql = "update orders set amount='$total_amount' WHERE orderid='$orderid' ";
-          $result = mysqli_query($db, $sql);
-        }
-        // include("auth.php");
         ?>
         <!DOCTYPE html>
         <html>
 
         <head>
           <!-- <meta charset="utf-8"> -->
-          <title>View Ongoing List orders</title>
+          <title>View Completed Cart orders</title>
 
         </head>
 
@@ -77,7 +72,7 @@ require("adminheader.php");
           <!-- $product_ID="product_ID"; -->
           <div class="form">
 
-            <h2>View Ongoing List orders</h2>
+            <h2>View Completed Cart orders</h2>
             <table class="table table-dark table-hover">
               <thead>
                 <tr>
@@ -87,44 +82,68 @@ require("adminheader.php");
                   <th><strong>Date and Time</strong></th>
                   <th><strong>Total amount</strong></th>
                   <th><strong>Order Status</strong></th>
-                  <th><strong>Change Order Status</strong></th>
                   <th><strong>View Order Details</strong></th>
+
                 </tr>
               </thead>
               <tbody>
                 <?php
+                if(isset($_GET['submit'])){
+                  if(!empty($_GET))
+                  {
+                    require('mysqlconnect.php');
+                    $count=1;
+                    $start=$_GET['start'];
+                    $end=$_GET['end'];
+                    $sql="select * from cartorder where porder_date_time between $start and $end;";
+                    $result=mysqli_query($db,$sql);
+                    while($row = mysqli_fetch_assoc($result)) { ?>
+                     <tr>
+                    <td align="center"><?php echo $row["cartorderid"]; ?></td>
+                    <td align="center"><?php echo $row["email_address"]; ?></td>
+                    <td align="center"><?php echo $row["porder_date_time"]; ?></td>
+                    <td align="center"><?php echo $row["amount"]; ?></td>
+                    <td align="center"><?php echo $row["cart_order_status"]; ?></td>
+                    <td align="center">
+                      <a href="viewcartorderdetails.php?cartorderid=<?php echo $row["cartorderid"]; ?>">View details</a>
+                    </td>
+
+                  </tr>
+                      <?php $count++; }
+                       }
+                      }
+                      else{
                 $count = 1;
-                $sel_query = "Select * from orders WHERE order_status='processing' OR order_status='incomplete' OR order_status='ready for dispatch'";
+                $sel_query = "Select * from cartorder Where cart_order_status='Complete' order  by cartorderid asc LIMIT 10";
                 $result = mysqli_query($db, $sel_query);
+
                 while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                   <tr>
-                    <td align="center"><?php echo $row["orderid"]; ?></td>
-                    <td align="center"><?php echo $row["username"]; ?></td>
-                    <td align="center"><?php echo $row["date_time"]; ?></td>
+                    <td align="center"><?php echo $row["cartorderid"]; ?></td>
+                    <td align="center"><?php echo $row["email_address"]; ?></td>
+                    <td align="center"><?php echo $row["porder_date_time"]; ?></td>
                     <td align="center"><?php echo $row["amount"]; ?></td>
-                    <td align="center"><?php echo $row["order_status"]; ?></td>
+                    <td align="center"><?php echo $row["cart_order_status"]; ?></td>
                     <td align="center">
-                      <form action="order4.php" method="GET">
-                        <input type="hidden" name="order_status">
-                        <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
-                        <input type="submit" type="submit" value="complete" class="btn-Search">
-                      </form>
-                      <form action="order6.php" method="GET">
-                        <input type="hidden" name="order_status">
-                        <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
-                        <input type="submit" type="submit" value="processing" class="btn-Search" />
-                      </form>
+                      <a href="viewcartorderdetails.php?cartorderid=<?php echo $row["cartorderid"]; ?>">View details</a>
                     </td>
-                    <td align="center">
-                      <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
-                    </td>
-                
+
                   </tr>
                 <?php
                   $count++;
-                }
+                }}
                 ?>
+
+                <div>
+                  <form action="view_completcarteorder.php" method="GET">
+                    <label>Starting date</label>
+                    <input type="Date" name="start" id="start" />
+                    <label>Ending Date</label>
+                    <input type="date" name="end" id="end" />
+                    <input name="submit" type="submit" value="Submit" />
+                  </form><br><br>
+                </div>
               </tbody>
             </table>
           </div>
