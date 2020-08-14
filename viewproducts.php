@@ -134,7 +134,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
-max-width: 300px;
+width: 300px;
+height: 400px;
 
 margin: auto;
 
@@ -304,57 +305,67 @@ $countc=1;
 $product_category =$_GET['product_category'];
 $sel_query="Select * from products where product_category='$product_category' ORDER BY product_ID desc;";
 $result = mysqli_query($db,$sel_query);
+$item=array();
 while($row = mysqli_fetch_assoc($result)) { 
-  
   $myform= "myform".$counta;
-  $openform= "openform".$countb;
-  $closeform="closeform".$countc;
-                $Product_name = $row['product_name'];
-                $unit_price=$row['unit_price'];
-                $description=$row['description'];
-                $brand=$row['brand'];
-                $quantity=$row['quantity'];?>    
-            <div class="card">
-                <img src="products/<?php echo $row["product_image"]?>"  style="width:20%">
-                <h1><?php echo "$brand"?></h1>
-                <h1><?php echo "$Product_name"?></h1>
-                <p class="price">Rs.<?php echo "$unit_price"?></p>
-                <p>Description:<?php echo "$description"?></p>
-                <p>Available Quantity:<?php echo "$quantity"?></p>
-                <p><button class="open-button" onclick="<?php echo $openform?>()">Add to cart</button></p>
-                
-
-                <div class="form-popup" id="<?php echo $myform ?>">
-                <form action="quantity.php" class="form-container">                   
-                    <label for="quantity"><b>Please enter the Needed Quantity from your selected product</b></label>
-                    <input type="text" placeholder="Enter qunatity" name="quantity" required>
-                    <button type="submit" class="btn">OK</button>
-                    <input type="hidden" name="product_ID" id="product_ID" value='<?php echo $row["product_ID"]?>'>
-                    <input type="hidden" name="product_name" id="product_name" value='<?php echo $row["product_name"]?>'> 
-                    <input type="hidden" name="unit_price" id="unit_price" value='<?php echo $row["unit_price"]?>'>
-                    <input type="hidden" name="description" id="description" value='<?php echo $row["description"]?>'> 
-                    <input type="hidden" name="brand" id="brand" value='<?php echo $row["brand"]?>'>   
-                    <button type="button" class="btn cancel" onclick="<?php echo $closeform?>()">Close</button>
-                </form>
-                </div>
-
-                        <script>
-                        function <?php echo $openform?>() {
-                        document.getElementById("<?php echo $myform ?>").style.display = "block";
-                        }
-
-                        function <?php echo $closeform?>() {
-                        document.getElementById("<?php echo $myform ?>").style.display = "none";
-                        }
-                        </script>
-                        
-                </div>
-
-
-                <?php $count++;
-              $counta++;
-              $countb++;
-              $countc++; } ?>
+            $openform= "openform".$countb;
+            $closeform="closeform".$countc;
+                         
+                          array_push($item, $row);
+                                      $count++;}
+                                       $numberOfColumns = 4;
+                                      $bootstrapColWidth = 12 / $numberOfColumns;
+          
+                                      $arrayChunks = array_chunk($item, $numberOfColumns);
+                                      foreach ($arrayChunks as $item) {
+                                          echo '<div class="row">';
+                                          foreach ($item as $row) {
+                                              echo '<div class="col-md-' . $bootstrapColWidth . '">'; ?>   
+                      <div class="card">
+                          
+                          <img src="products/<?php echo $row['product_image'] ?>" style="width:30%">
+                                              <h1><?php echo $row['brand'] ?></h1>
+                                              <h1><?php echo $row['product_name'] ?></h1>
+                                              <p class="price">Rs.<?php echo $row['unit_price'] ?></p>
+                                              <p>Description:<?php echo $row['description'] ?></p>
+                                              <p>Available Quantity:<?php echo $row['quantity'] ?></p>
+                          <p><button class="open-button" onclick="<?php echo $openform?>()">Add to cart</button></p>
+                          
+          
+                          <div class="form-popup" id="<?php echo $myform ?>">
+                          <form action="quantity.php" class="form-container">                   
+                              <label for="quantity"><b>Please enter the Needed Quantity from your selected product</b></label>
+                              <input type="text" placeholder="Enter qunatity" name="quantity" required>
+                              <button type="submit" class="btn">OK</button>
+                              <input type="hidden" name="product_ID" id="product_ID" value='<?php echo $row["product_ID"]?>'>
+                              <input type="hidden" name="product_name" id="product_name" value='<?php echo $row["product_name"]?>'> 
+                              <input type="hidden" name="unit_price" id="unit_price" value='<?php echo $row["unit_price"]?>'>
+                              <input type="hidden" name="description" id="description" value='<?php echo $row["description"]?>'> 
+                              <input type="hidden" name="brand" id="brand" value='<?php echo $row["brand"]?>'>   
+                              <button type="button" class="btn cancel" onclick="<?php echo $closeform?>()">Close</button>
+                          </form>
+                          </div>
+          
+                                  <script>
+                                  function <?php echo $openform?>() {
+                                  document.getElementById("<?php echo $myform ?>").style.display = "block";
+                                  }
+          
+                                  function <?php echo $closeform?>() {
+                                  document.getElementById("<?php echo $myform ?>").style.display = "none";
+                                  }
+                                  </script>
+                                  
+                          </div>
+          
+          
+                          </div>
+                  <?php } ?>
+              </div>
+                          <?php 
+                        $counta++;
+                        $countb++;
+                        $countc++; }?>
                
                 </div>
                 </body>

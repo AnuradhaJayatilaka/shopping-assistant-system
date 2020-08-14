@@ -119,7 +119,7 @@ require("adminheader.php");
                     <td align="center">
                       <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
                     </td>
-                
+
                   </tr>
                 <?php
                   $count++;

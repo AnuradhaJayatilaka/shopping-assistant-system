@@ -75,8 +75,8 @@ require("adminheader.php");
                   <input type="hidden" name="new" value="1" /><br>
                   <label>Product Name</label>
                   <input type="text" name="product_name" placeholder="Enter product" required /><br><br>
-                  <label>Product ID</label>
-                  <input type="text" name="product_ID" placeholder="Enter product ID" required /><br><br>
+                  <!-- <label>Product ID</label>
+                  <input type="text" name="product_ID" placeholder="Enter product ID" required /><br><br> -->
                   <div class="form-group">
                     <label for="product_category">Category Type</label>
                     <select name="product_category" class="form-control">
@@ -130,22 +130,47 @@ require("adminheader.php");
           $status = "";
           $result = "";
           $product_name = "";
-          $product_ID = "";
+
           $description = "";
           $unit_price = "";
           $brand = "";
           $quantity = "";
           $product_category = "";
+
           if (isset($_POST['submit'])) {
             // $trn_date = date("Y-m-d H:i:s");
-
+            // $PID = mysqli_insert_id($db);
+            // $product1_ID= $PID+1;
             $product_name = $_REQUEST['product_name'];
-            $product_ID = $_REQUEST['product_ID'];
+            // $product_ID = $_REQUEST['product_ID'];
             $description = $_REQUEST['description'];
             $unit_price = $_REQUEST['unit_price'];
             $brand = $_REQUEST['brand'];
             $quantity = $_REQUEST['quantity'];
             $product_category = $_REQUEST['product_category'];
+
+            // creating the product ID
+            $PID = "SELECT product_ID FROM products Where product_category='$product_category' ";
+            $PIDresult = mysqli_query($db, $PID);
+            $num_rows = mysqli_num_rows($PIDresult);
+            if ($num_rows == 0) {
+              $PID_NUMB = 1111;
+            } else {
+              while ($row = mysqli_fetch_assoc($PIDresult)) {
+                $PIDlast = $row['product_ID'];
+              }
+              echo $PIDlast;
+              $PID_count = substr("$PIDlast", 3, 4);
+              $PID_count_int = (int)$PID_count;
+              $PID_NUMB = $PID_count_int + 1;
+            }
+
+
+
+            $product_ID = substr("$product_category", 0, 3) . $PID_NUMB;
+            // echo $pID;
+
+
             $available = 'false';
             $product_image          = $_FILES['product_image']['name'];
             $productImg_temp        = $_FILES['product_image']['tmp_name'];
@@ -159,7 +184,7 @@ require("adminheader.php");
             $count = 1;
             while ($row = mysqli_fetch_assoc($result_check)) {
               if ($row['product_name'] == $product_name && $row['description'] == $description && $row['unit_price'] == $unit_price && $row['brand'] == $brand && $row['product_category'] == $product_category && $available = 'false') {
-                $PID=$row['product_ID'];
+                $PID = $row['product_ID'];
                 $update = "UPDATE products SET quantity= quantity+$quantity WHERE product_ID='$PID'";
                 $result = mysqli_query($db, $update);
                 $available = "true";
