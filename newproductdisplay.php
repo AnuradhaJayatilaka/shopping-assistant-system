@@ -170,7 +170,7 @@
 
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
-                    width: 300px;
+                    max-width: 300px;
                     height: 400px;
 
                     margin: auto;

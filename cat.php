@@ -59,7 +59,8 @@ require("adminheader.php");
 
             //---------passing form values to varibales---------
             $product_category            = $_POST['product_category'];
-            $cat_code            = $_POST['cat_code'];
+            // $cat_code            = $_POST['cat_code'];
+            $cat_code=substr("$product_category",0,3);
             $cat_image             = $_FILES['cat_image']['name'];
             $categoryImg_temp        = $_FILES['cat_image']['tmp_name'];
             $cat_description         = $_POST['cat_description'];
@@ -104,6 +105,21 @@ require("adminheader.php");
                     }
             }
         }
+        if(isset($_GET['delete'])){
+          $the_cat_code = $_GET['delete'];
+        $selectcategory="select product_category from category where cat_code='$the_cat_code'";
+        $resultselectcategory=mysqli_query($db,$selectcategory);
+        $resultselectcategory1= $resultselectcategory->fetch_object();
+        $procat=$resultselectcategory1->product_category;
+        $deleteproducts_ofthecategory="DELETE FROM products where product_category='$procat'";
+        $resultdeleteproducts_ofthecategory=mysqli_query($db,$deleteproducts_ofthecategory);
+        
+
+        $query = "DELETE FROM category WHERE cat_code ='$the_cat_code' ";
+        $delete_query = mysqli_query($db, $query);
+        // header("location:cat.php");
+
+      }
 
         ?>
         </div>
@@ -200,20 +216,7 @@ require("adminheader.php");
                     echo "</tr>";
                     }                   
                       //Delete items
-                      if(isset($_GET['delete'])){
-                        $the_cat_code = $_GET['delete'];
-                      $selectcategory="select product_category from category where cat_code='$the_cat_code'";
-                      $resultselectcategory=mysqli_query($db,$selectcategory);
-                      $resultselectcategory1= $resultselectcategory->fetch_object();
-                      $procat=$resultselectcategory1->product_category;
-                      $deleteproducts_ofthecategory="DELETE FROM products where product_category='$procat'";
-                      $resultdeleteproducts_ofthecategory=mysqli_query($db,$deleteproducts_ofthecategory);
                       
-
-                      $query = "DELETE FROM category WHERE cat_code ='$the_cat_code' ";
-                      $delete_query = mysqli_query($db, $query);
-  
-                    }
                 ?>
                 </tbody>
                 <tfoot>
@@ -247,10 +250,10 @@ require("adminheader.php");
                     <label for="product_category">Category Name</label>
                     <input type="text" class="form-control" id="product_category" name="product_category">
                   </div><br>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="cat_code">Category code</label>
                     <input type="text" class="form-control" id="cat_code" name="cat_code">
-                  </div><br>
+                  </div><br> -->
                   <div class="form-group">
                     <label for="cat_image">Category Image</label>
                     <input type="file" class="form-control" id="cat_image" name="cat_image">

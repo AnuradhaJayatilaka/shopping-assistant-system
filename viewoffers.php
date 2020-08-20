@@ -114,7 +114,13 @@ $username= $_SESSION['user_name'];
               
               </ul>
             </li>
-            <li><a  href="cart.php">My Cart</a></li>
+            <li class=" nav-item dropdown">
+                        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"> Cart</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cart.php" class="dropdown-item">My Cart</a></li>
+                            <li><a href="customerview_cartorder.php" class="dropdown-item">View Cart orders</a></li>
+                        </ul>
+                    </li>
             <li><form class="navbar-form navbar-left" action="searchproduct.php" method="GET">
       <div class="form-group">
         <input type="text" name="product_name" class="form-control" placeholder="Search">

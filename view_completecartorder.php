@@ -94,8 +94,22 @@ require("adminheader.php");
                     require('mysqlconnect.php');
                     $count=1;
                     $start=$_GET['start'];
+                    $sdate = new DateTime($start);
+                  $stime = new DateTime('00:00:00');
+
+                  // Solution 1, merge objects to new object:
+                  $starttime = new DateTime($sdate->format('Y-m-d') . ' ' . $stime->format('H:i:s'));
+                 
+                  $s=$starttime->format('Y-m-d H:i:s');
                     $end=$_GET['end'];
-                    $sql="select * from cartorder where porder_date_time between $start and $end;";
+                    $edate = new DateTime($end);
+                  $etime = new DateTime('23:59:59');
+
+                  // Solution 1, merge objects to new object:
+                  $endtime = new DateTime($edate->format('Y-m-d') . ' ' . $etime->format('H:i:s'));
+                 
+                  $e=$endtime->format('Y-m-d H:i:s');
+                    $sql="select * from cartorder where porder_date_time between '$s' and '$e';";
                     $result=mysqli_query($db,$sql);
                     while($row = mysqli_fetch_assoc($result)) { ?>
                      <tr>
@@ -136,7 +150,7 @@ require("adminheader.php");
                 ?>
 
                 <div>
-                  <form action="view_completcarteorder.php" method="GET">
+                  <form action="view_completecartorder.php" method="GET">
                     <label>Starting date</label>
                     <input type="Date" name="start" id="start" />
                     <label>Ending Date</label>

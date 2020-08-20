@@ -110,11 +110,11 @@ require("adminheader.php");
                     <label>Product Description</label>
                     <input type="text" name="description" placeholder="Enter description" required /><br><br>
                     <label>Unit Price </label>
-                    <input type="text" name="unit_price" placeholder="unit price" required /><br><br>
+                    <input type="number" name="unit_price" placeholder="unit price" required /><br><br>
                     <label>Brand of the Product</label>
                     <input type="text" name="brand" placeholder="Enter brand" required /><br><br>
                     <label>No of Products</label>
-                    <input type="text" name="quantity" placeholder="Enter Quantity" required /><br><br>
+                    <input type="number" name="quantity" placeholder="Enter Quantity" required /><br><br>
                     <p><input name="submit" type="submit" value="Submit" /></p>
                 </form>
 
@@ -165,9 +165,12 @@ require("adminheader.php");
               $PID_NUMB = $PID_count_int + 1;
             }
 
+            $pcat = "SELECT cat_code FROM category Where product_category='$product_category' ";
+            $pcatresult = mysqli_query($db, $pcat);
+            $oneresult = $pcatresult->fetch_object();
+            $pcategory = $oneresult->cat_code;
 
-
-            $product_ID = substr("$product_category", 0, 3) . $PID_NUMB;
+            $product_ID = $pcategory . $PID_NUMB;
             // echo $pID;
 
 
