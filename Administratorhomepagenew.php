@@ -67,6 +67,7 @@ require("mysqlconnect.php");
         </script>
     </head>
     <body>
+      <h1>Summary of the sales of the last year</h1>
         <div id = "container" style = "width: 750px; height: 400px; margin: 0 auto">
         <!-- This container loads the chart   -->
         </div>
@@ -78,23 +79,23 @@ require("mysqlconnect.php");
             
             function drawChart() {
 
-                for(let i = 0; i < list.length; i++){
+                for(let i = list.length; i > 0; i--){
                     console.log(list[i]);
                 }
                 var data = google.visualization.arrayToDataTable([
                 ['Month', 'Income'],
-                list[0],
-                list[1],
-                list[2],
-                list[3],
-                list[4], 
-                list[5],   
+                list[11],
+                list[10],
+                list[9],
+                list[8],
+                list[7], 
                 list[6],   
-                list[7],   
-                list[8],   
-                list[9],   
-                list[10],   
-                list[11]   
+                list[5],   
+                list[4],   
+                list[3],   
+                list[2],   
+                list[1],   
+                list[0]   
                 ]);
 
 
@@ -129,12 +130,18 @@ require("mysqlconnect.php");
                 $endDate = date('Y-m-t',$currentMonth);
 
                 //Write the sql query for getting total sum of each month using endDate and startDate variables
-                $sql1="select SUM(amount) as total from cartorder WHERE porder_date_time BETWEEN '$startDate' and '$endDate'";
+                $sql1="select SUM(amount) as total1 from cartorder WHERE porder_date_time BETWEEN '$startDate' and '$endDate'";
+                $sql2="select SUM(amount) as total2 from orders WHERE date_time BETWEEN '$startDate' and '$endDate'";
                 $result_sql1=mysqli_query($db,$sql1);
+                $result_sql2=mysqli_query($db,$sql2);
                 $oneresult = $result_sql1->fetch_object();
-                $total  = $oneresult->total;
+                $total1  = $oneresult->total1;
+                $tworesult = $result_sql2->fetch_object();
+                $total2  = $tworesult->total2;
                 // echo $total;
-                $totalint= (double)$total;
+                $totalint1= (double)$total1;
+                $totalint2= (double)$total2;
+                $totalint=$totalint1+$totalint2;
                 //$month ekai query eken ena value ekai push karanna $sampla array kiyana ekata
                 $month=date("F", strtotime($startDate)); 
 

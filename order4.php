@@ -77,7 +77,7 @@ require('mysqlconnect.php');
                                         <th><strong>Order Status</strong></th>
                                         <th><strong>Change Order Status</strong></th>
                                         <th><strong>View Order Details</strong></th>
-                                        <th>Delete Order</th>
+                                        
 
 
 
@@ -92,7 +92,7 @@ $count=1;
 $query="update orders set order_status='$order_status' where orderid='$orderid'";
 $result2 = mysqli_query($db,$query);
 
-$sel_query="Select * from orders ";
+$sel_query="Select * from orders WHERE order_status='processing' ";
 $result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
@@ -117,9 +117,6 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center">
 <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
 </td>
-<td align="center">
-                                            <a href="deleteorder1.php?orderid=<?php echo $row["orderid"]; ?>">Delete</a>
-                                            </td>
 
 </tr>
 <?php $count++; } ?>
