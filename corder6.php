@@ -18,35 +18,34 @@ require("adminheader.php");
     <div class="row">
         <div class="column">
             <div class="vertical-menu">
-            <a href="administratorhomepagenew.php" >Administrator Home</a>
+            <a href="cashier.php" >Cashier Home</a>
             <div class="subnav" >
                       <button class="subnavbtn" >Manage Inventory <i class="fa fa-caret-down" c></i></button>
                       <div class="subnav-content">
-                      <a href="view.php" >View Products</a>
-                        <a href="insert.php">Add Product</a>
+                      <a href="cview.php" >View Products</a>
+                        <a href="cinsert.php">Add Product</a>
                         
                       </div>
                     </div>
             <div class="subnav">
               <button class="subnavbtn" >Manage orders <i class="fa fa-caret-down"></i></button>
               <div class="subnav-content">
-                <a href="order.php">View Ongoing List Orders</a>
-                <a href="completeorder.php">View Complete List Orders</a>
-                <a href="view_cartorder.php">View Ongoing cart orders </a>
-                <a href="view_completecartorder.php">View Complete cart orders </a>
+                <a href="corder.php">View Ongoing List Orders</a>
+                <a href="ccompleteorder.php">View Complete List Orders</a>
+                <a href="cview_cartorder.php">View Ongoing cart orders </a>
+                <a href="cview_completecartorder.php">View Complete cart orders </a>
               </div>
             </div>
-            <a href="cat.php">Manage Product Categories</a>
-            <a href="displayoffers.php">Manage Offers</a>
-            <a href="viewcashierlist.php">Manage Cashiers</a>
+            <a href="ccat.php">Manage Product Categories</a>
+            <a href="cdisplayoffers.php">Manage Offers</a>
+            
 
-            <a href="ViewSuggestions.php">View Suggestions</a>
+            <a href="cViewSuggestions.php">View Suggestions</a>
             
             
-            <a href="viewfeedback1.php">View feedback</a>
-            <!-- <a href="ViewPayments.php">View Payments</a> -->
-            <a href="Advertise.php">Advertise</a>
-            <a href="GenerateReports.php">Generate Reports</a>
+            <a href="cviewfeedback1.php">View feedback</a>
+           
+            <a href="cGenerateReports.php">Generate Reports</a>
             <a href="logout.php">Log Out</a>
             </div>
         </div>
@@ -77,7 +76,7 @@ require('mysqlconnect.php');
                                         <th><strong>Order Status</strong></th>
                                         <th><strong>Change Order Status</strong></th>
                                         <th><strong>View Order Details</strong></th>
-                                      s
+                                       
 
 
 
@@ -103,12 +102,12 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center"><?php echo $row["order_status"]; ?></td>
 
 <td align="center">
-                                              <form action= "order4.php" method="GET">
+                                              <form action= "corder4.php" method="GET">
                                               <input type="hidden" name="order_status" >
                                               <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?> >
                                               <input type="submit" type="submit" value="complete" class="btn-Search">
                                             </form>
-                                            <form action= "order6.php" method="GET">
+                                            <form action= "corder6.php" method="GET">
                                               <input type="hidden" name="order_status" >
                                               <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
                                               <input type="submit" type="submit" value="processing" class="btn-Search"/>
@@ -117,6 +116,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <td align="center">
 <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
 </td>
+
 
 </tr>
 <?php $count++; } ?>

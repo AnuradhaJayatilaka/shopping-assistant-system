@@ -19,7 +19,7 @@ require("adminheader.php");
   <div class="row">
     <div class="column">
       <div class="vertical-menu">
-        <a href="administratorhomepagenew">Administrator Home</a>
+        <a href="administratorhomepagenew.php">Administrator Home</a>
         <div class="subnav">
           <button class="subnavbtn">Manage Inventory <i class="fa fa-caret-down" c></i></button>
           <div class="subnav-content">
@@ -45,8 +45,7 @@ require("adminheader.php");
 
 
         <a href="viewfeedback1.php" class="active">View feedback</a>
-        <!-- <a href="ViewPayments.php">View Payments</a> -->
-        <a href="Advertise.php">Advertise</a>
+        
         <a href="GenerateReports.php">Generate Reports</a>
         <a href="logout.php">Log Out</a>
       </div>
@@ -91,17 +90,17 @@ require("adminheader.php");
 
                   // Solution 1, merge objects to new object:
                   $starttime = new DateTime($sdate->format('Y-m-d') . ' ' . $stime->format('H:i:s'));
-                 
-                  $s=$starttime->format('Y-m-d H:i:s');
+
+                  $s = $starttime->format('Y-m-d H:i:s');
 
                   $end = $_GET['end'];
                   $edate = new DateTime($end);
                   $etime = new DateTime('23:59:59');
-                  
+
                   // Solution 1, merge objects to new object:
                   $enddate = new DateTime($edate->format('Y-m-d') . ' ' . $etime->format('H:i:s'));
-                  
-                  $e=$enddate->format('Y-m-d H:i:s');
+
+                  $e = $enddate->format('Y-m-d H:i:s');
                   $sql = "SELECT * FROM feedback WHERE date_time BETWEEN '$s' AND '$e'";
                   $result = mysqli_query($db, $sql);
                   while ($row = mysqli_fetch_assoc($result)) { ?>

@@ -4,7 +4,11 @@ require("adminheader.php");
 ?>
 
 <head>
-
+  <style>
+    label {
+      display: inline-block;
+      width: 200px;
+    }
   </style>
 
 </head>
@@ -22,7 +26,7 @@ require("adminheader.php");
       <div class="column">
         <!-- <div class="container-fluid" > -->
         <div class="vertical-menu">
-          <a href="Administratorhomepagenew">Administrator Home</a>
+          <a href="Administratorhomepagenew.php">Administrator Home</a>
           <div class="subnav">
             <button class="subnavbtn">Manage Inventory <i class="fa fa-caret-down" c></i></button>
             <div class="subnav-content">
@@ -48,8 +52,7 @@ require("adminheader.php");
 
 
           <a href="viewfeedback1.php">View feedback</a>
-          <!-- <a href="ViewPayments.php">View Payments</a> -->
-          <a href="Advertise.php">Advertise</a>
+       
           <a href="GenerateReports.php">Generate Reports</a>
           <a href="logout.php">Log Out</a>
 

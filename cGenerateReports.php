@@ -18,35 +18,34 @@ require("adminheader.php")
     <div class="row">
         <div class="column">
             <div class="vertical-menu">
-                <a href="administratorhomepagenew">Administrator Home</a>
+                <a href="cashier.php">Cashier Home</a>
                 <div class="subnav">
                     <button class="subnavbtn">Manage Inventory <i class="fa fa-caret-down" c></i></button>
                     <div class="subnav-content">
-                        <a href="view.php">View Products</a>
-                        <a href="insert.php">Add Product</a>
+                        <a href="cview.php">View Products</a>
+                        <a href="cinsert.php">Add Product</a>
 
                     </div>
                 </div>
                 <div class="subnav">
                     <button class="subnavbtn">Manage orders <i class="fa fa-caret-down"></i></button>
                     <div class="subnav-content">
-                        <a href="order.php">View Ongoing List Orders</a>
-                        <a href="completeorder.php">View Complete List Orders</a>
-                        <a href="view_cartorder.php">View Ongoing cart orders </a>
-                        <a href="view_completecartorder.php">View Complete cart orders </a>
+                        <a href="corder.php">View Ongoing List Orders</a>
+                        <a href="ccompleteorder.php">View Complete List Orders</a>
+                        <a href="cview_cartorder.php">View Ongoing cart orders </a>
+                        <a href="cview_completecartorder.php">View Complete cart orders </a>
                     </div>
                 </div>
-                <a href="cat.php">Manage Product Categories</a>
-                <a href="displayoffers.php">Manage Offers</a>
-                <a href="viewcashierlist.php">Manage Cashiers</a>
-
-                <a href="ViewSuggestions.php">View Suggestions</a>
+                <a href="ccat.php">Manage Product Categories</a>
+                <a href="cdisplayoffers.php">Manage Offers</a>
 
 
-                <a href="viewfeedback1.php">View feedback</a>
-                <!-- <a href="ViewPayments.php">View Payments</a> -->
-                <a href="Advertise.php">Advertise</a>
-                <a href="GenerateReports.php" class="active">Generate Reports</a>
+                <a href="cViewSuggestions.php">View Suggestions</a>
+
+
+                <a href="cviewfeedback1.php">View feedback</a>
+
+                <a href="cGenerateReports.php" class="active">Generate Reports</a>
                 <a href="logout.php">Log Out</a>
             </div>
         </div>
@@ -64,7 +63,7 @@ require("adminheader.php")
             <body>
                 <h1>Sales Details</h1>
                 <div>
-                    <form action="GenerateReports.php" method="GET">
+                    <form action="cGenerateReports.php" method="GET">
                         <label>Starting date</label>
                         <input type="Date" name="start" id="start" />
                         <label>Ending Date</label>
@@ -133,18 +132,18 @@ require("adminheader.php")
                                                 <td align="center"><?php echo $row["amount"]; ?></td>
                                                 <td align="center"><?php echo $row["porder_date_time"]; ?></td>
                                                 <?php $totalsales1 = $totalsales1 + $row["amount"]; ?>
-                                                
+
                                             </tr>
                                         <?php $count++;
                                         } ?>
                                         <p>Total Number of orders placed by the cart:<?php echo $nooforders1; ?></p>
-                                                <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
+                                        <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                             </table>
-                            
+
                             <br><br><br>
                         </div>
                     </div>
@@ -232,29 +231,29 @@ require("adminheader.php")
             </body>
 
             </html>
-            <div class="row">            <?php
-            $totalsales = $totalsales1 + $totalsales2;
-            $nooforders = $nooforders1 + $nooforders2;
-            ?>
-            <br><br><br>
-            <?php
-            if (isset($_GET['submit'])) {
-                if (!empty($_GET)) {
-                    $start = $_GET['start'];
-                    $end = $_GET['end']; ?>
-                    <h3>Summary of sales between<?php echo $start ?> and <?php echo $end ?></h3>
+            <div class="row"> <?php
+                                $totalsales = $totalsales1 + $totalsales2;
+                                $nooforders = $nooforders1 + $nooforders2;
+                                ?>
+                <br><br><br>
+                <?php
+                if (isset($_GET['submit'])) {
+                    if (!empty($_GET)) {
+                        $start = $_GET['start'];
+                        $end = $_GET['end']; ?>
+                        <h3>Summary of sales between<?php echo $start ?> and <?php echo $end ?></h3>
+                        <p>Total Number of orders :<?php echo $nooforders; ?></p>
+                        <p>Total sales revenue:<?php echo $totalsales; ?></p>
+                    <?php }
+                } else {
+                    ?>
+                    <h3>Summary of sales of last 24 hours</h3>
                     <p>Total Number of orders :<?php echo $nooforders; ?></p>
                     <p>Total sales revenue:<?php echo $totalsales; ?></p>
-                <?php }
-            } else {
-                ?>
-                <h3>Summary of sales of last 24 hours</h3>
-                <p>Total Number of orders :<?php echo $nooforders; ?></p>
-                <p>Total sales revenue:<?php echo $totalsales; ?></p>
-            <?php
+                <?php
 
-            } ?>
-        </div>
+                } ?>
+            </div>
         </div>
 
 

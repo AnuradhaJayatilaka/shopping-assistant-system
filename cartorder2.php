@@ -5,6 +5,7 @@ require("adminheader.php");
 
 ?>
 <head>
+
  
   </head>
   <body>
@@ -44,8 +45,7 @@ require("adminheader.php");
             
             
             <a href="viewfeedback1.php">View feedback</a>
-            <!-- <a href="ViewPayments.php">View Payments</a> -->
-            <a href="Advertise.php">Advertise</a>
+            
             <a href="GenerateReports.php">Generate Reports</a>
             <a href="logout.php">Log Out</a>
             </div>
@@ -70,14 +70,14 @@ require('mysqlconnect.php');
 <thead>
 <tr>
 <!-- <th><strong>Number</strong></th> -->
-<th><strong>Order ID</strong></th>
+                                    <th><strong>Order ID</strong></th>
                                         <th><strong>Username</strong></th>
                                         <th><strong>Date and Time</strong></th>
                                         <th><strong>Total amount</strong></th>
                                         <th><strong>Order Status</strong></th>
-                                        <th><strong>Change Order Status</strong></th>
+                                        
                                         <th><strong>View Order Details</strong></th>
-                                      s
+                                        
 
 
 
@@ -86,37 +86,27 @@ require('mysqlconnect.php');
 <tbody>
 <?php
 
-$orderid=$_GET['orderid'];
-$order_status="processing";
+$cartorderid=$_GET['cartorderid'];
+$order_status="processsing";
 $count=1;
-$query="update orders set order_status='$order_status' where orderid='$orderid'";
+$query="update cartorder set cart_order_status='processing' where cartorderid='$cartorderid'";
 $result2 = mysqli_query($db,$query);
 
-$sel_query="Select * from orders ";
+$sel_query="Select * from cartorder  ";
 $result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
-<td align="center"><?php echo $row["orderid"]; ?></td>
-<td align="center"><?php echo $row["username"]; ?></td>
-<td align="center"><?php echo $row["date_time"]; ?></td>
+<td align="center"><?php echo $row["cartorderid"]; ?></td>
+<td align="center"><?php echo $row["email_address"]; ?></td>
+<td align="center"><?php echo $row["porder_date_time"]; ?></td>
 <td align="center"><?php echo $row["amount"]; ?></td>
-<td align="center"><?php echo $row["order_status"]; ?></td>
+<td align="center"><?php echo $row["cart_order_status"]; ?></td>
 
-<td align="center">
-                                              <form action= "order4.php" method="GET">
-                                              <input type="hidden" name="order_status" >
-                                              <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?> >
-                                              <input type="submit" type="submit" value="complete" class="btn-Search">
-                                            </form>
-                                            <form action= "order6.php" method="GET">
-                                              <input type="hidden" name="order_status" >
-                                              <input type="hidden" name="orderid" value=<?php echo $row["orderid"] ?>>
-                                              <input type="submit" type="submit" value="processing" class="btn-Search"/>
-                                            </form>
-                                          </td>
-<td align="center">
-<a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
-</td>
+
+                                            <td align="center">
+                                            <a href="cviewcartorderdetails.php?cartorderid=<?php echo $row["cartorderid"]; ?>">View details</a>
+                                            </td>
+
 
 </tr>
 <?php $count++; } ?>
