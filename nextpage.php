@@ -9,7 +9,16 @@ $password = $_GET['password'];
 
 $_SESSION["email_address"] = $email;
 $_SESSION["password"] = $password;
-$user_category = "SELECT user_type FROM users WHERE email_address='$email'";
+$email_check="SELECT * FROM users WHERE email_address='$email'";
+$resulte = mysqli_query($db, $email_check);
+$rows=mysqli_num_rows($resulte);
+// $d=$resulte->fetch_object();
+// $e=$d->user_name;
+if (mysqli_num_rows($resulte) < 1){
+    header("location:loginfinal2.php");
+}
+else{
+    $user_category = "SELECT user_type FROM users WHERE email_address='$email'";
 $result = mysqli_query($db, $user_category);
 $oneresult = $result->fetch_object();
 $user_type = $oneresult->user_type;
@@ -50,10 +59,10 @@ if ($password == $hashPassword) {
     
 }
 else{
-    echo "<a href=\"loginfinal2.php\">This is a link</a>";
-    $password_err = "The password you entered was not valid.";
-            echo "$password_err";
+    header("location:loginfinal2.php");
     }
+}
+
 // Close statement
 
 

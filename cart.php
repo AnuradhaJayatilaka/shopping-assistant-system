@@ -276,6 +276,9 @@ require('mysqlconnect.php');
 <tbody>
 <?php
 $count=1;
+$counta = 1;
+$countb = 1;
+$countc = 1;
 // session_start();
 $email = $_SESSION['email_address'];
 
@@ -291,7 +294,10 @@ $result = mysqli_query($db,$sel_query);
 
 
 
-while($row = mysqli_fetch_assoc($result)) { ?>
+while($row = mysqli_fetch_assoc($result)) { 
+  $myform = "myform" . $counta;
+            $openform = "openform" . $countb;
+            $closeform = "closeform" . $countc; ?>
 <tr>
 <!-- <td align="center"><?php echo $row["id"]; ?></td> -->
 <td align="center"><?php echo $row["product_name"]; ?></td>
@@ -305,30 +311,30 @@ $_SESSION["amount"]=$summ;
 
 
 <td align="center">
-              <button class="open-button" onclick="openForm()">Edit Quantity</button>
+              <button class="open-button" onclick="<?php echo $openform ?>()">Edit Quantity</button>
 
-<div class="form-popup" id="myForm">
+<div class="form-popup" id="<?php echo $myform ?>">
   <form action="editproduct1.php" class="form-container">
     
 
-    <label for="quantity_needed"><b>Please enter the Needed Quantity from your selected product</b></label>
-    <input type="text" placeholder="Enter qunatity" name="quantity_needed" required>
+    <label for="quantity_needed"><b>Please enter the Needed Quantity of <?php echo $row["product_name"];?> </b></label>
+    <input type="number" placeholder="Enter qunatity" name="quantity_needed" required>
 
 
     <button type="submit" class="btn">OK</button>
     <input type="hidden" name="id" id="id" value='<?php echo $row["id"]?>'>
    
-     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+     <button type="button" class="btn cancel" onclick="<?php echo $closeform ?>()">Close</button>
   </form>
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
+function <?php echo $openform ?>() {
+  document.getElementById("<?php echo $myform ?>").style.display = "block";
 }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
+function <?php echo $closeform ?>() {
+  document.getElementById("<?php echo $myform ?>").style.display = "none";
 }
 </script>
              
@@ -344,7 +350,10 @@ function closeForm() {
 
 </td>
 </tr>
-<?php $count++; } 
+<?php $count++;
+$counta++;
+$countb++;
+$countc++; } 
 // echo "$summ";
 ?>
 

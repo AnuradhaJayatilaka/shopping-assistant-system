@@ -46,8 +46,7 @@ require("adminheader.php");
 
 
                     <a href="viewfeedback1.php">View feedback</a>
-                    <!-- <a href="ViewPayments.php">View Payments</a> -->
-                    <a href="Advertise.php">Advertise</a>
+
                     <a href="GenerateReports.php">Generate Reports</a>
                     <a href="logout.php">Log Out</a>
                 </div>
@@ -55,7 +54,7 @@ require("adminheader.php");
             <div class="column">
                 <?php
                 require('mysqlconnect.php');
-                
+
                 // include("auth.php");
                 ?>
                 <!DOCTYPE html>
@@ -86,83 +85,83 @@ require("adminheader.php");
                             </thead>
                             <tbody>
                                 <?php
-                                if(isset($_GET['submit'])){
-                                    if(!empty($_GET))
-                                    {
-                                      require('mysqlconnect.php');
-                                      $count=1;
-                                      $start=$_GET['start'];
-                    $sdate = new DateTime($start);
-                  $stime = new DateTime('00:00:00');
+                                if (isset($_GET['submit'])) {
+                                    if (!empty($_GET)) {
+                                        require('mysqlconnect.php');
+                                        $count = 1;
+                                        $start = $_GET['start'];
+                                        $sdate = new DateTime($start);
+                                        $stime = new DateTime('00:00:00');
 
-                  // Solution 1, merge objects to new object:
-                  $starttime = new DateTime($sdate->format('Y-m-d') . ' ' . $stime->format('H:i:s'));
-                 
-                  $s=$starttime->format('Y-m-d H:i:s');
-                    $end=$_GET['end'];
-                    $edate = new DateTime($end);
-                  $etime = new DateTime('23:59:59');
+                                        // Solution 1, merge objects to new object:
+                                        $starttime = new DateTime($sdate->format('Y-m-d') . ' ' . $stime->format('H:i:s'));
 
-                  // Solution 1, merge objects to new object:
-                  $endtime = new DateTime($edate->format('Y-m-d') . ' ' . $etime->format('H:i:s'));
-                 
-                  $e=$endtime->format('Y-m-d H:i:s');
-                                      $sql="select * from orders where date_time between '$s' and '$e' and order_status='complete';";
-                                      $result=mysqli_query($db,$sql);
-                                      while($row = mysqli_fetch_assoc($result)) { ?>
-                                        <tr>
-                                        <td align="center"><?php echo $row["orderid"]; ?></td>
-                                        <td align="center"><?php echo $row["username"]; ?></td>
-                                        <td align="center"><?php echo $row["date_time"]; ?></td>
-                                        <td align="center"><?php echo $row["amount"]; ?></td>
-                                        <td align="center"><?php echo $row["order_status"]; ?></td>
-                                        <td align="center">
-                                            <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
-                                        </td>
-                                    </tr>
-                                        <?php $count++; }
-                                         }
+                                        $s = $starttime->format('Y-m-d H:i:s');
+                                        $end = $_GET['end'];
+                                        $edate = new DateTime($end);
+                                        $etime = new DateTime('23:59:59');
+
+                                        // Solution 1, merge objects to new object:
+                                        $endtime = new DateTime($edate->format('Y-m-d') . ' ' . $etime->format('H:i:s'));
+
+                                        $e = $endtime->format('Y-m-d H:i:s');
+                                        $sql = "select * from orders where date_time between '$s' and '$e' and order_status='complete';";
+                                        $result = mysqli_query($db, $sql);
+                                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                                            <tr>
+                                                <td align="center"><?php echo $row["orderid"]; ?></td>
+                                                <td align="center"><?php echo $row["username"]; ?></td>
+                                                <td align="center"><?php echo $row["date_time"]; ?></td>
+                                                <td align="center"><?php echo $row["amount"]; ?></td>
+                                                <td align="center"><?php echo $row["order_status"]; ?></td>
+                                                <td align="center">
+                                                    <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
+                                                </td>
+                                            </tr>
+                                        <?php $count++;
                                         }
-                                        else{
-                                            if (!empty($_GET)) {
-                                                $total_amount = $_GET['amount'];
-                                                $orderid = $_SESSION['orderid'];
-                            
-                                                $sql = "update orders set amount='$total_amount' WHERE orderid='$orderid' ";
-                                                $result = mysqli_query($db, $sql);
-                                            }
-                                $count = 1;
-                                $sel_query = "Select * from orders WHERE order_status='Complete' ORDER BY date_time DESC LIMIT 10";
-                                $result = mysqli_query($db, $sel_query);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-                                    <tr>
-                                        <td align="center"><?php echo $row["orderid"]; ?></td>
-                                        <td align="center"><?php echo $row["username"]; ?></td>
-                                        <td align="center"><?php echo $row["date_time"]; ?></td>
-                                        <td align="center"><?php echo $row["amount"]; ?></td>
-                                        <td align="center"><?php echo $row["order_status"]; ?></td>
-                                        <td align="center">
-                                            <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
-                                        </td>
-                                    </tr>
+                                    }
+                                } else {
+                                    if (!empty($_GET)) {
+                                        $total_amount = $_GET['amount'];
+                                        $orderid = $_SESSION['orderid'];
+
+                                        $sql = "update orders set amount='$total_amount' WHERE orderid='$orderid' ";
+                                        $result = mysqli_query($db, $sql);
+                                    }
+                                    $count = 1;
+                                    $sel_query = "Select * from orders WHERE order_status='Complete' ORDER BY date_time DESC LIMIT 10";
+                                    $result = mysqli_query($db, $sel_query);
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <tr>
+                                            <td align="center"><?php echo $row["orderid"]; ?></td>
+                                            <td align="center"><?php echo $row["username"]; ?></td>
+                                            <td align="center"><?php echo $row["date_time"]; ?></td>
+                                            <td align="center"><?php echo $row["amount"]; ?></td>
+                                            <td align="center"><?php echo $row["order_status"]; ?></td>
+                                            <td align="center">
+                                                <a href="order1.php?orderid=<?php echo $row["orderid"]; ?>">View details</a>
+                                            </td>
+                                        </tr>
                                 <?php
-                                    $count++;
-                                }}
+                                        $count++;
+                                    }
+                                }
                                 ?>
                                 <div>
-                            <form action="completeorder.php" method="GET">
-                                <label>Starting date</label>
-                                <input type="Date" name="start" id="start" />
-                                <label>Ending Date</label>
-                                <input type="date" name="end" id="end" />
-                                <input name="submit" type="submit" value="Submit" />
-                            </form><br><br>
-                        </div>
+                                    <form action="completeorder.php" method="GET">
+                                        <label>Starting date</label>
+                                        <input type="Date" name="start" id="start" />
+                                        <label>Ending Date</label>
+                                        <input type="date" name="end" id="end" />
+                                        <input name="submit" type="submit" value="Submit" />
+                                    </form><br><br>
+                                </div>
 
                             </tbody>
                         </table>
-                        
+
                     </div>
 
             </div>

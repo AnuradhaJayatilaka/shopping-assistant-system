@@ -4,6 +4,12 @@ require("adminheader.php");
 ?>
 
 <head>
+<style>
+    label {
+      display: inline-block;
+      width: 300px;
+    }
+  </style>
 
 </head>
 
@@ -44,8 +50,7 @@ require("adminheader.php");
           <a href="ViewSuggestions.php">View Suggestions</a>
 
           <a href="viewfeedback1.php">View feedback</a>
-          <!-- <a href="ViewPayments.php">View Payments</a> -->
-          <a href="Advertise.php">Advertise</a>
+
           <a href="GenerateReports.php">Generate Reports</a>
           <a href="logout.php">Log Out</a>
 
@@ -148,6 +153,12 @@ require("adminheader.php");
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<style>
+    label {
+      display: inline-block;
+      width: 300px;
+    }
+    </style>
   </head>
 
   <body class="hold-transition sidebar-mini">

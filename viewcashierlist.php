@@ -147,8 +147,7 @@ require("adminheader.php");
 
 
                 <a href="viewfeedback1.php">View feedback</a>
-                <!-- <a href="ViewPayments.php">View Payments</a> -->
-                <a href="Advertise.php">Advertise</a>
+
                 <a href="GenerateReports.php">Generate Reports</a>
                 <a href="logout.php">Log Out</a>
             </div>
@@ -178,9 +177,16 @@ require("adminheader.php");
                 <tbody>
                     <?php
                     $count = 1;
+                    $counta =1;
+                        $countb=1;
+                        $countc=1;
                     $sel_query = "Select * from users where user_type='Cashier' ORDER BY email_address desc;";
                     $result = mysqli_query($db, $sel_query);
-                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                    while ($row = mysqli_fetch_assoc($result)) { 
+                        $myform = "myform" . $counta;
+                        $openform = "openform" . $countb;
+                        $closeform = "closeform" . $countc; 
+                        ?>
                         <tr>
                             <td align="center"><?php echo $row["email_address"]; ?></td>
                             <td align="center"><?php echo $row["user_name"]; ?></td>
@@ -189,30 +195,30 @@ require("adminheader.php");
                             <td align="center"><?php echo $row["mobile_number"]; ?></td>
                             <td align="center"><?php echo $row["title"]; ?></td>
                             <td align="center">
-                                <button class="open-button" onclick="openForm()">EDIT</button>
+                                <button class="open-button" onclick="<?php echo $openform ?>()">EDIT</button>
 
-                                <div class="form-popup" id="myForm">
+                                <div class="form-popup" id="<?php echo $myform ?>">
                                     <form action="editcashier.php" class="form-container">
 
 
                                         <label for="mobile_number"><b>Please enter the New phone number of <?php echo $row["user_name"]; ?></b></label>
-                                        <input type="int" placeholder="Enter phone number" name="mobile_number" required>
+                                        <input type="numeric" placeholder="Enter phone number" name="mobile_number"  minlength="10" maxlength="10" required>
 
 
                                         <button type="submit" class="btn">OK</button>
                                         <input type="hidden" name="email_address" id="email_address" value='<?php echo $row["email_address"] ?>'>
 
-                                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                        <button type="button" class="btn cancel" onclick="<?php echo $closeform ?>()">Close</button>
                                     </form>
                                 </div>
 
                                 <script>
-                                    function openForm() {
-                                        document.getElementById("myForm").style.display = "block";
+                                    function <?php echo $openform ?>() {
+                                        document.getElementById("<?php echo $myform ?>").style.display = "block";
                                     }
 
-                                    function closeForm() {
-                                        document.getElementById("myForm").style.display = "none";
+                                    function <?php echo $closeform ?>() {
+                                        document.getElementById("<?php echo $myform ?>").style.display = "none";
                                     }
                                 </script>
                             </td>
@@ -221,6 +227,9 @@ require("adminheader.php");
                             </td>
                         </tr>
                     <?php $count++;
+                    $counta++;
+                    $countb++;
+                    $countc++;
                     } ?>
                 </tbody>
             </table>
@@ -246,52 +255,68 @@ require("adminheader.php");
                     } else {
                         $username = trim($_POST["username"]);
                     }
-
+                
                     if (empty(trim($_POST["mobile_number"]))) {
-                        $mobile_number_err = "Please enter a mobile.";
+                        $username_err = "Please enter a mobile number.";
                     } else {
-                        $mobile_number = trim($_POST["mobile_number"]);
+                        if (strlen($_POST['mobile_number']) == 10 && preg_match('/^\d+$/', $_POST['mobile_number'])) {
+                            $mobile_number = trim($_POST["mobile_number"]);
+                        } else {
+                            $mobile_number_err = "mobile number must contain only 10 digits";
+                        }
                     }
-
-                    /*if(empty(trim($_POST["user_type"]))){
-                $user_type_err = "Please enter a .";
-            }
-                else{
-                    $user_type = trim($_POST["user_type"]);
-                }*/
-
+                
+                
+                
+                
                     if (empty(trim($_POST["title"]))) {
-                        $title_err = "Please enter a username.";
+                        $title_err = "Please enter the title.";
                     } else {
                         $title = trim($_POST["title"]);
                     }
-
+                
                     if (empty(trim($_POST["NIC"]))) {
-                        $NIC_err = "Please enter a username.";
+                        $title_err = "Please enter the NIC.";
                     } else {
-                        $NIC = trim($_POST["NIC"]);
+                
+                
+                
+                        if (strlen($_POST['NIC']) == 10 && preg_match('/^[0-9]{9}[vV]$/', $_POST['NIC'])) {
+                            $NIC = trim($_POST["NIC"]);
+                        }
+                        // if(empty(trim($_POST["NIC"]))==10){
+                        //     $NIC_err = "Please enter your NIC.";
+                        // }
+                        else {
+                            if (strlen($_POST['NIC']) == 12 && preg_match('/^[0-9]{11}[vV]$/', $_POST['NIC'])) {
+                                $NIC = trim($_POST["NIC"]);
+                            } else {
+                                $NIC_err = "Please enter a correct NIC.";
+                            }
+                        }
                     }
-
-
+                
+                
+                
                     // Validate email
                     if (empty(trim($_POST["email_address"]))) {
                         $email_address_err = "Please enter.";
                     } else {
                         // Prepare a select statement
                         $sql = "SELECT * FROM users WHERE email_address = ?";
-
+                
                         if ($stmt = mysqli_prepare($db, $sql)) {
                             // Bind variables to the prepared statement as parameters
                             mysqli_stmt_bind_param($stmt, "s", $param_email);
-
+                
                             // Set parameters
                             $param_email = trim($_POST["email_address"]);
-
+                
                             // Attempt to execute the prepared statement
                             if (mysqli_stmt_execute($stmt)) {
                                 /* store result */
                                 mysqli_stmt_store_result($stmt);
-
+                
                                 if (mysqli_stmt_num_rows($stmt) == 1) {
                                     $email_address_err = "This email is already taken.";
                                 } else {
@@ -300,12 +325,12 @@ require("adminheader.php");
                             } else {
                                 echo "Oops! Something went wrong. Please try again later.";
                             }
-
+                
                             // Close statement
                             mysqli_stmt_close($stmt);
                         }
                     }
-
+                
                     // Validate password
                     if (empty(trim($_POST["password"]))) {
                         $password_err = "Please enter a password.";
@@ -314,7 +339,7 @@ require("adminheader.php");
                     } else {
                         $password = trim($_POST["password"]);
                     }
-
+                
                     // Validate confirm password
                     if (empty(trim($_POST["confirm_password"]))) {
                         $confirm_password_err = "Please confirm password.";
@@ -381,54 +406,47 @@ require("adminheader.php");
 
                         <p>Please fill this form to create an account.</p>
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                <label>Username</label>
-                                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                                <span class="help-block"><?php echo $username_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($email_address_err)) ? 'has-error' : ''; ?>">
-                                <label>E-Mail Address</label>
-                                <input type="email" name="email_address" class="form-control" value="<?php echo $email_address; ?>">
-                                <span class="help-block"><?php echo $email_address_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($NIC_err)) ? 'has-error' : ''; ?>">
-                                <label>NIC</label>
-                                <input type="text" name="NIC" class="form-control" value="<?php echo $NIC; ?>">
-                                <span class="help-block"><?php echo $NIC_err; ?></span>
-                            </div>
-                            <!-- <div class="form-group <?php //echo (!empty($user_type_err)) ? 'has-error' : ''; 
-                                                        ?>">
-                <label>User Type</label>
-                <input type="text" name="user_type" class="form-control" value="<?php //echo $user_type; 
-                                                                                ?> ">
-                <span class="help-block"><?php //echo $user_type_err; 
-                                            ?></span>
-            </div> -->
-                            <div class="form-group <?php echo (!empty($mobile_number_err)) ? 'has-error' : ''; ?>">
-                                <label>Mobile Number</label>
-                                <input type="text" name="mobile_number" class="form-control" value="<?php echo $mobile_number; ?>">
-                                <span class="help-block"><?php echo $mobile_number_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
-                                <label>Title</label>
-                                <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
-                                <span class="help-block"><?php echo $title_err; ?></span>
-                            </div>
-
-                            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                                <span class="help-block"><?php echo $password_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                                <label>Confirm Password</label>
-                                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Submit">
-                                <!-- <input type="reset" class="btn btn-reset" value="Reset"> -->
-                            </div>
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>  
+            <div class="form-group <?php echo (!empty($email_address_err)) ? 'has-error' : ''; ?>">
+                <label>E-Mail Address</label>
+                <input type="email" name="email_address" class="form-control" value="<?php echo $email_address; ?>">
+                <span class="help-block"><?php echo $email_address_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($NIC_err)) ? 'has-error' : ''; ?>">
+                <label>NIC</label>
+                <input type="text" name="NIC" class="form-control" minlength="10" maxlength="12" value="<?php echo $NIC; ?>">
+                <span class="help-block"><?php echo $NIC_err; ?></span>
+            </div>   
+           
+            <div class="form-group <?php echo (!empty($mobile_number_err)) ? 'has-error' : ''; ?>">
+                <label>Mobile Number</label>
+                <input type="numeric" name="mobile_number" class="form-control" minlength="10" maxlength="10" value="<?php echo $mobile_number; ?>">
+                <span class="help-block"><?php echo $mobile_number_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
+                <label>Title</label>
+                <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
+                <span class="help-block"><?php echo $title_err; ?></span>
+            </div>
+            
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
                             <!-- <p>Already have an account? <a href="login.php">Login here</a>.</p> -->
                         </form>
                     </div>

@@ -48,8 +48,7 @@ require("adminheader.php");
 
 
           <a href="viewfeedback1.php">View feedback</a>
-          <!-- <a href="ViewPayments.php">View Payments</a> -->
-          <a href="Advertise.php">Advertise</a>
+
           <a href="GenerateReports.php">Generate Reports</a>
           <a href="logout.php">Log Out</a>
         </div>

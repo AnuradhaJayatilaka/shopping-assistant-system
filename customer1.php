@@ -201,17 +201,18 @@ $username= $_SESSION['user_name'];
      <br>
      <div class="row">
       <div class="col-sm-3" >
-        <a href="dairyproducts.php" style="color: #000;">
+        <a href="dairyproducts.php?product_category=Dairy%20Products" style="color: #000;">
+        
        <div class="card" >
         <img src="images\Dairy_1.jpg" alt="Dairy Products" style="width:320px;height: 250px; " >
         <h2 align="center">Dairy Products</h2>
-        <p >You can buy dairy products of various brands here.Dairy products includes fresh milk, toghurt, cheese, ice cream, curd etc....</p> 
+        <p >You can buy dairy products of various brands here.Dairy products includes fresh milk,Yoghurt, cheese, ice cream, curd etc....</p> 
       </div>
     </a>
     </div>
 
     <div class="col-sm-3">
-      <a href="sanitaryitems.php" style="color: #000;">
+    <a href="dairyproducts.php?product_category=Sanitory%20Products" style="color: #000;">
      <div class="card">
       <img src="images/cleaning-products-supply-flat-icons-260nw-610941368.jpg" alt="Sanitary products"  style="width:320px;height: 250px;">
       <h2 align="center">Sanitary items</h2>
@@ -221,7 +222,7 @@ $username= $_SESSION['user_name'];
   </div>
 
   <div class="col-sm-2">
-    <a href="stationery.php" style="color: #000;" >
+  <a href="dairyproducts.php?product_category=Stationery%20Products" style="color: #000;">
    <div class="card">
     <img src="images\stationery.jfif" alt="Denim Jeans" style="width:320px;height: 250px;">
     <h2 align="center">Stationery</h2>
@@ -231,7 +232,7 @@ $username= $_SESSION['user_name'];
   </div>
 
   <div class="col-sm-2">
-    <a href="spices.php" style="color: #000;"method="GET">
+  <a href="dairyproducts.php?product_category=Spices" style="color: #000;">
    <div class="card">
      <img  src="images/spices.jfif" alt="Spices" style="width:320px;height: 250px;">
      <h2>Spices</h2>
@@ -241,7 +242,7 @@ $username= $_SESSION['user_name'];
  </div>
 
  <div class="col-sm-2">
-    <a href="Beverages.php" style="color: #000;">
+ <a href="dairyproducts.php?product_category=Beverages" style="color: #000;">
    <div class="card">
      <img  src="images\beverages.jpg" alt="Denim Jeans" style="width:320px;height: 250px;">
      <h2>Beverages</h2>

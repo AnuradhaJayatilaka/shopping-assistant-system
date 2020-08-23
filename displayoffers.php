@@ -47,13 +47,8 @@ require("adminheader.php");
           <a href="cat.php">Manage Product Categories</a>
           <a href="displayoffers.php" class="active">Manage Offers</a>
           <a href="viewcashierlist.php">Manage Cashiers</a>
-
           <a href="ViewSuggestions.php">View Suggestions</a>
-
-
           <a href="viewfeedback1.php">View feedback</a>
-          <!-- <a href="ViewPayments.php">View Payments</a> -->
-          <a href="Advertise.php">Advertise</a>
           <a href="GenerateReports.php">Generate Reports</a>
           <a href="logout.php">Log Out</a>
 

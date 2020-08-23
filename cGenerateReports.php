@@ -72,6 +72,7 @@ require("adminheader.php")
                     </form>
                 </div>
                 <div class="row">
+                    <panel>
                     <div class="column">
                         <div class="form">
                             <table class="table table-stripped">
@@ -225,6 +226,7 @@ require("adminheader.php")
                             </table>
                             <br><br><br>
                         </div>
+                                </panel>
 
                     </div>
                 </div>
@@ -254,6 +256,7 @@ require("adminheader.php")
 
                 } ?>
             </div>
+            
         </div>
 
 

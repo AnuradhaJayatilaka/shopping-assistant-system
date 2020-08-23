@@ -45,7 +45,7 @@ require("adminheader.php");
 
 
         <a href="viewfeedback1.php" class="active">View feedback</a>
-        
+
         <a href="GenerateReports.php">Generate Reports</a>
         <a href="logout.php">Log Out</a>
       </div>

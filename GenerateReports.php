@@ -44,8 +44,7 @@ require("adminheader.php")
 
 
                 <a href="viewfeedback1.php">View feedback</a>
-                <!-- <a href="ViewPayments.php">View Payments</a> -->
-                <a href="Advertise.php">Advertise</a>
+
                 <a href="GenerateReports.php" class="active">Generate Reports</a>
                 <a href="logout.php">Log Out</a>
             </div>
@@ -65,6 +64,7 @@ require("adminheader.php")
                 <h1>Sales Details</h1>
                 <div>
                     <form action="GenerateReports.php" method="GET">
+                        <br>
                         <label>Starting date</label>
                         <input type="Date" name="start" id="start" />
                         <label>Ending Date</label>
@@ -133,22 +133,22 @@ require("adminheader.php")
                                                 <td align="center"><?php echo $row["amount"]; ?></td>
                                                 <td align="center"><?php echo $row["porder_date_time"]; ?></td>
                                                 <?php $totalsales1 = $totalsales1 + $row["amount"]; ?>
-                                                
+
                                             </tr>
                                         <?php $count++;
                                         } ?>
                                         <p>Total Number of orders placed by the cart:<?php echo $nooforders1; ?></p>
-                                                <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
+                                        <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                             </table>
-                            
+
                             <br><br><br>
                         </div>
                     </div>
-                    <div class="column"><br><br><br><br><br><br><br><br><br></div>
+                    <!-- <div class="column"><br><br><br><br><br><br><br><br><br></div> -->
                     <div class="column">
                         <?php
                         require('mysqlconnect.php');
@@ -232,29 +232,32 @@ require("adminheader.php")
             </body>
 
             </html>
-            <div class="row">            <?php
-            $totalsales = $totalsales1 + $totalsales2;
-            $nooforders = $nooforders1 + $nooforders2;
-            ?>
-            <br><br><br>
-            <?php
-            if (isset($_GET['submit'])) {
-                if (!empty($_GET)) {
-                    $start = $_GET['start'];
-                    $end = $_GET['end']; ?>
-                    <h3>Summary of sales between<?php echo $start ?> and <?php echo $end ?></h3>
+            <div class="row"> <?php
+                                $totalsales = $totalsales1 + $totalsales2;
+                                $nooforders = $nooforders1 + $nooforders2;
+                                ?>
+                <br><br><br>
+                <?php
+                if (isset($_GET['submit'])) {
+                    if (!empty($_GET)) {
+                        $start = $_GET['start'];
+                        $end = $_GET['end']; ?>
+                        <h3>Summary of sales between<?php echo $start ?> and <?php echo $end ?></h3>
+                        <p>Total Number of orders :<?php echo $nooforders; ?></p>
+                        <p>Total sales revenue:<?php echo $totalsales; ?></p>
+                    <?php }
+                } else {
+                    ?>
+                    <h3>Summary of sales of last 24 hours</h3>
                     <p>Total Number of orders :<?php echo $nooforders; ?></p>
                     <p>Total sales revenue:<?php echo $totalsales; ?></p>
-                <?php }
-            } else {
-                ?>
-                <h3>Summary of sales of last 24 hours</h3>
-                <p>Total Number of orders :<?php echo $nooforders; ?></p>
-                <p>Total sales revenue:<?php echo $totalsales; ?></p>
-            <?php
 
-            } ?>
-        </div>
+
+                    <a href="report.php"> Click here to view the sales details product wise</a>
+                <?php
+
+                } ?>
+            </div>
         </div>
 
 
