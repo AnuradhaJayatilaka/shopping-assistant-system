@@ -4,7 +4,7 @@ require("adminheader.php");
 ?>
 
 <head>
-<style>
+  <style>
     label {
       display: inline-block;
       width: 200px;
@@ -54,6 +54,7 @@ require("adminheader.php");
           <a href="viewfeedback1.php">View feedback</a>
 
           <a href="GenerateReports.php">Generate Reports</a>
+          <a href="viewcustomerdetails.php">View Customer details</a>
           <a href="logout.php">Log Out</a>
 
         </div>
@@ -94,7 +95,7 @@ require("adminheader.php");
                                         ";
                 ?>
                 <br><br>
-                
+
                 <div class="form-group">
                   <label>Product Description</label>
                   <input type="text" name="description" placeholder=<?php echo "$description" ?> required /><br><br>

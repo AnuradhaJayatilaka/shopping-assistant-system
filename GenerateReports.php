@@ -46,6 +46,7 @@ require("adminheader.php")
                 <a href="viewfeedback1.php">View feedback</a>
 
                 <a href="GenerateReports.php" class="active">Generate Reports</a>
+                <a href="viewcustomerdetails.php">View Customer details</a>
                 <a href="logout.php">Log Out</a>
             </div>
         </div>
@@ -61,6 +62,7 @@ require("adminheader.php")
             </head>
 
             <body>
+            
                 <h1>Sales Details</h1>
                 <div>
                     <form action="GenerateReports.php" method="GET">
@@ -112,11 +114,12 @@ require("adminheader.php")
                                                     <td align="center"><?php echo $row["amount"]; ?></td>
                                                     <td align="center"><?php echo $row["porder_date_time"]; ?></td>
                                                     <?php $totalsales1 = $totalsales1 + $row["amount"]; ?>
-                                                    <p>Total Number of orders placed by the cart:<?php echo $nooforders1; ?></p>
-                                                    <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
+                                                    
                                                 </tr>
                                             <?php $count++;
-                                            } ?>
+                                            
+                                            } ?><p>Total Number of orders placed by the cart:<?php echo $nooforders1; ?></p>
+                                            <p>Total sales revenue of cart orders:<?php echo $totalsales1; ?></p>
                                             </tr>
                                         <?php $count++;
                                         }
@@ -253,10 +256,11 @@ require("adminheader.php")
                     <p>Total sales revenue:<?php echo $totalsales; ?></p>
 
 
-                    <a href="report.php"> Click here to view the sales details product wise</a>
+                    
                 <?php
 
                 } ?>
+                <a href="report.php"> Click here to view the sales details product wise</a>
             </div>
         </div>
 

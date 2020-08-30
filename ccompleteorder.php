@@ -47,6 +47,7 @@ require("adminheader.php");
 
 
                     <a href="cGenerateReports.php">Generate Reports</a>
+                    <a href="viewcustomerdetails.php">View Customer details</a>
                     <a href="logout.php">Log Out</a>
                 </div>
             </div>

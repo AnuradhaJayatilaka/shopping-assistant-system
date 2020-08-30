@@ -49,6 +49,7 @@ require("adminheader.php");
           <a href="viewfeedback1.php">View feedback</a>
 
           <a href="GenerateReports.php">Generate Reports</a>
+          <a href="viewcustomerdetails.php">View Customer details</a>
           <a href="logout.php">Log Out</a>
         </div>
       </div>
@@ -74,12 +75,11 @@ require("adminheader.php");
               <thead>
                 <tr>
                   <!-- <th><strong>Number</strong></th> -->
-                  <th><strong>Order ID</strong></th>
                   <th><strong>Username</strong></th>
                   <th><strong>Date and Time</strong></th>
                   <th><strong>Total amount</strong></th>
                   <th><strong>Order Status</strong></th>
-
+                  <th><strong>Change Order Status</strong></th>
                   <th><strong>View Order Details</strong></th>
 
 
@@ -96,17 +96,26 @@ require("adminheader.php");
                 $query = "update cartorder set cart_order_status='Complete' where cartorderid='$cartorderid'";
                 $result2 = mysqli_query($db, $query);
 
-                $sel_query = "Select * from cartorder  ";
+                $sel_query = "Select * from cartorder WHERE cart_order_status='processing' OR cart_order_status='Placed'  ";
                 $result = mysqli_query($db, $sel_query);
                 while ($row = mysqli_fetch_assoc($result)) { ?>
                   <tr>
-                    <td align="center"><?php echo $row["cartorderid"]; ?></td>
-                    <td align="center"><?php echo $row["email_address"]; ?></td>
+                  <td align="center"><?php echo $row["email_address"]; ?></td>
                     <td align="center"><?php echo $row["porder_date_time"]; ?></td>
                     <td align="center"><?php echo $row["amount"]; ?></td>
                     <td align="center"><?php echo $row["cart_order_status"]; ?></td>
-
-
+                    <td align="center">
+                      <form action="cartorder1.php" method="GET">
+                        <input type="hidden" name="cart_order_status">
+                        <input type="hidden" name="cartorderid" value=<?php echo $row["cartorderid"] ?>>
+                        <input type="submit" type="submit" value="complete" class="btn-Search">
+                      </form>
+                      <form action="cartorder2.php" method="GET">
+                        <input type="hidden" name="cart_order_status">
+                        <input type="hidden" name="cartorderid" value=<?php echo $row["cartorderid"] ?>>
+                        <input type="submit" type="submit" value="processing" class="btn-Search" />
+                      </form>
+                    </td>
                     <td align="center">
                       <a href="viewcartorderdetails.php?cartorderid=<?php echo $row["cartorderid"]; ?>">View details</a>
                     </td>

@@ -19,7 +19,7 @@ SELECT *FROM cartorder_details;
 
 -- INSERT INTO cartorder_details (cartorderid,product_ID,quantity,product_name) VALUES ('4','DAI2222','1','Milk powder');
 
-ALTER TABLE cartorder_details ADD porder_date_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
+-- ALTER TABLE cartorder_details ADD porder_date_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 -- ALTER TABLE cart1 ADD product_ID VARCHAR(7) NOT NULL;
 
  SELECT * FROM products  WHERE quantity<=50 ORDER BY product_ID;

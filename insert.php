@@ -50,6 +50,7 @@ require("adminheader.php");
           <a href="ViewSuggestions.php">View Suggestions</a>
           <a href="viewfeedback1.php">View feedback</a>
           <a href="GenerateReports.php">Generate Reports</a>
+          <a href="viewcustomerdetails.php">View Customer details</a>
           <a href="logout.php">Log Out</a>
 
         </div>
@@ -158,7 +159,7 @@ require("adminheader.php");
               while ($row = mysqli_fetch_assoc($PIDresult)) {
                 $PIDlast = $row['product_ID'];
               }
-              echo $PIDlast;
+              // echo $PIDlast;
               $PID_count = substr("$PIDlast", 3, 4);
               $PID_count_int = (int)$PID_count;
               $PID_NUMB = $PID_count_int + 1;
